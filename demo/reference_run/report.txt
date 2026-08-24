@@ -1,0 +1,349 @@
+==============================================================================
+NORTHLIGHT RENEWABLE SERVICES — FLEET PATTERN DETECTION
+==============================================================================
+  corpus            2398 work orders, 34 sites, 2024-07-01 to 2026-06-30
+  stage 1 backend   rules   (deterministic stand-in, not a model)
+  reasoning backend authored  model claude-opus-5
+  candidates        43 generated, 15 examined
+  outcome           3 escalated | 6 real but deprioritised | 6 examined and declined
+
+==============================================================================
+COMMERCIAL SUMMARY — ESCALATED FINDINGS
+==============================================================================
+  Findings                    3 across 1 distinct at-risk population(s)
+  Cost already incurred       $97,537 – $140,339   (27 work orders)
+  Assets exposed              58 units not yet failed
+  Replacement exposure        $3,596,000 if left unremediated
+  Warranty recovery in play   $50,973
+
+  Exposure is counted ONCE per physical population. Findings that are
+  severity stages of the same fault share one population and are not summed.
+
+==============================================================================
+ESCALATED — 3 finding(s), ranked by financial impact
+==============================================================================
+------------------------------------------------------------------------------
+ESCALATE #1 — 74 Kelvara KVP-3600 inverters from one 2024 build window are failing thermally while still inside parts warranty - a supplier claim on damage already incurred plus a billable remediation campaign across the cohort.
+------------------------------------------------------------------------------
+  Cost incurred to date     $78,518 – $115,154   (8 work orders, 61 labour hours)
+  Assets exposed            58 units not yet failed
+  Replacement exposure      $3,596,000 if unremediated
+  Warranty recovery         $44,820 potentially recoverable (8 of 8 in warranty)
+  Recommended action        Open a warranty claim with Kelvara covering the 2024 week 18-36 build cohort, and scope a firmware remediation campaign across all 74 units as billable corrective maintenance.
+  Action type               warranty_claim
+  Confidence                high
+  Shared population         also presents as CAND-008, CAND-009; exposure above covers all three
+------------------------------------------------------------------------------
+EVIDENCE
+  Every affected serial is a KVP-3600 built in 2024 within a narrow week band: 2419B (week 19), 2423B (23), 2428C (28), 2432C (32), 2434C (34). No unit from any other build year appears, and the installed base shows KVP-3600 spread across build years from 2015 to 2024, so this is a cohort effect rather than a model-wide or age effect. The failure mode is consistent and physical: IGBT modules discoloured with heat-marked busbars (WO-2026-00480, WO-2026-00696, WO-2026-00702) escalating to units that shut down hard and will not restart (WO-2026-00514, WO-2026-00575, WO-2026-00595). Two units recur - KVP36-2428C-0169 in WO-2026-00522 then WO-2026-00575, and KVP36-2419B-0365 in WO-2026-00480 then WO-2026-00579 - which is progressive damage, not independent random failure. WO-2026-00522 records the unit was still on firmware revision 4.2.1. Peer models show zero tickets with this symptom, so H2 (ordinary wear) and H3 (site conditions) both fail: other models co-located at these sites are not producing thermal damage.
+  Cited from the 8-ticket cluster (8 shown): WO-2026-00480, WO-2026-00514, WO-2026-00522, WO-2026-00575, WO-2026-00579, WO-2026-00595, WO-2026-00696, WO-2026-00702
+  Contradicting evidence: All eight tickets fall in May and June 2026, the last two months of the data window, so the observed severity may be a late-window artifact of a defect that has been developing unobserved. This makes the cost figure a floor rather than a settled total.
+  Hypotheses considered (3):
+    >> H1 [systemic_defect] KVP-3600 central inverters from a bounded 2024 manufacturing window carry a defect that produces progressive thermal damage to the power stage under high ambient load.
+       H2 [normal_wear_and_tear] These are ordinary end-of-life power-stage failures and appear clustered only because KVP-3600 is the largest installed model in the fleet.
+       H3 [benign_operational] Site operating conditions, not the equipment, drive the failures: these sites run hotter or dirtier than the fleet average.
+  Population basis: The asset registry lists 74 KVP-3600 units with 2024 manufacture weeks 18 through 36. At least 16 distinct serials from that window already appear across this and the related derate and over-temperature clusters, leaving roughly 58 not yet presented.
+------------------------------------------------------------------------------
+COST BASIS (all figures from stated assumptions, not model output)
+  labour            61.1 h   x $95/h          = $5,804
+  mobilisation         8 rolls x $450          = $3,600
+  parts                                         = $63,150
+                6x IGBT module, 4x DC contactor, 1x gate driver, 1x cooling fan
+  energy           142.0 MWh x $42/MWh       = $5,964  (as reported)
+                upper bound $42,600 — only 14% of tickets record lost production
+
+------------------------------------------------------------------------------
+ESCALATE #2 — Afternoon derating on the same 2024 Kelvara build cohort - the early warning stage of the thermal failures, and lost generation that is recoverable under the same claim.
+------------------------------------------------------------------------------
+  Cost incurred to date     $8,664 – $13,928   (7 work orders, 28 labour hours)
+  Assets exposed            same 58 units as ESCALATE #1 — already counted there, not additional
+  Warranty recovery         $3,028 potentially recoverable (7 of 7 in warranty)
+  Recommended action        Include in the single Kelvara warranty claim and firmware remediation scope defined under CAND-002 rather than actioning separately.
+  Action type               warranty_claim
+  Confidence                high
+------------------------------------------------------------------------------
+EVIDENCE
+  This is the same population as CAND-002 at an earlier severity stage. Every serial falls in the 2024 build window: 2419B (week 19), 2426B (26), 2427C (27), 2428C (28), 2436C (36). KVP36-2428C-0169 appears here derating in WO-2025-00908 and then appears in CAND-002 with power-stage thermal damage in WO-2026-00522 and WO-2026-00575, which is the progression made explicit on a single unit. KVP36-2419B-0361 recurs within this cluster (WO-2024-00163 then WO-2025-00688). The narratives describe afternoon-heat derating with no fault logged and nothing to reset, and technicians escalated to the OEM without resolution in WO-2025-00688, WO-2025-00908 and WO-2026-00586. H3 (fouling) fails because the same technicians report intakes and heat sinks clear. H2 (designed behaviour) fails because peer models at the same sites do not generate equivalent tickets.
+  Cited from the 7-ticket cluster (6 shown): WO-2024-00163, WO-2025-00670, WO-2025-00688, WO-2025-00720, WO-2025-00908, WO-2026-00586
+  Contradicting evidence: Derating is genuinely normal protective behaviour at high ambient, so a portion of these tickets may be correct operation reported as a fault. That would reduce the count but not the cohort pattern.
+  Hypotheses considered (3):
+    >> H1 [systemic_defect] KVP-3600 units from the 2024 build window derate in high afternoon ambient because cooling control does not respond aggressively enough, an earlier stage of the same fault that later produces power-stage damage.
+       H2 [benign_operational] Afternoon derating is normal designed behaviour for any central inverter at high ambient and is being over-reported here.
+       H3 [benign_operational] Blocked filters or fouled heat sinks from site conditions explain the derating, and it is a maintenance backlog rather than a defect.
+  Population basis: Shared population with CAND-002; not additive to it.
+------------------------------------------------------------------------------
+COST BASIS (all figures from stated assumptions, not model output)
+  labour            28.5 h   x $95/h          = $2,708
+  mobilisation         7 rolls x $450          = $3,150
+  parts         3x cooling fan                  = $1,950
+  energy            20.4 MWh x $42/MWh       = $857  (as reported)
+                upper bound $6,120 — only 14% of tickets record lost production
+
+------------------------------------------------------------------------------
+ESCALATE #3 — Over-temperature trips on the same 2024 Kelvara cohort - the earliest detectable signature, and the cheapest point to intervene before power-stage damage.
+------------------------------------------------------------------------------
+  Cost incurred to date     $10,354 – $11,257   (12 work orders, 51 labour hours)
+  Assets exposed            same 58 units as ESCALATE #1 — already counted there, not additional
+  Warranty recovery         $3,125 potentially recoverable (12 of 12 in warranty)
+  Recommended action        Fold into the CAND-002 remediation scope; use these tickets as the earliest detectable signature when defining the fleet-wide firmware campaign trigger.
+  Action type               remediation_campaign
+  Confidence                medium
+------------------------------------------------------------------------------
+EVIDENCE
+  Mildest presentation of the same cohort fault. Affected serials again sit in the 2024 window: 2422B (week 22), 2423B (23), 2432C (32), 2435C (35). Units recur within a season - WO-2025-00248 and WO-2026-00627 both record a second over-temperature trip on a 2422B unit that season - and technicians report the intake and heat sinks clear on inspection, which is what separates this from ordinary fouling. WO-2025-00248 records a technician speculating in writing that fan control may be ramping late, and no one escalated it. Confidence is medium rather than high because the cluster is genuinely mixed: WO-2025-01068 found filters completely blocked, a straightforward maintenance cause that belongs to H2 and not to the cohort fault.
+  Cited from the 12-ticket cluster (5 shown): WO-2025-00248, WO-2025-00449, WO-2025-00592, WO-2025-00651, WO-2026-00627
+  Contradicting evidence: WO-2025-01068 identifies a physical cause (blocked filters) and should be excluded from the cohort. At least one member of this cluster is ordinary maintenance, so the count overstates the cohort effect.
+  Hypotheses considered (3):
+    >> H1 [systemic_defect] KVP-3600 units from the 2024 build window trip on over-temperature during hot afternoons, the mildest presentation of the same cooling-control fault seen as derating and later as power-stage damage.
+       H2 [benign_operational] These are ordinary over-temperature trips driven by blocked filters and site dust, resolved by cleaning.
+       H3 [other] Spread across eight sites, this is background variation in a large installed population rather than a cohort effect.
+  Population basis: Shared population with CAND-002 and CAND-008.
+------------------------------------------------------------------------------
+COST BASIS (all figures from stated assumptions, not model output)
+  labour            50.6 h   x $95/h          = $4,807
+  mobilisation        12 rolls x $450          = $5,400
+  energy             3.5 MWh x $42/MWh       = $147  (as reported)
+                upper bound $1,050 — only 14% of tickets record lost production
+
+==============================================================================
+REAL BUT DEPRIORITISED — 6 finding(s)
+Confirmed as real. Not worth commercial action at the estimated impact below.
+==============================================================================
+------------------------------------------------------------------------------
+DEPRIORITIZE #1 — One technician's row-level logging inflates Mojave tracker event counts roughly threefold - fix before any site reliability ranking goes to a customer.
+------------------------------------------------------------------------------
+  Cost incurred to date     $52,681 – $72,024   (41 work orders, 114 labour hours)
+  Recommended action        Standardise tracker work-order granularity across the fleet and re-baseline Mojave site metrics before using them in any reliability comparison.
+  Action type               data_quality_fix
+  Confidence                high
+  Why not escalated         ~$36,012/yr run-rate across the fleet, no warranty recovery,
+                            no quantified population at risk. Below the threshold that justifies a
+                            customer conversation or a supplier claim.
+------------------------------------------------------------------------------
+EVIDENCE
+  TECH-0231 tags 94 percent of tracker work at row level against a fleet average of 51 percent, and the habit persists across three separate sites (Sundowner Mesa, Joshua Fork, Ashvale Dry Lake) from March 2025 through June 2026, so it is a standing practice rather than an artifact of any one campaign. His per-row tickets are small and single-scope - WO-2025-00285 replaces one stow pin, WO-2025-00794 retorques one damper bolt, WO-2026-00187 the same - averaging under three hours. Peer tickets at the same sites carry zone tags and describe several rows of work each. The effect is that any count of tracker events at Mojave sites is inflated roughly threefold wherever this technician worked, which distorts site reliability comparisons and inflated candidate CAND-001. This is real and worth fixing, but it carries no direct revenue or warranty consequence.
+  Cited from the 41-ticket cluster (8 shown): WO-2025-00214, WO-2025-00285, WO-2025-00302, WO-2025-00794, WO-2026-00099, WO-2026-00171, WO-2026-00187, WO-2026-00678
+  Contradicting evidence: Per-row logging is arguably more accurate, not less - the fleet norm may be the deficient convention. The fix should be to standardise, not necessarily to move this technician to zone-level tagging.
+  Hypotheses considered (3):
+    >> H1 [reporting_culture] One technician records tracker work one work order per row while the rest of the fleet records one per zone, inflating this technician's apparent event count roughly threefold.
+       H2 [benign_operational] The technician is assigned genuinely more granular work than peers, so the per-row tagging is accurate rather than an artifact.
+       H3 [data_artifact] The pattern is a training gap introduced when this technician joined and was never corrected.
+  Population basis: Data quality finding; exposure is to reporting accuracy, not equipment.
+------------------------------------------------------------------------------
+COST BASIS (all figures from stated assumptions, not model output)
+  labour           113.5 h   x $95/h          = $10,782
+  mobilisation        41 rolls x $450          = $18,450
+  parts         14x tracker motor               = $20,300
+  energy            75.0 MWh x $42/MWh       = $3,149  (as reported)
+                upper bound $22,491 — only 14% of tickets record lost production
+
+------------------------------------------------------------------------------
+DEPRIORITIZE #2 — A real three-site wear pattern on older Auster tracker drives worth one maintenance-interval review - not a warranty claim and not urgent.
+------------------------------------------------------------------------------
+  Cost incurred to date     $21,296 – $21,296   (7 work orders, 29 labour hours)
+  Recommended action        Commission one fleet-level review of slew-drive lubrication intervals covering the 2016-2019 Auster population across Ashvale Dry Lake, Dry Creek Junction and Red Clay Flats.
+  Action type               engineering_assessment
+  Confidence                medium
+  Why not escalated         ~$10,648/yr run-rate across the fleet, no warranty recovery,
+                            no quantified population at risk. Below the threshold that justifies a
+                            customer conversation or a supplier claim.
+------------------------------------------------------------------------------
+EVIDENCE
+  Taken alone this site looks like routine wear, and the narratives read that way - WO-2024-00054 calls it normal for the vintage, WO-2026-00688 notes the same thing happening on neighbouring rows. But this is the third independent site with the identical symptom on the same tracker model and vintage, and recorded production loss is zero, so the case is a maintenance-policy case rather than a reliability case. WO-2025-01195 records a technician wondering how many more are due, which is the practical question: the cost here is recurring truck rolls for work that a shortened preventive lubrication interval would absorb more cheaply. Escalation is not warranted because the financial impact is small and there is no supplier exposure.
+  Cited from the 7-ticket cluster (6 shown): WO-2024-00054, WO-2024-00064, WO-2025-00728, WO-2025-01195, WO-2025-01242, WO-2026-00688
+  Contradicting evidence: Zero recorded lost production may simply reflect that nobody estimated it on tracker tickets rather than that there was none. A stalled row does lose generation.
+  Hypotheses considered (3):
+       H1 [normal_wear_and_tear] Original-vintage slew drives at this site are reaching end of grease life, consistent with the same pattern at other older sites in the fleet.
+    >> H2 [systemic_defect] A genuine multi-site Auster slew-drive wear pattern exists and is worth a fleet-level maintenance policy change even if each site looks routine.
+       H3 [benign_operational] Deferred preventive lubrication is converting a cheap scheduled task into a more expensive reactive one.
+  Population basis: Tracker drives are not serial-registered; the registry covers central inverters only.
+------------------------------------------------------------------------------
+COST BASIS (all figures from stated assumptions, not model output)
+  labour            28.9 h   x $95/h          = $2,746
+  mobilisation         7 rolls x $450          = $3,150
+  parts         7x gearbox                      = $15,400
+  energy             0.0 MWh x $42/MWh       = $0  (as reported)
+                upper bound $0 — only 14% of tickets record lost production
+
+------------------------------------------------------------------------------
+DEPRIORITIZE #3 — Half routine fan and filter maintenance, half early evidence of the Kelvara cohort fault - needs splitting before it means anything.
+------------------------------------------------------------------------------
+  Cost incurred to date     $17,076 – $19,140   (17 work orders, 82 labour hours)
+  Warranty recovery         $3,823 potentially recoverable (11 of 17 in warranty)
+  Recommended action        Split this cluster by manufacture cohort in aggregation, route the 2024-window members into the CAND-002 scope and close the remainder as routine cooling maintenance.
+  Action type               data_quality_fix
+  Confidence                medium
+  Why not escalated         ~$9,570/yr run-rate across the fleet, $3,823 of warranty recovery,
+                            no quantified population at risk. Below the threshold that justifies a
+                            customer conversation or a supplier claim.
+------------------------------------------------------------------------------
+EVIDENCE
+  This cluster mixes two causes and should not be actioned as one. Older units have ordinary physical causes: WO-2024-00278 found a bird nest in the intake plenum of a 2016-build unit, WO-2025-00789 a seized fan on a 2019 build. Units from the 2024 window show the different and more interesting pattern - WO-2025-00920 and WO-2026-00693 both report the fan bank running, airflow low across the stack, and filters found not particularly dirty, which is the signature that belongs with the CAND-002 cohort rather than with maintenance. Because roughly half the cluster is routine work, the normalised lift of 2.16 overstates the cohort effect and the cluster as constructed is not a clean finding.
+  Cited from the 17-ticket cluster (5 shown): WO-2024-00278, WO-2025-00789, WO-2025-00920, WO-2025-01005, WO-2026-00693
+  Contradicting evidence: Splitting this cluster by manufacture cohort was not done in aggregation, so the split above is inferred from a sample rather than measured across all 17 members.
+  Hypotheses considered (3):
+    >> H1 [other] The cluster mixes two unrelated causes: routine intake fouling and fan failure on older units, plus genuine airflow shortfall on units from the 2024 build window.
+       H2 [normal_wear_and_tear] All of it is routine cooling maintenance: filters, fans and nests, which is expected work on any central inverter fleet.
+       H3 [systemic_defect] KVP-3600 has an undersized cooling system across all build years.
+  Population basis: Not additive to CAND-002; the remainder is routine maintenance with no exposed population.
+------------------------------------------------------------------------------
+COST BASIS (all figures from stated assumptions, not model output)
+  labour            82.0 h   x $95/h          = $7,790
+  mobilisation        17 rolls x $450          = $7,650
+  parts         2x cooling fan                  = $1,300
+  energy             8.0 MWh x $42/MWh       = $336  (as reported)
+                upper bound $2,400 — only 14% of tickets record lost production
+
+------------------------------------------------------------------------------
+DEPRIORITIZE #4 — Expected grease-life maintenance on older tracker drives - low value individually, worth one fleet-level interval review across the three affected sites.
+------------------------------------------------------------------------------
+  Cost incurred to date     $13,022 – $14,247   (8 work orders, 28 labour hours)
+  Recommended action        Combine with the Ashvale Dry Lake and Red Clay Flats clusters into one fleet-level review of slew-drive lubrication intervals on 2016-2019 vintage Auster trackers.
+  Action type               monitor_only
+  Confidence                medium
+  Why not escalated         ~$7,124/yr run-rate across the fleet, no warranty recovery,
+                            no quantified population at risk. Below the threshold that justifies a
+                            customer conversation or a supplier claim.
+------------------------------------------------------------------------------
+EVIDENCE
+  Technicians state the conclusion outright. WO-2024-00012 records the rows are all about due; WO-2024-00306, WO-2025-00535 and WO-2025-00537 each describe this being the third drive in the block that quarter and explicitly call it normal wear for the vintage. Eight tickets spread evenly across two years with 4.8 MWh of recorded loss. H2 remains live at fleet level - this is the second of three independent sites showing the same symptom on the same tracker model - but at site level there is nothing to escalate.
+  Cited from the 8-ticket cluster (6 shown): WO-2024-00012, WO-2024-00073, WO-2024-00306, WO-2025-00535, WO-2025-00537, WO-2026-00574
+  Contradicting evidence: Three sites showing the same wear symptom on the same tracker model could indicate a genuine design shortfall in grease service interval rather than normal wear. That question is answerable but not from this cluster alone.
+  Hypotheses considered (3):
+    >> H1 [normal_wear_and_tear] Slew drives of the site's original vintage are reaching end of grease life on a normal schedule, which technicians themselves describe as expected.
+       H2 [systemic_defect] This is a fleet-wide Auster slew-drive design weakness that happens to be visible first at older sites.
+       H3 [other] Ordinary variation: a small site with a modest number of drives produced a handful of tickets that only looks elevated once normalised.
+  Population basis: Tracker drives are not serial-registered.
+------------------------------------------------------------------------------
+COST BASIS (all figures from stated assumptions, not model output)
+  labour            27.6 h   x $95/h          = $2,622
+  mobilisation         8 rolls x $450          = $3,600
+  parts         3x gearbox                      = $6,600
+  energy             4.8 MWh x $42/MWh       = $200  (as reported)
+                upper bound $1,425 — only 14% of tickets record lost production
+
+------------------------------------------------------------------------------
+DEPRIORITIZE #5 — Routine end-of-life grease service on original-vintage tracker drives - real work, negligible production impact, no supplier exposure.
+------------------------------------------------------------------------------
+  Cost incurred to date     $12,409 – $13,562   (9 work orders, 40 labour hours)
+  Recommended action        Fold into the fleet-wide slew-drive lubrication policy review triggered by the same pattern at Dry Creek Junction and Red Clay Flats rather than treating as a site issue.
+  Action type               monitor_only
+  Confidence                medium
+  Why not escalated         ~$6,781/yr run-rate across the fleet, no warranty recovery,
+                            no quantified population at risk. Below the threshold that justifies a
+                            customer conversation or a supplier claim.
+------------------------------------------------------------------------------
+EVIDENCE
+  Nine tickets over two years describing hardened or separated grease and scored gear faces on tracker drives. The technicians characterise it themselves as expected: WO-2024-00061 and WO-2025-01170 both record grease separated and repacked with no further comment. Arrivals are steady from July 2024 to January 2026 rather than bursting, which fits end-of-grease-life on an original-vintage population, not a defect. Recorded production loss across the whole cluster is 4.5 MWh, which is immaterial. H2 would require failures well short of design life and a rate sharply worse than same-vintage peers; instead the same pattern appears independently at two other older sites, which points to vintage rather than to a bad batch here.
+  Cited from the 9-ticket cluster (5 shown): WO-2024-00061, WO-2024-00318, WO-2025-00297, WO-2025-01170, WO-2026-00052
+  Contradicting evidence: Whether preventive lubrication was actually being performed on schedule is not visible in this cluster. If it was not, part of this cost is avoidable and the finding would move from wear to backlog.
+  Hypotheses considered (3):
+    >> H1 [normal_wear_and_tear] Tracker slew drives of a 2016-2019 vintage at this site are reaching the end of their grease service life together, producing a run of routine regrease and drive replacements.
+       H2 [systemic_defect] A batch of defective slew drives was installed at this site and is failing prematurely.
+       H3 [benign_operational] A lapse in the preventive lubrication schedule at this site allowed drives to run dry.
+  Population basis: The registry covers central inverters only; tracker drives are tracked by positional tag.
+------------------------------------------------------------------------------
+COST BASIS (all figures from stated assumptions, not model output)
+  labour            39.7 h   x $95/h          = $3,771
+  mobilisation         9 rolls x $450          = $4,050
+  parts         2x gearbox                      = $4,400
+  energy             4.5 MWh x $42/MWh       = $188  (as reported)
+                upper bound $1,341 — only 14% of tickets record lost production
+
+------------------------------------------------------------------------------
+DEPRIORITIZE #6 — Soltera comms dropouts at Palmetto Bend cost truck rolls but no generation - stop dispatching, fix the firmware at the next window.
+------------------------------------------------------------------------------
+  Cost incurred to date     $3,921 – $3,947   (6 work orders, 11 labour hours)
+  Recommended action        Handle remotely: update the comms-board firmware at the next scheduled window and suppress the portal alarm rather than dispatching a technician.
+  Action type               monitor_only
+  Confidence                high
+  Why not escalated         ~$1,974/yr run-rate across the fleet, no warranty recovery,
+                            no quantified population at risk. Below the threshold that justifies a
+                            customer conversation or a supplier claim.
+------------------------------------------------------------------------------
+EVIDENCE
+  The technicians establish the commercial answer directly: WO-2025-00135 records that production was never affected and only reporting drops, and WO-2024-00288 confirms the unit was generating normally per the meter while showing offline in the portal. Recorded lost production across the cluster is 0.1 MWh against 10.6 labour hours. This is a genuine recurring nuisance on Soltera ST-250 comms modules at a humid site, and it is real enough to fix, but it converts to almost no money. H2 fails on the metered evidence.
+  Cited from the 6-ticket cluster (5 shown): WO-2024-00110, WO-2024-00288, WO-2025-00135, WO-2025-00602, WO-2026-00603
+  Contradicting evidence: Repeated dispatches to a fault with no production consequence still consume technician capacity that has an opportunity cost not captured in the energy figure.
+  Hypotheses considered (3):
+    >> H1 [benign_operational] Soltera ST-250 string inverters at humid sites lose network reporting while continuing to invert normally, a communications-module nuisance with no energy consequence.
+       H2 [systemic_defect] The dropouts mask genuine intermittent generation loss that the portal is failing to capture.
+       H3 [benign_operational] Site network infrastructure rather than the inverters is at fault.
+  Population basis: The registry covers central inverters only.
+------------------------------------------------------------------------------
+COST BASIS (all figures from stated assumptions, not model output)
+  labour            10.6 h   x $95/h          = $1,007
+  mobilisation         6 rolls x $450          = $2,700
+  parts         1x PV module                    = $210
+  energy             0.1 MWh x $42/MWh       = $4  (as reported)
+                upper bound $30 — only 14% of tickets record lost production
+
+==============================================================================
+EXAMINED AND DECLINED — 6 candidate(s)
+A system that visibly refuses to escalate is more useful than one that only shows hits.
+==============================================================================
+------------------------------------------------------------------------------
+DECLINED #1 — Sundowner Mesa's tracker spike is a March 2025 microburst already under an insurance claim, not an equipment defect - no warranty action.
+  Candidate CAND-001  |  20 work orders  |  confidence high
+  Accepted explanation: [environmental_event] A single high-wind event on 2025-03-14 caused simultaneous mechanical damage across many tracker rows at this site.
+  Why not escalated: This is a discrete weather event, not a tracker defect. WO-2025-00218 states the work is cleanup after a microburst on the 14th and logs it against property claim NRS-PL-2025-0417; WO-2025-00268 and WO-2025-00349 both open with 'Storm damage'. The damage modes are varied and mechanical (bent dampers, purlins out of true, sheared couplings, pulled clamps), which is what a single wind loading event produces, not what a repeating component defect produces. All twenty tickets fall between 2025-03-15 and 2025-04-28 and the site returns to baseline afterwards. Hypothesis H3 also holds partial credit: the cluster mixes per-row tags (WO-2025-00227, WO-2025-00257) with per-zone tags whose narratives each account for many rows (WO-2025-00278 reports nine rows in one ticket, WO-2025-00387 another nine), so the twenty tickets represent materially fewer physical events. No warranty claim against the tracker OEM is supportable.
+
+------------------------------------------------------------------------------
+DECLINED #2 — The same March 2025 wind event seen a second way - time-bounded, insured, and not a Trackline H2 defect.
+  Candidate CAND-004  |  18 work orders  |  confidence high
+  Accepted explanation: [environmental_event] A discrete microburst on 2025-03-14 produced a bounded cleanup campaign that concentrates 82 percent of this site's tracker-structure tickets into eight weeks.
+  Why not escalated: Same event as CAND-001, viewed through a different aggregation. Eighty-two percent of this site's tracker-structure tickets fall in the eight weeks starting 2025-03-16, two days after the microburst named in WO-2025-00218. The damage descriptions are the varied mechanical signature of wind loading on rows caught partway to stow - bent purlins (WO-2025-00223, WO-2025-00349), torque tubes out of true (WO-2025-00324, WO-2025-00350), pulled clamps and damaged stow pins. H2 requires the elevated rate to persist beyond the window and it does not. The remaining 18 percent of this site's tracker-structure tickets are spread across the other 22 months, which is the correct baseline comparison.
+
+------------------------------------------------------------------------------
+DECLINED #3 — Ground faults on Kelvara inverters run at the same rate as every other model in the fleet - a baseline maintenance cost, not a defect.
+  Candidate CAND-010  |  31 work orders  |  confidence high
+  Accepted explanation: [benign_operational] DC ground faults on this model are ordinary balance-of-plant events caused by chafed or pinched conductors, not an inverter defect.
+  Why not escalated: Ground faults on this model are balance-of-plant events, not inverter faults. Every narrative locates the cause outside the inverter: a home run chafed against racking in WO-2024-00002, pinched connectors in combiners in WO-2025-00524, WO-2026-00229 and WO-2026-00699. Affected serials span 2016 to 2024 builds (1629C, 1635C, 1743D, 1845D, 1922B, 2438C) with no cohort concentration. Decisively, the normalised rate is 0.082 faults per installed unit against a peer median of 0.073 - the same symptom appears on CE-4000 at 0.073, MG-3300 at 0.080 and KVP-2400 at 0.046. This is a fleet baseline phenomenon appearing here only because KVP-3600 has the largest installed base. Escalating it would be a false positive.
+
+------------------------------------------------------------------------------
+DECLINED #4 — Meridian ground-fault rate matches the fleet baseline - nothing to pursue.
+  Candidate CAND-013  |  23 work orders  |  confidence high
+  Accepted explanation: [benign_operational] Ground faults on this model are ordinary conductor and connector events, at a rate indistinguishable from every other inverter model in the fleet.
+  Why not escalated: Normalised rate is 0.080 faults per installed unit against a peer median of 0.073 - statistically indistinguishable from the other three inverter models. Causes are located outside the inverter in every sampled narrative: a chafed home run in WO-2025-00120, a pinched connector in a combiner in WO-2026-00544, and no fault found on inspection in WO-2024-00037, WO-2024-00074 and WO-2026-00037. Serials span 2018 to 2024 builds with no concentration. Same conclusion as CAND-010 for the same reasons.
+
+------------------------------------------------------------------------------
+DECLINED #5 — Calderon ground faults run below the fleet average once normalised by installed base - a volume artifact, not a finding.
+  Candidate CAND-014  |  24 work orders  |  confidence high
+  Accepted explanation: [benign_operational] Ground faults on this model are ordinary balance-of-plant events; the normalised rate is below the fleet peer median, so the cluster exists only because the installed base is large.
+  Why not escalated: The normalised rate here is 0.073 per installed unit against a peer median of 0.080 - this model is slightly better than its peers, and the cluster exists only because 327 units generate a lot of absolute tickets. This is the clearest illustration in the run of why raw counts mislead: 24 tickets and 113 labour hours look material until divided by installed base. Causes are again external to the inverter - a pinched connector in WO-2024-00069, a chafed home run in WO-2024-00185, no fault found in WO-2025-00084, WO-2025-01248 and WO-2026-00670.
+
+------------------------------------------------------------------------------
+DECLINED #6 — Tracker misalignment at Sundowner Mesa is bent hardware from the March wind event plus row-level logging - not a control problem.
+  Candidate CAND-015  |  9 work orders  |  confidence medium
+  Accepted explanation: [environmental_event] Bent limit-switch brackets and misalignment at this site are residual cleanup from the March 2025 wind event, not an ongoing tracker control problem.
+  Why not escalated: Residual cleanup from the same March 2025 wind event. The physical finding in the April tickets is a bent limit-switch bracket - mechanical deformation, not calibration drift - in WO-2025-00286, WO-2025-00344 and WO-2025-00375, and WO-2025-00286 opens with a technician noting it is the same as the others that month. Seven of nine members fall in the weeks after the event. H2 would require drift-type language and steady arrivals across the window; instead arrivals collapse after April with only WO-2025-00930 and WO-2026-00073 following later, both of which read as ordinary recalibration. H3 also contributes: eight of nine members carry per-row tags from the same technician identified in CAND-003.
+
+==============================================================================
+EXTRACTION QUALITY — what gates finding quality upstream
+==============================================================================
+  symptom unclassified          593 of 2398 (24.7%)
+  outcome no_change/recurring   265   (the signal efficacy-decay detection depends on)
+
+==============================================================================
+COST AND TIME
+==============================================================================
+stage                     model               calls  cached    in tok  out tok      USD     sec
+-----------------------------------------------------------------------------------------------
+load_corpus               -                       0       0         0        0    0.000     0.0
+stage1_deterministic      -                       0       0         0        0    0.000     0.1
+stage1_rules              -                       0       0         0        0    0.000     0.1
+stage2_cluster            -                       0       0         0        0    0.000     0.0
+stage3_hypothesize        claude-opus-5           0      15         0        0    0.000     0.0
+stage4_verify             claude-opus-5           0      15         0        0    0.000     0.0
+render                    -                       0       0         0        0    0.000     0.0
+-----------------------------------------------------------------------------------------------
+TOTAL                                                                             0.000     0.3
+
+Financial assumptions (all figures below derive from these):
+  loaded_labor_rate_usd_per_hour = 95.0 — Fully loaded field technician cost including burden and vehicle.
+  truck_roll_usd = 450.0 — Mobilisation cost for one site visit: travel, per-diem, scheduling overhead. Applied once per work order.
+  energy_value_usd_per_mwh = 42.0 — Blended merchant + PPA value of lost generation. Deliberately mid-range; ERCOT summer peak is far higher and would raise every figure here.
+  parts_cost_usd: 11 component classes — Replacement part cost by component class. 'unknown' is zero so that unclassified parts never inflate an estimate.
+  inverter_replacement_usd = 62000.0 — Full central inverter replacement, installed. Used only for population-at-risk exposure, never for realised cost.
+  warranty_recovery_rate = 0.65 — Share of in-warranty parts and labour realistically recovered from an OEM claim, net of negotiation and administrative cost.
+  lost_production_reporting_rate = 0.14 — Share of work orders carrying estimated_lost_production_mwh. The data dictionary states absence does not mean zero, so realised energy loss is extrapolated from this rate to produce a RANGE, never a point.

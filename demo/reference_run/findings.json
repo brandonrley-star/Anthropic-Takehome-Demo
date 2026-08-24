@@ -1,0 +1,1934 @@
+{
+ "CAND-001": {
+  "candidate": {
+   "kind": "site_symptom",
+   "key": "Sundowner Mesa|tracker_mechanical_damage",
+   "label": "Sundowner Mesa, symptom 'tracker_mechanical_damage'",
+   "members": [
+    "WO-2025-00218",
+    "WO-2025-00223",
+    "WO-2025-00227",
+    "WO-2025-00240",
+    "WO-2025-00257",
+    "WO-2025-00258",
+    "WO-2025-00268",
+    "WO-2025-00269",
+    "WO-2025-00272",
+    "WO-2025-00278",
+    "WO-2025-00284",
+    "WO-2025-00285",
+    "WO-2025-00289",
+    "WO-2025-00293",
+    "WO-2025-00318",
+    "WO-2025-00324",
+    "WO-2025-00349",
+    "WO-2025-00350",
+    "WO-2025-00368",
+    "WO-2025-00387"
+   ],
+   "n": 20,
+   "exposure_gw_months": 5.3,
+   "rate_per_gw_month": 3.79,
+   "fleet_rate_per_gw_month": 0.16,
+   "lift": 23.13,
+   "dims": {
+    "site": "Sundowner Mesa",
+    "symptom": "tracker_mechanical_damage"
+   },
+   "_materiality": 870.2,
+   "_volume": 174.0,
+   "_anomaly": 5.0,
+   "_labor_hours": 81.1,
+   "_lost_mwh": 65.5,
+   "candidate_id": "CAND-001"
+  },
+  "hypotheses": {
+   "hypotheses": [
+    {
+     "id": "H1",
+     "statement": "A single high-wind event on 2025-03-14 caused simultaneous mechanical damage across many tracker rows at this site.",
+     "type": "environmental_event",
+     "prior": "high",
+     "predictions": [
+      "tickets begin abruptly after 2025-03-14 and taper within weeks",
+      "narratives reference wind, storm or a claim reference",
+      "damage types are mechanical and varied (dampers, purlins, torque tubes) rather than one repeated failure mode"
+     ],
+     "discriminating_evidence": [
+      "explicit mention of the event date or an insurance claim number",
+      "absence of comparable tickets at this site before or long after the window"
+     ]
+    },
+    {
+     "id": "H2",
+     "statement": "Auster Trackline H2 trackers have a systemic structural defect that manifests under normal operation.",
+     "type": "systemic_defect",
+     "prior": "low",
+     "predictions": [
+      "comparable damage at other Trackline H2 sites in the same period",
+      "ongoing arrivals rather than a bounded window",
+      "a repeated single failure mode rather than varied mechanical damage"
+     ],
+     "discriminating_evidence": [
+      "whether other Trackline H2 sites show the same rate",
+      "whether the arrival rate persists after mid-2025"
+     ]
+    },
+    {
+     "id": "H3",
+     "statement": "The ticket count overstates the number of physical events because technicians at this site log tracker work at inconsistent granularity, some per row and some per zone.",
+     "type": "data_artifact",
+     "prior": "medium",
+     "predictions": [
+      "asset_id alternates between TR-Bnn-Rnnn and TR-Znn within the same cluster",
+      "per-zone tickets describe multiple rows in one narrative",
+      "labour hours per ticket differ sharply between the two tag styles"
+     ],
+     "discriminating_evidence": [
+      "a per-zone narrative that accounts for many rows in a single work order"
+     ]
+    }
+   ]
+  },
+  "verdict": {
+   "verdict": "decline",
+   "confidence": "high",
+   "selected_hypothesis": "H1",
+   "reasoning": "This is a discrete weather event, not a tracker defect. WO-2025-00218 states the work is cleanup after a microburst on the 14th and logs it against property claim NRS-PL-2025-0417; WO-2025-00268 and WO-2025-00349 both open with 'Storm damage'. The damage modes are varied and mechanical (bent dampers, purlins out of true, sheared couplings, pulled clamps), which is what a single wind loading event produces, not what a repeating component defect produces. All twenty tickets fall between 2025-03-15 and 2025-04-28 and the site returns to baseline afterwards. Hypothesis H3 also holds partial credit: the cluster mixes per-row tags (WO-2025-00227, WO-2025-00257) with per-zone tags whose narratives each account for many rows (WO-2025-00278 reports nine rows in one ticket, WO-2025-00387 another nine), so the twenty tickets represent materially fewer physical events. No warranty claim against the tracker OEM is supportable.",
+   "supporting_wo_ids": [
+    "WO-2025-00218",
+    "WO-2025-00268",
+    "WO-2025-00349",
+    "WO-2025-00278",
+    "WO-2025-00387",
+    "WO-2025-00227",
+    "WO-2025-00257"
+   ],
+   "contradicting_evidence": "Two tickets (WO-2025-00350, WO-2025-00324) describe the same torque-tube-out-of-true finding weeks apart, which could indicate an incomplete first repair rather than fresh storm damage. Worth a spot check, but it does not change the verdict.",
+   "population_at_risk": {
+    "count": 0,
+    "description": "None. Damage is confined to one site and one event.",
+    "basis": "Event-bounded; no ongoing population is exposed."
+   },
+   "recommended_action": "Close as storm damage already recovered under property claim NRS-PL-2025-0417 and confirm the two rows left stowed pending parts were completed.",
+   "action_type": "none",
+   "business_headline": "Sundowner Mesa's tracker spike is a March 2025 microburst already under an insurance claim, not an equipment defect - no warranty action.",
+   "population_shared_with": []
+  },
+  "finance": {
+   "realised": {
+    "labor_hours": 81.1,
+    "labor_usd": 7705,
+    "truck_rolls": 20,
+    "mobilisation_usd": 9000,
+    "parts_usd": 8700,
+    "parts_detail": {
+     "tracker_motor": 6
+    },
+    "lost_mwh_reported": 65.5,
+    "energy_usd_reported": 2751,
+    "energy_usd_extrapolated": 19650,
+    "total_low_usd": 28156,
+    "total_high_usd": 45054
+   },
+   "population_at_risk": 0,
+   "replacement_exposure_usd": 0,
+   "warranty_recoverable_usd": 0,
+   "in_warranty_members": 0
+  }
+ },
+ "CAND-002": {
+  "candidate": {
+   "kind": "model_symptom",
+   "key": "KVP-3600|component_thermal_damage",
+   "label": "KVP-3600, symptom 'component_thermal_damage'",
+   "members": [
+    "WO-2026-00480",
+    "WO-2026-00514",
+    "WO-2026-00522",
+    "WO-2026-00575",
+    "WO-2026-00579",
+    "WO-2026-00595",
+    "WO-2026-00696",
+    "WO-2026-00702"
+   ],
+   "n": 8,
+   "units_in_cohort": 376,
+   "rate_per_unit": 0.021,
+   "peer_median_rate": 0.0,
+   "lift": null,
+   "dims": {
+    "model": "KVP-3600",
+    "symptom": "component_thermal_damage"
+   },
+   "_materiality": 524.6,
+   "_volume": 209.8,
+   "_anomaly": 2.5,
+   "_labor_hours": 61.1,
+   "_lost_mwh": 142.0,
+   "candidate_id": "CAND-002"
+  },
+  "hypotheses": {
+   "hypotheses": [
+    {
+     "id": "H1",
+     "statement": "KVP-3600 central inverters from a bounded 2024 manufacturing window carry a defect that produces progressive thermal damage to the power stage under high ambient load.",
+     "type": "systemic_defect",
+     "prior": "high",
+     "predictions": [
+      "affected serials cluster in a narrow manufacture year and week range",
+      "failures concentrate in hot months and hot-climate sites",
+      "the same unit recurs with escalating severity",
+      "units of the same model from other build periods do not show the symptom"
+     ],
+     "discriminating_evidence": [
+      "manufacture week parsed from the serial across all members",
+      "whether any non-2024 KVP-3600 unit appears in the cluster"
+     ]
+    },
+    {
+     "id": "H2",
+     "statement": "These are ordinary end-of-life power-stage failures and appear clustered only because KVP-3600 is the largest installed model in the fleet.",
+     "type": "normal_wear_and_tear",
+     "prior": "low",
+     "predictions": [
+      "failure rate per installed unit is comparable to peer models",
+      "affected units are among the oldest in the fleet",
+      "serials spread evenly across build years"
+     ],
+     "discriminating_evidence": [
+      "rate per installed unit versus peer models",
+      "age of the affected units at failure"
+     ]
+    },
+    {
+     "id": "H3",
+     "statement": "Site operating conditions, not the equipment, drive the failures: these sites run hotter or dirtier than the fleet average.",
+     "type": "benign_operational",
+     "prior": "medium",
+     "predictions": [
+      "all affected units sit at a small number of extreme-climate sites",
+      "other inverter models at the same sites fail at a similar rate",
+      "cooling maintenance history at these sites is worse than fleet average"
+     ],
+     "discriminating_evidence": [
+      "whether other models co-located at the same sites show equivalent thermal damage"
+     ]
+    }
+   ]
+  },
+  "verdict": {
+   "verdict": "escalate",
+   "confidence": "high",
+   "selected_hypothesis": "H1",
+   "reasoning": "Every affected serial is a KVP-3600 built in 2024 within a narrow week band: 2419B (week 19), 2423B (23), 2428C (28), 2432C (32), 2434C (34). No unit from any other build year appears, and the installed base shows KVP-3600 spread across build years from 2015 to 2024, so this is a cohort effect rather than a model-wide or age effect. The failure mode is consistent and physical: IGBT modules discoloured with heat-marked busbars (WO-2026-00480, WO-2026-00696, WO-2026-00702) escalating to units that shut down hard and will not restart (WO-2026-00514, WO-2026-00575, WO-2026-00595). Two units recur - KVP36-2428C-0169 in WO-2026-00522 then WO-2026-00575, and KVP36-2419B-0365 in WO-2026-00480 then WO-2026-00579 - which is progressive damage, not independent random failure. WO-2026-00522 records the unit was still on firmware revision 4.2.1. Peer models show zero tickets with this symptom, so H2 (ordinary wear) and H3 (site conditions) both fail: other models co-located at these sites are not producing thermal damage.",
+   "supporting_wo_ids": [
+    "WO-2026-00480",
+    "WO-2026-00514",
+    "WO-2026-00522",
+    "WO-2026-00575",
+    "WO-2026-00579",
+    "WO-2026-00595",
+    "WO-2026-00696",
+    "WO-2026-00702"
+   ],
+   "contradicting_evidence": "All eight tickets fall in May and June 2026, the last two months of the data window, so the observed severity may be a late-window artifact of a defect that has been developing unobserved. This makes the cost figure a floor rather than a settled total.",
+   "population_at_risk": {
+    "count": 58,
+    "description": "KVP-3600 units built in the 2024 week 18-36 window that have not yet produced a thermal ticket.",
+    "basis": "The asset registry lists 74 KVP-3600 units with 2024 manufacture weeks 18 through 36. At least 16 distinct serials from that window already appear across this and the related derate and over-temperature clusters, leaving roughly 58 not yet presented."
+   },
+   "recommended_action": "Open a warranty claim with Kelvara covering the 2024 week 18-36 build cohort, and scope a firmware remediation campaign across all 74 units as billable corrective maintenance.",
+   "action_type": "warranty_claim",
+   "business_headline": "74 Kelvara KVP-3600 inverters from one 2024 build window are failing thermally while still inside parts warranty - a supplier claim on damage already incurred plus a billable remediation campaign across the cohort.",
+   "population_shared_with": [
+    "CAND-008",
+    "CAND-009"
+   ]
+  },
+  "finance": {
+   "realised": {
+    "labor_hours": 61.1,
+    "labor_usd": 5804,
+    "truck_rolls": 8,
+    "mobilisation_usd": 3600,
+    "parts_usd": 63150,
+    "parts_detail": {
+     "igbt_module": 6,
+     "gate_driver": 1,
+     "dc_contactor": 4,
+     "cooling_fan": 1
+    },
+    "lost_mwh_reported": 142.0,
+    "energy_usd_reported": 5964,
+    "energy_usd_extrapolated": 42600,
+    "total_low_usd": 78518,
+    "total_high_usd": 115154
+   },
+   "population_at_risk": 58,
+   "replacement_exposure_usd": 3596000,
+   "warranty_recoverable_usd": 44820,
+   "in_warranty_members": 8
+  }
+ },
+ "CAND-003": {
+  "candidate": {
+   "kind": "logging_granularity",
+   "key": "TECH-0231|per_row",
+   "label": "TECH-0231 logs tracker work per ROW (94%) vs fleet 51%",
+   "members": [
+    "WO-2025-00214",
+    "WO-2025-00223",
+    "WO-2025-00227",
+    "WO-2025-00240",
+    "WO-2025-00257",
+    "WO-2025-00268",
+    "WO-2025-00269",
+    "WO-2025-00272",
+    "WO-2025-00284",
+    "WO-2025-00285",
+    "WO-2025-00286",
+    "WO-2025-00289",
+    "WO-2025-00297",
+    "WO-2025-00302",
+    "WO-2025-00318",
+    "WO-2025-00324",
+    "WO-2025-00339",
+    "WO-2025-00344",
+    "WO-2025-00349",
+    "WO-2025-00350",
+    "WO-2025-00368",
+    "WO-2025-00375",
+    "WO-2025-00490",
+    "WO-2025-00578",
+    "WO-2025-00777",
+    "WO-2025-00794",
+    "WO-2025-00930",
+    "WO-2025-01061",
+    "WO-2025-01083",
+    "WO-2025-01179",
+    "WO-2025-01261",
+    "WO-2026-00052",
+    "WO-2026-00056",
+    "WO-2026-00099",
+    "WO-2026-00108",
+    "WO-2026-00171",
+    "WO-2026-00187",
+    "WO-2026-00334",
+    "WO-2026-00537",
+    "WO-2026-00617",
+    "WO-2026-00678"
+   ],
+   "n": 41,
+   "tech_row_share": 0.94,
+   "fleet_row_share": 0.51,
+   "dims": {
+    "technician": "TECH-0231"
+   },
+   "_materiality": 451.3,
+   "_volume": 244.9,
+   "_anomaly": 1.84,
+   "_labor_hours": 113.5,
+   "_lost_mwh": 75.0,
+   "candidate_id": "CAND-003"
+  },
+  "hypotheses": {
+   "hypotheses": [
+    {
+     "id": "H1",
+     "statement": "One technician records tracker work one work order per row while the rest of the fleet records one per zone, inflating this technician's apparent event count roughly threefold.",
+     "type": "reporting_culture",
+     "prior": "high",
+     "predictions": [
+      "this technician's tracker tickets almost always carry a TR-Bnn-Rnnn tag",
+      "peer tickets at the same sites carry TR-Znn tags and describe several rows each",
+      "mean labour hours per ticket is far lower for the per-row style"
+     ],
+     "discriminating_evidence": [
+      "side-by-side comparison of labour hours and rows described per ticket between the two styles"
+     ]
+    },
+    {
+     "id": "H2",
+     "statement": "The technician is assigned genuinely more granular work than peers, so the per-row tagging is accurate rather than an artifact.",
+     "type": "benign_operational",
+     "prior": "low",
+     "predictions": [
+      "per-row tickets describe single-row interventions with matching small labour",
+      "peer per-zone tickets describe genuinely larger scopes"
+     ],
+     "discriminating_evidence": [
+      "whether per-zone narratives enumerate multiple rows of work"
+     ]
+    },
+    {
+     "id": "H3",
+     "statement": "The pattern is a training gap introduced when this technician joined and was never corrected.",
+     "type": "data_artifact",
+     "prior": "medium",
+     "predictions": [
+      "the behaviour is consistent from the technician's earliest tickets",
+      "it persists across multiple sites and over a long period rather than during one campaign"
+     ],
+     "discriminating_evidence": [
+      "whether the per-row habit continues outside any single event window"
+     ]
+    }
+   ]
+  },
+  "verdict": {
+   "verdict": "deprioritize",
+   "confidence": "high",
+   "selected_hypothesis": "H1",
+   "reasoning": "TECH-0231 tags 94 percent of tracker work at row level against a fleet average of 51 percent, and the habit persists across three separate sites (Sundowner Mesa, Joshua Fork, Ashvale Dry Lake) from March 2025 through June 2026, so it is a standing practice rather than an artifact of any one campaign. His per-row tickets are small and single-scope - WO-2025-00285 replaces one stow pin, WO-2025-00794 retorques one damper bolt, WO-2026-00187 the same - averaging under three hours. Peer tickets at the same sites carry zone tags and describe several rows of work each. The effect is that any count of tracker events at Mojave sites is inflated roughly threefold wherever this technician worked, which distorts site reliability comparisons and inflated candidate CAND-001. This is real and worth fixing, but it carries no direct revenue or warranty consequence.",
+   "supporting_wo_ids": [
+    "WO-2025-00214",
+    "WO-2025-00285",
+    "WO-2025-00302",
+    "WO-2025-00794",
+    "WO-2026-00099",
+    "WO-2026-00171",
+    "WO-2026-00187",
+    "WO-2026-00678"
+   ],
+   "contradicting_evidence": "Per-row logging is arguably more accurate, not less - the fleet norm may be the deficient convention. The fix should be to standardise, not necessarily to move this technician to zone-level tagging.",
+   "population_at_risk": {
+    "count": 0,
+    "description": "No physical assets at risk.",
+    "basis": "Data quality finding; exposure is to reporting accuracy, not equipment."
+   },
+   "recommended_action": "Standardise tracker work-order granularity across the fleet and re-baseline Mojave site metrics before using them in any reliability comparison.",
+   "action_type": "data_quality_fix",
+   "business_headline": "One technician's row-level logging inflates Mojave tracker event counts roughly threefold - fix before any site reliability ranking goes to a customer.",
+   "population_shared_with": []
+  },
+  "finance": {
+   "realised": {
+    "labor_hours": 113.5,
+    "labor_usd": 10782,
+    "truck_rolls": 41,
+    "mobilisation_usd": 18450,
+    "parts_usd": 20300,
+    "parts_detail": {
+     "tracker_motor": 14
+    },
+    "lost_mwh_reported": 75.0,
+    "energy_usd_reported": 3149,
+    "energy_usd_extrapolated": 22491,
+    "total_low_usd": 52681,
+    "total_high_usd": 72024
+   },
+   "population_at_risk": 0,
+   "replacement_exposure_usd": 0,
+   "warranty_recoverable_usd": 0,
+   "in_warranty_members": 0
+  }
+ },
+ "CAND-004": {
+  "candidate": {
+   "kind": "temporal_burst",
+   "key": "Sundowner Mesa|tracker_structure|2025-03-16",
+   "label": "Sundowner Mesa, tracker_structure: 18 tickets in 8 weeks from 2025-03-16",
+   "members": [
+    "WO-2025-00218",
+    "WO-2025-00223",
+    "WO-2025-00227",
+    "WO-2025-00240",
+    "WO-2025-00247",
+    "WO-2025-00257",
+    "WO-2025-00258",
+    "WO-2025-00268",
+    "WO-2025-00269",
+    "WO-2025-00278",
+    "WO-2025-00284",
+    "WO-2025-00285",
+    "WO-2025-00293",
+    "WO-2025-00324",
+    "WO-2025-00349",
+    "WO-2025-00350",
+    "WO-2025-00383",
+    "WO-2025-00387"
+   ],
+   "n": 18,
+   "burst_share_of_site_component": 0.82,
+   "window_start": "2025-03-16",
+   "dims": {
+    "site": "Sundowner Mesa",
+    "component": "tracker_structure",
+    "window_start": "2025-03-16"
+   },
+   "_materiality": 338.6,
+   "_volume": 158.2,
+   "_anomaly": 2.14,
+   "_labor_hours": 79.1,
+   "_lost_mwh": 63.0,
+   "candidate_id": "CAND-004"
+  },
+  "hypotheses": {
+   "hypotheses": [
+    {
+     "id": "H1",
+     "statement": "A discrete microburst on 2025-03-14 produced a bounded cleanup campaign that concentrates 82 percent of this site's tracker-structure tickets into eight weeks.",
+     "type": "environmental_event",
+     "prior": "high",
+     "predictions": [
+      "the burst starts immediately after the event date",
+      "narratives reference the event, storm damage, or a property claim",
+      "arrival rate returns to baseline afterwards"
+     ],
+     "discriminating_evidence": [
+      "explicit event references and the claim reference number in narratives"
+     ]
+    },
+    {
+     "id": "H2",
+     "statement": "Tracker structural components at this site are failing systematically from an installation or design fault, and the timing is coincidental.",
+     "type": "systemic_defect",
+     "prior": "low",
+     "predictions": [
+      "failures continue at elevated rate after the eight-week window",
+      "a single repeated failure mode rather than varied storm damage"
+     ],
+     "discriminating_evidence": [
+      "post-window arrival rate at the same site"
+     ]
+    },
+    {
+     "id": "H3",
+     "statement": "The burst is partly a scheduling artifact: repair work deferred from earlier was batched into one campaign.",
+     "type": "benign_operational",
+     "prior": "low",
+     "predictions": [
+      "narratives reference deferred or previously identified work",
+      "damage descriptions predate the window"
+     ],
+     "discriminating_evidence": [
+      "whether narratives describe fresh damage or previously logged defects"
+     ]
+    }
+   ]
+  },
+  "verdict": {
+   "verdict": "decline",
+   "confidence": "high",
+   "selected_hypothesis": "H1",
+   "reasoning": "Same event as CAND-001, viewed through a different aggregation. Eighty-two percent of this site's tracker-structure tickets fall in the eight weeks starting 2025-03-16, two days after the microburst named in WO-2025-00218. The damage descriptions are the varied mechanical signature of wind loading on rows caught partway to stow - bent purlins (WO-2025-00223, WO-2025-00349), torque tubes out of true (WO-2025-00324, WO-2025-00350), pulled clamps and damaged stow pins. H2 requires the elevated rate to persist beyond the window and it does not. The remaining 18 percent of this site's tracker-structure tickets are spread across the other 22 months, which is the correct baseline comparison.",
+   "supporting_wo_ids": [
+    "WO-2025-00218",
+    "WO-2025-00223",
+    "WO-2025-00247",
+    "WO-2025-00269",
+    "WO-2025-00349",
+    "WO-2025-00383",
+    "WO-2025-00387"
+   ],
+   "contradicting_evidence": "None identified. The temporal bound is unambiguous.",
+   "population_at_risk": {
+    "count": 0,
+    "description": "None.",
+    "basis": "Event-bounded."
+   },
+   "recommended_action": "No fleet action. Verify the property claim captured the full repair cost including the rows left stowed pending parts in WO-2025-00278 and WO-2025-00383.",
+   "action_type": "none",
+   "business_headline": "The same March 2025 wind event seen a second way - time-bounded, insured, and not a Trackline H2 defect.",
+   "population_shared_with": []
+  },
+  "finance": {
+   "realised": {
+    "labor_hours": 79.1,
+    "labor_usd": 7515,
+    "truck_rolls": 18,
+    "mobilisation_usd": 8100,
+    "parts_usd": 8700,
+    "parts_detail": {
+     "tracker_motor": 6
+    },
+    "lost_mwh_reported": 63.0,
+    "energy_usd_reported": 2646,
+    "energy_usd_extrapolated": 18900,
+    "total_low_usd": 26960,
+    "total_high_usd": 43214
+   },
+   "population_at_risk": 0,
+   "replacement_exposure_usd": 0,
+   "warranty_recoverable_usd": 0,
+   "in_warranty_members": 0
+  }
+ },
+ "CAND-005": {
+  "candidate": {
+   "kind": "site_symptom",
+   "key": "Ashvale Dry Lake|drive_grease_degradation",
+   "label": "Ashvale Dry Lake, symptom 'drive_grease_degradation'",
+   "members": [
+    "WO-2024-00061",
+    "WO-2024-00125",
+    "WO-2024-00274",
+    "WO-2024-00318",
+    "WO-2025-00297",
+    "WO-2025-00505",
+    "WO-2025-00777",
+    "WO-2025-01170",
+    "WO-2026-00052"
+   ],
+   "n": 9,
+   "exposure_gw_months": 3.6,
+   "rate_per_gw_month": 2.5,
+   "fleet_rate_per_gw_month": 0.26,
+   "lift": 9.54,
+   "dims": {
+    "site": "Ashvale Dry Lake",
+    "symptom": "drive_grease_degradation"
+   },
+   "_materiality": 237.3,
+   "_volume": 49.7,
+   "_anomaly": 4.77,
+   "_labor_hours": 39.7,
+   "_lost_mwh": 4.5,
+   "candidate_id": "CAND-005"
+  },
+  "hypotheses": {
+   "hypotheses": [
+    {
+     "id": "H1",
+     "statement": "Tracker slew drives of a 2016-2019 vintage at this site are reaching the end of their grease service life together, producing a run of routine regrease and drive replacements.",
+     "type": "normal_wear_and_tear",
+     "prior": "high",
+     "predictions": [
+      "narratives describe hardened or separated grease rather than sudden failure",
+      "technicians characterise it as expected for the vintage",
+      "tickets spread evenly over the window rather than bursting",
+      "production impact is negligible"
+     ],
+     "discriminating_evidence": [
+      "explicit technician language about expected wear",
+      "absence of consequential outage"
+     ]
+    },
+    {
+     "id": "H2",
+     "statement": "A batch of defective slew drives was installed at this site and is failing prematurely.",
+     "type": "systemic_defect",
+     "prior": "low",
+     "predictions": [
+      "failures concentrate in a narrow install cohort",
+      "failure ages are well short of design life",
+      "the same site shows sharply worse rates than same-vintage peers"
+     ],
+     "discriminating_evidence": [
+      "whether other same-vintage sites show comparable rates"
+     ]
+    },
+    {
+     "id": "H3",
+     "statement": "A lapse in the preventive lubrication schedule at this site allowed drives to run dry.",
+     "type": "benign_operational",
+     "prior": "medium",
+     "predictions": [
+      "few or no preventive lubrication tickets precede the failures",
+      "the same drives recur"
+     ],
+     "discriminating_evidence": [
+      "presence of scheduled lubrication work orders in the same period"
+     ]
+    }
+   ]
+  },
+  "verdict": {
+   "verdict": "deprioritize",
+   "confidence": "medium",
+   "selected_hypothesis": "H1",
+   "reasoning": "Nine tickets over two years describing hardened or separated grease and scored gear faces on tracker drives. The technicians characterise it themselves as expected: WO-2024-00061 and WO-2025-01170 both record grease separated and repacked with no further comment. Arrivals are steady from July 2024 to January 2026 rather than bursting, which fits end-of-grease-life on an original-vintage population, not a defect. Recorded production loss across the whole cluster is 4.5 MWh, which is immaterial. H2 would require failures well short of design life and a rate sharply worse than same-vintage peers; instead the same pattern appears independently at two other older sites, which points to vintage rather than to a bad batch here.",
+   "supporting_wo_ids": [
+    "WO-2024-00061",
+    "WO-2024-00318",
+    "WO-2025-00297",
+    "WO-2025-01170",
+    "WO-2026-00052"
+   ],
+   "contradicting_evidence": "Whether preventive lubrication was actually being performed on schedule is not visible in this cluster. If it was not, part of this cost is avoidable and the finding would move from wear to backlog.",
+   "population_at_risk": {
+    "count": 0,
+    "description": "Not quantifiable from this data - tracker drives are not in the serial-level asset registry.",
+    "basis": "The registry covers central inverters only; tracker drives are tracked by positional tag."
+   },
+   "recommended_action": "Fold into the fleet-wide slew-drive lubrication policy review triggered by the same pattern at Dry Creek Junction and Red Clay Flats rather than treating as a site issue.",
+   "action_type": "monitor_only",
+   "business_headline": "Routine end-of-life grease service on original-vintage tracker drives - real work, negligible production impact, no supplier exposure.",
+   "population_shared_with": []
+  },
+  "finance": {
+   "realised": {
+    "labor_hours": 39.7,
+    "labor_usd": 3771,
+    "truck_rolls": 9,
+    "mobilisation_usd": 4050,
+    "parts_usd": 4400,
+    "parts_detail": {
+     "gearbox": 2
+    },
+    "lost_mwh_reported": 4.5,
+    "energy_usd_reported": 188,
+    "energy_usd_extrapolated": 1341,
+    "total_low_usd": 12409,
+    "total_high_usd": 13562
+   },
+   "population_at_risk": 0,
+   "replacement_exposure_usd": 0,
+   "warranty_recoverable_usd": 0,
+   "in_warranty_members": 0
+  }
+ },
+ "CAND-006": {
+  "candidate": {
+   "kind": "site_symptom",
+   "key": "Dry Creek Junction|drive_grease_degradation",
+   "label": "Dry Creek Junction, symptom 'drive_grease_degradation'",
+   "members": [
+    "WO-2024-00012",
+    "WO-2024-00073",
+    "WO-2024-00306",
+    "WO-2024-00353",
+    "WO-2025-00535",
+    "WO-2025-00537",
+    "WO-2025-00874",
+    "WO-2026-00574"
+   ],
+   "n": 8,
+   "exposure_gw_months": 3.8,
+   "rate_per_gw_month": 2.08,
+   "fleet_rate_per_gw_month": 0.26,
+   "lift": 7.95,
+   "dims": {
+    "site": "Dry Creek Junction",
+    "symptom": "drive_grease_degradation"
+   },
+   "_materiality": 173.9,
+   "_volume": 43.7,
+   "_anomaly": 3.98,
+   "_labor_hours": 27.6,
+   "_lost_mwh": 4.8,
+   "candidate_id": "CAND-006"
+  },
+  "hypotheses": {
+   "hypotheses": [
+    {
+     "id": "H1",
+     "statement": "Slew drives of the site's original vintage are reaching end of grease life on a normal schedule, which technicians themselves describe as expected.",
+     "type": "normal_wear_and_tear",
+     "prior": "high",
+     "predictions": [
+      "narratives say the rows are due, or normal for the vintage",
+      "steady arrival over two years",
+      "trivial production loss"
+     ],
+     "discriminating_evidence": [
+      "technician characterisation and the flat arrival rate"
+     ]
+    },
+    {
+     "id": "H2",
+     "statement": "This is a fleet-wide Auster slew-drive design weakness that happens to be visible first at older sites.",
+     "type": "systemic_defect",
+     "prior": "medium",
+     "predictions": [
+      "the same symptom appears at several other sites of similar vintage",
+      "rates are elevated versus non-Auster trackers"
+     ],
+     "discriminating_evidence": [
+      "whether the pattern repeats across multiple independent sites"
+     ]
+    },
+    {
+     "id": "H3",
+     "statement": "Ordinary variation: a small site with a modest number of drives produced a handful of tickets that only looks elevated once normalised.",
+     "type": "other",
+     "prior": "low",
+     "predictions": [
+      "absolute counts are small",
+      "confidence intervals on the normalised rate are wide"
+     ],
+     "discriminating_evidence": [
+      "cluster size relative to the site's drive population"
+     ]
+    }
+   ]
+  },
+  "verdict": {
+   "verdict": "deprioritize",
+   "confidence": "medium",
+   "selected_hypothesis": "H1",
+   "reasoning": "Technicians state the conclusion outright. WO-2024-00012 records the rows are all about due; WO-2024-00306, WO-2025-00535 and WO-2025-00537 each describe this being the third drive in the block that quarter and explicitly call it normal wear for the vintage. Eight tickets spread evenly across two years with 4.8 MWh of recorded loss. H2 remains live at fleet level - this is the second of three independent sites showing the same symptom on the same tracker model - but at site level there is nothing to escalate.",
+   "supporting_wo_ids": [
+    "WO-2024-00012",
+    "WO-2024-00073",
+    "WO-2024-00306",
+    "WO-2025-00535",
+    "WO-2025-00537",
+    "WO-2026-00574"
+   ],
+   "contradicting_evidence": "Three sites showing the same wear symptom on the same tracker model could indicate a genuine design shortfall in grease service interval rather than normal wear. That question is answerable but not from this cluster alone.",
+   "population_at_risk": {
+    "count": 0,
+    "description": "Not quantifiable from this data.",
+    "basis": "Tracker drives are not serial-registered."
+   },
+   "recommended_action": "Combine with the Ashvale Dry Lake and Red Clay Flats clusters into one fleet-level review of slew-drive lubrication intervals on 2016-2019 vintage Auster trackers.",
+   "action_type": "monitor_only",
+   "business_headline": "Expected grease-life maintenance on older tracker drives - low value individually, worth one fleet-level interval review across the three affected sites.",
+   "population_shared_with": []
+  },
+  "finance": {
+   "realised": {
+    "labor_hours": 27.6,
+    "labor_usd": 2622,
+    "truck_rolls": 8,
+    "mobilisation_usd": 3600,
+    "parts_usd": 6600,
+    "parts_detail": {
+     "gearbox": 3
+    },
+    "lost_mwh_reported": 4.8,
+    "energy_usd_reported": 200,
+    "energy_usd_extrapolated": 1425,
+    "total_low_usd": 13022,
+    "total_high_usd": 14247
+   },
+   "population_at_risk": 0,
+   "replacement_exposure_usd": 0,
+   "warranty_recoverable_usd": 0,
+   "in_warranty_members": 0
+  }
+ },
+ "CAND-007": {
+  "candidate": {
+   "kind": "site_symptom",
+   "key": "Red Clay Flats|drive_grease_degradation",
+   "label": "Red Clay Flats, symptom 'drive_grease_degradation'",
+   "members": [
+    "WO-2024-00054",
+    "WO-2024-00064",
+    "WO-2025-00728",
+    "WO-2025-01195",
+    "WO-2025-01242",
+    "WO-2026-00664",
+    "WO-2026-00688"
+   ],
+   "n": 7,
+   "exposure_gw_months": 2.9,
+   "rate_per_gw_month": 2.43,
+   "fleet_rate_per_gw_month": 0.26,
+   "lift": 9.27,
+   "dims": {
+    "site": "Red Clay Flats",
+    "symptom": "drive_grease_degradation"
+   },
+   "_materiality": 157.9,
+   "_volume": 34.1,
+   "_anomaly": 4.63,
+   "_labor_hours": 28.9,
+   "_lost_mwh": 0,
+   "candidate_id": "CAND-007"
+  },
+  "hypotheses": {
+   "hypotheses": [
+    {
+     "id": "H1",
+     "statement": "Original-vintage slew drives at this site are reaching end of grease life, consistent with the same pattern at other older sites in the fleet.",
+     "type": "normal_wear_and_tear",
+     "prior": "high",
+     "predictions": [
+      "narratives describe hardened grease and scored gear faces",
+      "technicians reference the same thing happening on neighbouring rows",
+      "no production impact recorded"
+     ],
+     "discriminating_evidence": [
+      "technician language and near-zero energy loss"
+     ]
+    },
+    {
+     "id": "H2",
+     "statement": "A genuine multi-site Auster slew-drive wear pattern exists and is worth a fleet-level maintenance policy change even if each site looks routine.",
+     "type": "systemic_defect",
+     "prior": "medium",
+     "predictions": [
+      "three or more independent sites show the same symptom at elevated normalised rates",
+      "all affected sites share tracker model and vintage"
+     ],
+     "discriminating_evidence": [
+      "whether the pattern is confined to one tracker model across independent sites"
+     ]
+    },
+    {
+     "id": "H3",
+     "statement": "Deferred preventive lubrication is converting a cheap scheduled task into a more expensive reactive one.",
+     "type": "benign_operational",
+     "prior": "medium",
+     "predictions": [
+      "reactive regrease tickets outnumber scheduled ones",
+      "repeat visits to the same rows"
+     ],
+     "discriminating_evidence": [
+      "ratio of scheduled to reactive lubrication work"
+     ]
+    }
+   ]
+  },
+  "verdict": {
+   "verdict": "deprioritize",
+   "confidence": "medium",
+   "selected_hypothesis": "H2",
+   "reasoning": "Taken alone this site looks like routine wear, and the narratives read that way - WO-2024-00054 calls it normal for the vintage, WO-2026-00688 notes the same thing happening on neighbouring rows. But this is the third independent site with the identical symptom on the same tracker model and vintage, and recorded production loss is zero, so the case is a maintenance-policy case rather than a reliability case. WO-2025-01195 records a technician wondering how many more are due, which is the practical question: the cost here is recurring truck rolls for work that a shortened preventive lubrication interval would absorb more cheaply. Escalation is not warranted because the financial impact is small and there is no supplier exposure.",
+   "supporting_wo_ids": [
+    "WO-2024-00054",
+    "WO-2024-00064",
+    "WO-2025-00728",
+    "WO-2025-01195",
+    "WO-2025-01242",
+    "WO-2026-00688"
+   ],
+   "contradicting_evidence": "Zero recorded lost production may simply reflect that nobody estimated it on tracker tickets rather than that there was none. A stalled row does lose generation.",
+   "population_at_risk": {
+    "count": 0,
+    "description": "Not quantifiable from this data.",
+    "basis": "Tracker drives are not serial-registered; the registry covers central inverters only."
+   },
+   "recommended_action": "Commission one fleet-level review of slew-drive lubrication intervals covering the 2016-2019 Auster population across Ashvale Dry Lake, Dry Creek Junction and Red Clay Flats.",
+   "action_type": "engineering_assessment",
+   "business_headline": "A real three-site wear pattern on older Auster tracker drives worth one maintenance-interval review - not a warranty claim and not urgent.",
+   "population_shared_with": []
+  },
+  "finance": {
+   "realised": {
+    "labor_hours": 28.9,
+    "labor_usd": 2746,
+    "truck_rolls": 7,
+    "mobilisation_usd": 3150,
+    "parts_usd": 15400,
+    "parts_detail": {
+     "gearbox": 7
+    },
+    "lost_mwh_reported": 0,
+    "energy_usd_reported": 0,
+    "energy_usd_extrapolated": 0,
+    "total_low_usd": 21296,
+    "total_high_usd": 21296
+   },
+   "population_at_risk": 0,
+   "replacement_exposure_usd": 0,
+   "warranty_recoverable_usd": 0,
+   "in_warranty_members": 0
+  }
+ },
+ "CAND-008": {
+  "candidate": {
+   "kind": "model_symptom",
+   "key": "KVP-3600|thermal_derate",
+   "label": "KVP-3600, symptom 'thermal_derate'",
+   "members": [
+    "WO-2024-00163",
+    "WO-2025-00670",
+    "WO-2025-00688",
+    "WO-2025-00720",
+    "WO-2025-00908",
+    "WO-2026-00571",
+    "WO-2026-00586"
+   ],
+   "n": 7,
+   "units_in_cohort": 376,
+   "rate_per_unit": 0.019,
+   "peer_median_rate": 0.0,
+   "lift": null,
+   "dims": {
+    "model": "KVP-3600",
+    "symptom": "thermal_derate"
+   },
+   "_materiality": 138.4,
+   "_volume": 55.4,
+   "_anomaly": 2.5,
+   "_labor_hours": 28.5,
+   "_lost_mwh": 20.4,
+   "candidate_id": "CAND-008"
+  },
+  "hypotheses": {
+   "hypotheses": [
+    {
+     "id": "H1",
+     "statement": "KVP-3600 units from the 2024 build window derate in high afternoon ambient because cooling control does not respond aggressively enough, an earlier stage of the same fault that later produces power-stage damage.",
+     "type": "systemic_defect",
+     "prior": "high",
+     "predictions": [
+      "affected serials fall in the same 2024 manufacture window as the thermal-damage cluster",
+      "events concentrate in afternoon heat and hot sites",
+      "some units appear in both the derate and the damage clusters",
+      "technicians escalate to the OEM without resolution"
+     ],
+     "discriminating_evidence": [
+      "serial overlap with the thermal-damage cluster",
+      "whether any affected unit later appears with hard thermal failure"
+     ]
+    },
+    {
+     "id": "H2",
+     "statement": "Afternoon derating is normal designed behaviour for any central inverter at high ambient and is being over-reported here.",
+     "type": "benign_operational",
+     "prior": "medium",
+     "predictions": [
+      "peer models show comparable derate reporting at the same sites",
+      "no fault codes are logged, consistent with designed protection"
+     ],
+     "discriminating_evidence": [
+      "whether peer models at the same sites generate equivalent derate tickets"
+     ]
+    },
+    {
+     "id": "H3",
+     "statement": "Blocked filters or fouled heat sinks from site conditions explain the derating, and it is a maintenance backlog rather than a defect.",
+     "type": "benign_operational",
+     "prior": "medium",
+     "predictions": [
+      "narratives find dirty filters or obstructed intakes",
+      "cleaning resolves the derate durably"
+     ],
+     "discriminating_evidence": [
+      "whether technicians report intakes and heat sinks clear when they inspect"
+     ]
+    }
+   ]
+  },
+  "verdict": {
+   "verdict": "escalate",
+   "confidence": "high",
+   "selected_hypothesis": "H1",
+   "reasoning": "This is the same population as CAND-002 at an earlier severity stage. Every serial falls in the 2024 build window: 2419B (week 19), 2426B (26), 2427C (27), 2428C (28), 2436C (36). KVP36-2428C-0169 appears here derating in WO-2025-00908 and then appears in CAND-002 with power-stage thermal damage in WO-2026-00522 and WO-2026-00575, which is the progression made explicit on a single unit. KVP36-2419B-0361 recurs within this cluster (WO-2024-00163 then WO-2025-00688). The narratives describe afternoon-heat derating with no fault logged and nothing to reset, and technicians escalated to the OEM without resolution in WO-2025-00688, WO-2025-00908 and WO-2026-00586. H3 (fouling) fails because the same technicians report intakes and heat sinks clear. H2 (designed behaviour) fails because peer models at the same sites do not generate equivalent tickets.",
+   "supporting_wo_ids": [
+    "WO-2024-00163",
+    "WO-2025-00670",
+    "WO-2025-00688",
+    "WO-2025-00720",
+    "WO-2025-00908",
+    "WO-2026-00586"
+   ],
+   "contradicting_evidence": "Derating is genuinely normal protective behaviour at high ambient, so a portion of these tickets may be correct operation reported as a fault. That would reduce the count but not the cohort pattern.",
+   "population_at_risk": {
+    "count": 58,
+    "description": "Same cohort as CAND-002 - 2024 week 18-36 KVP-3600 units not yet presenting thermally.",
+    "basis": "Shared population with CAND-002; not additive to it."
+   },
+   "recommended_action": "Include in the single Kelvara warranty claim and firmware remediation scope defined under CAND-002 rather than actioning separately.",
+   "action_type": "warranty_claim",
+   "business_headline": "Afternoon derating on the same 2024 Kelvara build cohort - the early warning stage of the thermal failures, and lost generation that is recoverable under the same claim.",
+   "population_shared_with": [
+    "CAND-002",
+    "CAND-009"
+   ]
+  },
+  "finance": {
+   "realised": {
+    "labor_hours": 28.5,
+    "labor_usd": 2708,
+    "truck_rolls": 7,
+    "mobilisation_usd": 3150,
+    "parts_usd": 1950,
+    "parts_detail": {
+     "cooling_fan": 3
+    },
+    "lost_mwh_reported": 20.4,
+    "energy_usd_reported": 857,
+    "energy_usd_extrapolated": 6120,
+    "total_low_usd": 8664,
+    "total_high_usd": 13928
+   },
+   "population_at_risk": 58,
+   "replacement_exposure_usd": 3596000,
+   "warranty_recoverable_usd": 3028,
+   "in_warranty_members": 7
+  }
+ },
+ "CAND-009": {
+  "candidate": {
+   "kind": "model_symptom",
+   "key": "KVP-3600|overtemperature_trip",
+   "label": "KVP-3600, symptom 'overtemperature_trip'",
+   "members": [
+    "WO-2025-00248",
+    "WO-2025-00449",
+    "WO-2025-00592",
+    "WO-2025-00612",
+    "WO-2025-00623",
+    "WO-2025-00651",
+    "WO-2025-00813",
+    "WO-2025-00847",
+    "WO-2025-00871",
+    "WO-2025-01068",
+    "WO-2026-00320",
+    "WO-2026-00627"
+   ],
+   "n": 12,
+   "units_in_cohort": 376,
+   "rate_per_unit": 0.032,
+   "peer_median_rate": 0.007,
+   "lift": 4.58,
+   "dims": {
+    "model": "KVP-3600",
+    "symptom": "overtemperature_trip"
+   },
+   "_materiality": 117.8,
+   "_volume": 51.4,
+   "_anomaly": 2.29,
+   "_labor_hours": 50.6,
+   "_lost_mwh": 3.5,
+   "candidate_id": "CAND-009"
+  },
+  "hypotheses": {
+   "hypotheses": [
+    {
+     "id": "H1",
+     "statement": "KVP-3600 units from the 2024 build window trip on over-temperature during hot afternoons, the mildest presentation of the same cooling-control fault seen as derating and later as power-stage damage.",
+     "type": "systemic_defect",
+     "prior": "high",
+     "predictions": [
+      "affected serials share the 2024 manufacture window",
+      "repeat trips on the same unit within a season",
+      "technicians find intakes and heat sinks clear, ruling out fouling",
+      "occurrences concentrate in hot months"
+     ],
+     "discriminating_evidence": [
+      "serial manufacture weeks across members",
+      "whether inspection finds a physical cause"
+     ]
+    },
+    {
+     "id": "H2",
+     "statement": "These are ordinary over-temperature trips driven by blocked filters and site dust, resolved by cleaning.",
+     "type": "benign_operational",
+     "prior": "medium",
+     "predictions": [
+      "most narratives report dirty or blocked filters",
+      "cleaning prevents recurrence"
+     ],
+     "discriminating_evidence": [
+      "how often technicians report the intake already clear"
+     ]
+    },
+    {
+     "id": "H3",
+     "statement": "Spread across eight sites, this is background variation in a large installed population rather than a cohort effect.",
+     "type": "other",
+     "prior": "low",
+     "predictions": [
+      "normalised rate per installed unit is close to peer models",
+      "serials spread across many build years"
+     ],
+     "discriminating_evidence": [
+      "distribution of manufacture dates among affected serials"
+     ]
+    }
+   ]
+  },
+  "verdict": {
+   "verdict": "escalate",
+   "confidence": "medium",
+   "selected_hypothesis": "H1",
+   "reasoning": "Mildest presentation of the same cohort fault. Affected serials again sit in the 2024 window: 2422B (week 22), 2423B (23), 2432C (32), 2435C (35). Units recur within a season - WO-2025-00248 and WO-2026-00627 both record a second over-temperature trip on a 2422B unit that season - and technicians report the intake and heat sinks clear on inspection, which is what separates this from ordinary fouling. WO-2025-00248 records a technician speculating in writing that fan control may be ramping late, and no one escalated it. Confidence is medium rather than high because the cluster is genuinely mixed: WO-2025-01068 found filters completely blocked, a straightforward maintenance cause that belongs to H2 and not to the cohort fault.",
+   "supporting_wo_ids": [
+    "WO-2025-00248",
+    "WO-2025-00449",
+    "WO-2025-00592",
+    "WO-2025-00651",
+    "WO-2026-00627"
+   ],
+   "contradicting_evidence": "WO-2025-01068 identifies a physical cause (blocked filters) and should be excluded from the cohort. At least one member of this cluster is ordinary maintenance, so the count overstates the cohort effect.",
+   "population_at_risk": {
+    "count": 58,
+    "description": "Same cohort as CAND-002; not additive.",
+    "basis": "Shared population with CAND-002 and CAND-008."
+   },
+   "recommended_action": "Fold into the CAND-002 remediation scope; use these tickets as the earliest detectable signature when defining the fleet-wide firmware campaign trigger.",
+   "action_type": "remediation_campaign",
+   "business_headline": "Over-temperature trips on the same 2024 Kelvara cohort - the earliest detectable signature, and the cheapest point to intervene before power-stage damage.",
+   "population_shared_with": [
+    "CAND-002",
+    "CAND-008"
+   ]
+  },
+  "finance": {
+   "realised": {
+    "labor_hours": 50.6,
+    "labor_usd": 4807,
+    "truck_rolls": 12,
+    "mobilisation_usd": 5400,
+    "parts_usd": 0,
+    "parts_detail": {},
+    "lost_mwh_reported": 3.5,
+    "energy_usd_reported": 147,
+    "energy_usd_extrapolated": 1050,
+    "total_low_usd": 10354,
+    "total_high_usd": 11257
+   },
+   "population_at_risk": 58,
+   "replacement_exposure_usd": 3596000,
+   "warranty_recoverable_usd": 3125,
+   "in_warranty_members": 12
+  }
+ },
+ "CAND-010": {
+  "candidate": {
+   "kind": "model_symptom",
+   "key": "KVP-3600|ground_fault",
+   "label": "KVP-3600, symptom 'ground_fault'",
+   "members": [
+    "WO-2024-00002",
+    "WO-2024-00048",
+    "WO-2024-00057",
+    "WO-2024-00063",
+    "WO-2024-00338",
+    "WO-2025-00004",
+    "WO-2025-00005",
+    "WO-2025-00143",
+    "WO-2025-00158",
+    "WO-2025-00164",
+    "WO-2025-00367",
+    "WO-2025-00373",
+    "WO-2025-00458",
+    "WO-2025-00460",
+    "WO-2025-00524",
+    "WO-2025-00882",
+    "WO-2025-01045",
+    "WO-2025-01105",
+    "WO-2025-01132",
+    "WO-2025-01147",
+    "WO-2025-01192",
+    "WO-2025-01276",
+    "WO-2026-00049",
+    "WO-2026-00081",
+    "WO-2026-00229",
+    "WO-2026-00335",
+    "WO-2026-00397",
+    "WO-2026-00462",
+    "WO-2026-00536",
+    "WO-2026-00592",
+    "WO-2026-00699"
+   ],
+   "n": 31,
+   "units_in_cohort": 376,
+   "rate_per_unit": 0.082,
+   "peer_median_rate": 0.073,
+   "lift": 1.12,
+   "dims": {
+    "model": "KVP-3600",
+    "symptom": "ground_fault"
+   },
+   "_materiality": 117.5,
+   "_volume": 209.8,
+   "_anomaly": 0.56,
+   "_labor_hours": 160.4,
+   "_lost_mwh": 50.1,
+   "candidate_id": "CAND-010"
+  },
+  "hypotheses": {
+   "hypotheses": [
+    {
+     "id": "H1",
+     "statement": "DC ground faults on this model are ordinary balance-of-plant events caused by chafed or pinched conductors, not an inverter defect.",
+     "type": "benign_operational",
+     "prior": "high",
+     "predictions": [
+      "narratives locate the fault in combiners or home runs, not in the inverter",
+      "the same symptom appears at similar rates on every other inverter model",
+      "affected serials spread across many build years and sites"
+     ],
+     "discriminating_evidence": [
+      "where in the string the fault is physically located",
+      "comparison of normalised rates across all four inverter models"
+     ]
+    },
+    {
+     "id": "H2",
+     "statement": "KVP-3600 has a ground-fault detection sensitivity problem producing nuisance trips.",
+     "type": "systemic_defect",
+     "prior": "low",
+     "predictions": [
+      "a high share of tickets close with no fault found",
+      "the rate is materially above peer models"
+     ],
+     "discriminating_evidence": [
+      "normalised rate versus peers, and share of no-fault-found closures"
+     ]
+    },
+    {
+     "id": "H3",
+     "statement": "The cluster reflects installation workmanship at specific sites rather than anything about the equipment.",
+     "type": "benign_operational",
+     "prior": "medium",
+     "predictions": [
+      "faults concentrate at a few sites or a few combiner runs",
+      "narratives describe conductors rubbing on racking"
+     ],
+     "discriminating_evidence": [
+      "site concentration of the affected tickets"
+     ]
+    }
+   ]
+  },
+  "verdict": {
+   "verdict": "decline",
+   "confidence": "high",
+   "selected_hypothesis": "H1",
+   "reasoning": "Ground faults on this model are balance-of-plant events, not inverter faults. Every narrative locates the cause outside the inverter: a home run chafed against racking in WO-2024-00002, pinched connectors in combiners in WO-2025-00524, WO-2026-00229 and WO-2026-00699. Affected serials span 2016 to 2024 builds (1629C, 1635C, 1743D, 1845D, 1922B, 2438C) with no cohort concentration. Decisively, the normalised rate is 0.082 faults per installed unit against a peer median of 0.073 - the same symptom appears on CE-4000 at 0.073, MG-3300 at 0.080 and KVP-2400 at 0.046. This is a fleet baseline phenomenon appearing here only because KVP-3600 has the largest installed base. Escalating it would be a false positive.",
+   "supporting_wo_ids": [
+    "WO-2024-00002",
+    "WO-2025-00524",
+    "WO-2025-01276",
+    "WO-2026-00229",
+    "WO-2026-00335",
+    "WO-2026-00699"
+   ],
+   "contradicting_evidence": "Thirty-one tickets and 160 labour hours is real recurring cost even if it is not a defect. There may be a workmanship case at specific sites, which is a different and smaller finding than the one tested here.",
+   "population_at_risk": {
+    "count": 0,
+    "description": "None - no cohort identified.",
+    "basis": "Rate is at fleet baseline across all four inverter models."
+   },
+   "recommended_action": "No supplier action. If cost reduction is wanted, target combiner-entry conductor dressing at the highest-frequency sites rather than the inverter model.",
+   "action_type": "none",
+   "business_headline": "Ground faults on Kelvara inverters run at the same rate as every other model in the fleet - a baseline maintenance cost, not a defect.",
+   "population_shared_with": []
+  },
+  "finance": {
+   "realised": {
+    "labor_hours": 160.4,
+    "labor_usd": 15238,
+    "truck_rolls": 31,
+    "mobilisation_usd": 13950,
+    "parts_usd": 360,
+    "parts_detail": {
+     "combiner_fuse": 8
+    },
+    "lost_mwh_reported": 50.1,
+    "energy_usd_reported": 2104,
+    "energy_usd_extrapolated": 15030,
+    "total_low_usd": 31652,
+    "total_high_usd": 44578
+   },
+   "population_at_risk": 0,
+   "replacement_exposure_usd": 0,
+   "warranty_recoverable_usd": 4252,
+   "in_warranty_members": 13
+  }
+ },
+ "CAND-011": {
+  "candidate": {
+   "kind": "model_symptom",
+   "key": "KVP-3600|cooling_airflow_low",
+   "label": "KVP-3600, symptom 'cooling_airflow_low'",
+   "members": [
+    "WO-2024-00278",
+    "WO-2025-00386",
+    "WO-2025-00631",
+    "WO-2025-00652",
+    "WO-2025-00674",
+    "WO-2025-00700",
+    "WO-2025-00782",
+    "WO-2025-00789",
+    "WO-2025-00808",
+    "WO-2025-00862",
+    "WO-2025-00920",
+    "WO-2025-00980",
+    "WO-2025-01005",
+    "WO-2026-00107",
+    "WO-2026-00319",
+    "WO-2026-00689",
+    "WO-2026-00693"
+   ],
+   "n": 17,
+   "units_in_cohort": 376,
+   "rate_per_unit": 0.045,
+   "peer_median_rate": 0.021,
+   "lift": 2.16,
+   "dims": {
+    "model": "KVP-3600",
+    "symptom": "cooling_airflow_low"
+   },
+   "_materiality": 102.5,
+   "_volume": 94.9,
+   "_anomaly": 1.08,
+   "_labor_hours": 82.0,
+   "_lost_mwh": 8.0,
+   "candidate_id": "CAND-011"
+  },
+  "hypotheses": {
+   "hypotheses": [
+    {
+     "id": "H1",
+     "statement": "The cluster mixes two unrelated causes: routine intake fouling and fan failure on older units, plus genuine airflow shortfall on units from the 2024 build window.",
+     "type": "other",
+     "prior": "high",
+     "predictions": [
+      "serials split between old build years and the 2024 window",
+      "old-unit narratives find a physical cause such as a bird nest or seized fan",
+      "2024-window narratives report filters clean but airflow low"
+     ],
+     "discriminating_evidence": [
+      "whether a physical obstruction was found, cross-referenced against manufacture year"
+     ]
+    },
+    {
+     "id": "H2",
+     "statement": "All of it is routine cooling maintenance: filters, fans and nests, which is expected work on any central inverter fleet.",
+     "type": "normal_wear_and_tear",
+     "prior": "medium",
+     "predictions": [
+      "nearly every ticket identifies a physical cause",
+      "peer models show comparable rates"
+     ],
+     "discriminating_evidence": [
+      "share of tickets where no physical cause was found"
+     ]
+    },
+    {
+     "id": "H3",
+     "statement": "KVP-3600 has an undersized cooling system across all build years.",
+     "type": "systemic_defect",
+     "prior": "low",
+     "predictions": [
+      "elevated rate across every KVP-3600 build cohort, not just 2024",
+      "peer models materially lower"
+     ],
+     "discriminating_evidence": [
+      "rate by manufacture cohort within the model"
+     ]
+    }
+   ]
+  },
+  "verdict": {
+   "verdict": "deprioritize",
+   "confidence": "medium",
+   "selected_hypothesis": "H1",
+   "reasoning": "This cluster mixes two causes and should not be actioned as one. Older units have ordinary physical causes: WO-2024-00278 found a bird nest in the intake plenum of a 2016-build unit, WO-2025-00789 a seized fan on a 2019 build. Units from the 2024 window show the different and more interesting pattern - WO-2025-00920 and WO-2026-00693 both report the fan bank running, airflow low across the stack, and filters found not particularly dirty, which is the signature that belongs with the CAND-002 cohort rather than with maintenance. Because roughly half the cluster is routine work, the normalised lift of 2.16 overstates the cohort effect and the cluster as constructed is not a clean finding.",
+   "supporting_wo_ids": [
+    "WO-2024-00278",
+    "WO-2025-00789",
+    "WO-2025-00920",
+    "WO-2025-01005",
+    "WO-2026-00693"
+   ],
+   "contradicting_evidence": "Splitting this cluster by manufacture cohort was not done in aggregation, so the split above is inferred from a sample rather than measured across all 17 members.",
+   "population_at_risk": {
+    "count": 0,
+    "description": "Window units within this cluster are already counted in the CAND-002 population.",
+    "basis": "Not additive to CAND-002; the remainder is routine maintenance with no exposed population."
+   },
+   "recommended_action": "Split this cluster by manufacture cohort in aggregation, route the 2024-window members into the CAND-002 scope and close the remainder as routine cooling maintenance.",
+   "action_type": "data_quality_fix",
+   "business_headline": "Half routine fan and filter maintenance, half early evidence of the Kelvara cohort fault - needs splitting before it means anything.",
+   "population_shared_with": []
+  },
+  "finance": {
+   "realised": {
+    "labor_hours": 82.0,
+    "labor_usd": 7790,
+    "truck_rolls": 17,
+    "mobilisation_usd": 7650,
+    "parts_usd": 1300,
+    "parts_detail": {
+     "cooling_fan": 2
+    },
+    "lost_mwh_reported": 8.0,
+    "energy_usd_reported": 336,
+    "energy_usd_extrapolated": 2400,
+    "total_low_usd": 17076,
+    "total_high_usd": 19140
+   },
+   "population_at_risk": 0,
+   "replacement_exposure_usd": 0,
+   "warranty_recoverable_usd": 3823,
+   "in_warranty_members": 11
+  }
+ },
+ "CAND-012": {
+  "candidate": {
+   "kind": "site_symptom",
+   "key": "Palmetto Bend|reporting_dropout",
+   "label": "Palmetto Bend, symptom 'reporting_dropout'",
+   "members": [
+    "WO-2024-00110",
+    "WO-2024-00288",
+    "WO-2025-00135",
+    "WO-2025-00602",
+    "WO-2026-00180",
+    "WO-2026-00603"
+   ],
+   "n": 6,
+   "exposure_gw_months": 4.3,
+   "rate_per_gw_month": 1.39,
+   "fleet_rate_per_gw_month": 0.19,
+   "lift": 7.37,
+   "dims": {
+    "site": "Palmetto Bend",
+    "symptom": "reporting_dropout"
+   },
+   "_materiality": 93.5,
+   "_volume": 25.4,
+   "_anomaly": 3.69,
+   "_labor_hours": 10.6,
+   "_lost_mwh": 0.1,
+   "candidate_id": "CAND-012"
+  },
+  "hypotheses": {
+   "hypotheses": [
+    {
+     "id": "H1",
+     "statement": "Soltera ST-250 string inverters at humid sites lose network reporting while continuing to invert normally, a communications-module nuisance with no energy consequence.",
+     "type": "benign_operational",
+     "prior": "high",
+     "predictions": [
+      "narratives state production was unaffected and the meter agrees",
+      "resolution is a reset or reseat",
+      "recorded energy loss is near zero"
+     ],
+     "discriminating_evidence": [
+      "explicit technician statements that generation continued"
+     ]
+    },
+    {
+     "id": "H2",
+     "statement": "The dropouts mask genuine intermittent generation loss that the portal is failing to capture.",
+     "type": "systemic_defect",
+     "prior": "low",
+     "predictions": [
+      "metered output dips during dropout windows",
+      "some tickets record real lost production"
+     ],
+     "discriminating_evidence": [
+      "recorded lost production across the cluster"
+     ]
+    },
+    {
+     "id": "H3",
+     "statement": "Site network infrastructure rather than the inverters is at fault.",
+     "type": "benign_operational",
+     "prior": "medium",
+     "predictions": [
+      "dropouts affect multiple units simultaneously",
+      "fixes target cabling or converters rather than the units"
+     ],
+     "discriminating_evidence": [
+      "whether dropouts are simultaneous across units"
+     ]
+    }
+   ]
+  },
+  "verdict": {
+   "verdict": "deprioritize",
+   "confidence": "high",
+   "selected_hypothesis": "H1",
+   "reasoning": "The technicians establish the commercial answer directly: WO-2025-00135 records that production was never affected and only reporting drops, and WO-2024-00288 confirms the unit was generating normally per the meter while showing offline in the portal. Recorded lost production across the cluster is 0.1 MWh against 10.6 labour hours. This is a genuine recurring nuisance on Soltera ST-250 comms modules at a humid site, and it is real enough to fix, but it converts to almost no money. H2 fails on the metered evidence.",
+   "supporting_wo_ids": [
+    "WO-2024-00110",
+    "WO-2024-00288",
+    "WO-2025-00135",
+    "WO-2025-00602",
+    "WO-2026-00603"
+   ],
+   "contradicting_evidence": "Repeated dispatches to a fault with no production consequence still consume technician capacity that has an opportunity cost not captured in the energy figure.",
+   "population_at_risk": {
+    "count": 0,
+    "description": "Not quantifiable - string inverters are not in the serial-level asset registry.",
+    "basis": "The registry covers central inverters only."
+   },
+   "recommended_action": "Handle remotely: update the comms-board firmware at the next scheduled window and suppress the portal alarm rather than dispatching a technician.",
+   "action_type": "monitor_only",
+   "business_headline": "Soltera comms dropouts at Palmetto Bend cost truck rolls but no generation - stop dispatching, fix the firmware at the next window.",
+   "population_shared_with": []
+  },
+  "finance": {
+   "realised": {
+    "labor_hours": 10.6,
+    "labor_usd": 1007,
+    "truck_rolls": 6,
+    "mobilisation_usd": 2700,
+    "parts_usd": 210,
+    "parts_detail": {
+     "module": 1
+    },
+    "lost_mwh_reported": 0.1,
+    "energy_usd_reported": 4,
+    "energy_usd_extrapolated": 30,
+    "total_low_usd": 3921,
+    "total_high_usd": 3947
+   },
+   "population_at_risk": 0,
+   "replacement_exposure_usd": 0,
+   "warranty_recoverable_usd": 0,
+   "in_warranty_members": 0
+  }
+ },
+ "CAND-013": {
+  "candidate": {
+   "kind": "model_symptom",
+   "key": "MG-3300|ground_fault",
+   "label": "MG-3300, symptom 'ground_fault'",
+   "members": [
+    "WO-2024-00037",
+    "WO-2024-00074",
+    "WO-2024-00084",
+    "WO-2024-00149",
+    "WO-2024-00235",
+    "WO-2024-00286",
+    "WO-2024-00344",
+    "WO-2024-00351",
+    "WO-2024-00391",
+    "WO-2025-00089",
+    "WO-2025-00120",
+    "WO-2025-00188",
+    "WO-2025-00211",
+    "WO-2025-00497",
+    "WO-2025-00587",
+    "WO-2025-00671",
+    "WO-2025-00753",
+    "WO-2025-01150",
+    "WO-2026-00037",
+    "WO-2026-00050",
+    "WO-2026-00142",
+    "WO-2026-00427",
+    "WO-2026-00544"
+   ],
+   "n": 23,
+   "units_in_cohort": 287,
+   "rate_per_unit": 0.08,
+   "peer_median_rate": 0.073,
+   "lift": 1.09,
+   "dims": {
+    "model": "MG-3300",
+    "symptom": "ground_fault"
+   },
+   "_materiality": 88.8,
+   "_volume": 163.0,
+   "_anomaly": 0.55,
+   "_labor_hours": 93.2,
+   "_lost_mwh": 46.0,
+   "candidate_id": "CAND-013"
+  },
+  "hypotheses": {
+   "hypotheses": [
+    {
+     "id": "H1",
+     "statement": "Ground faults on this model are ordinary conductor and connector events, at a rate indistinguishable from every other inverter model in the fleet.",
+     "type": "benign_operational",
+     "prior": "high",
+     "predictions": [
+      "normalised rate close to the peer median",
+      "physical causes located outside the inverter",
+      "serials spread across build years"
+     ],
+     "discriminating_evidence": [
+      "cross-model comparison of normalised rates"
+     ]
+    },
+    {
+     "id": "H2",
+     "statement": "MG-3300 has an elevated ground-fault rate attributable to the equipment.",
+     "type": "systemic_defect",
+     "prior": "low",
+     "predictions": [
+      "rate materially above peers",
+      "faults traced to inverter internals"
+     ],
+     "discriminating_evidence": [
+      "where the fault is physically located"
+     ]
+    }
+   ]
+  },
+  "verdict": {
+   "verdict": "decline",
+   "confidence": "high",
+   "selected_hypothesis": "H1",
+   "reasoning": "Normalised rate is 0.080 faults per installed unit against a peer median of 0.073 - statistically indistinguishable from the other three inverter models. Causes are located outside the inverter in every sampled narrative: a chafed home run in WO-2025-00120, a pinched connector in a combiner in WO-2026-00544, and no fault found on inspection in WO-2024-00037, WO-2024-00074 and WO-2026-00037. Serials span 2018 to 2024 builds with no concentration. Same conclusion as CAND-010 for the same reasons.",
+   "supporting_wo_ids": [
+    "WO-2024-00037",
+    "WO-2024-00074",
+    "WO-2025-00120",
+    "WO-2026-00037",
+    "WO-2026-00544"
+   ],
+   "contradicting_evidence": "None identified.",
+   "population_at_risk": {
+    "count": 0,
+    "description": "None.",
+    "basis": "Rate at fleet baseline."
+   },
+   "recommended_action": "No action. Use as the comparison baseline when assessing any future inverter ground-fault claim.",
+   "action_type": "none",
+   "business_headline": "Meridian ground-fault rate matches the fleet baseline - nothing to pursue.",
+   "population_shared_with": []
+  },
+  "finance": {
+   "realised": {
+    "labor_hours": 93.2,
+    "labor_usd": 8854,
+    "truck_rolls": 23,
+    "mobilisation_usd": 10350,
+    "parts_usd": 450,
+    "parts_detail": {
+     "combiner_fuse": 10
+    },
+    "lost_mwh_reported": 46.0,
+    "energy_usd_reported": 1932,
+    "energy_usd_extrapolated": 13800,
+    "total_low_usd": 21586,
+    "total_high_usd": 33454
+   },
+   "population_at_risk": 0,
+   "replacement_exposure_usd": 0,
+   "warranty_recoverable_usd": 3681,
+   "in_warranty_members": 14
+  }
+ },
+ "CAND-014": {
+  "candidate": {
+   "kind": "model_symptom",
+   "key": "CE-4000|ground_fault",
+   "label": "CE-4000, symptom 'ground_fault'",
+   "members": [
+    "WO-2024-00069",
+    "WO-2024-00185",
+    "WO-2025-00016",
+    "WO-2025-00044",
+    "WO-2025-00084",
+    "WO-2025-00444",
+    "WO-2025-00506",
+    "WO-2025-00548",
+    "WO-2025-00567",
+    "WO-2025-00645",
+    "WO-2025-00796",
+    "WO-2025-00863",
+    "WO-2025-00919",
+    "WO-2025-00943",
+    "WO-2025-00963",
+    "WO-2025-01191",
+    "WO-2025-01248",
+    "WO-2025-01250",
+    "WO-2025-01268",
+    "WO-2026-00423",
+    "WO-2026-00504",
+    "WO-2026-00507",
+    "WO-2026-00656",
+    "WO-2026-00670"
+   ],
+   "n": 24,
+   "units_in_cohort": 327,
+   "rate_per_unit": 0.073,
+   "peer_median_rate": 0.08,
+   "lift": 0.92,
+   "dims": {
+    "model": "CE-4000",
+    "symptom": "ground_fault"
+   },
+   "_materiality": 80.3,
+   "_volume": 174.6,
+   "_anomaly": 0.46,
+   "_labor_hours": 113.0,
+   "_lost_mwh": 55.3,
+   "candidate_id": "CAND-014"
+  },
+  "hypotheses": {
+   "hypotheses": [
+    {
+     "id": "H1",
+     "statement": "Ground faults on this model are ordinary balance-of-plant events; the normalised rate is below the fleet peer median, so the cluster exists only because the installed base is large.",
+     "type": "benign_operational",
+     "prior": "high",
+     "predictions": [
+      "normalised rate below peer median",
+      "physical causes in combiners and home runs",
+      "wide site and vintage spread"
+     ],
+     "discriminating_evidence": [
+      "normalised rate versus peers"
+     ]
+    },
+    {
+     "id": "H2",
+     "statement": "CE-4000 ground faults represent a real but low-grade workmanship issue at specific sites.",
+     "type": "benign_operational",
+     "prior": "medium",
+     "predictions": [
+      "concentration at a few sites",
+      "repeat faults on the same combiner runs"
+     ],
+     "discriminating_evidence": [
+      "site distribution of the cluster"
+     ]
+    }
+   ]
+  },
+  "verdict": {
+   "verdict": "decline",
+   "confidence": "high",
+   "selected_hypothesis": "H1",
+   "reasoning": "The normalised rate here is 0.073 per installed unit against a peer median of 0.080 - this model is slightly better than its peers, and the cluster exists only because 327 units generate a lot of absolute tickets. This is the clearest illustration in the run of why raw counts mislead: 24 tickets and 113 labour hours look material until divided by installed base. Causes are again external to the inverter - a pinched connector in WO-2024-00069, a chafed home run in WO-2024-00185, no fault found in WO-2025-00084, WO-2025-01248 and WO-2026-00670.",
+   "supporting_wo_ids": [
+    "WO-2024-00069",
+    "WO-2024-00185",
+    "WO-2025-00084",
+    "WO-2025-01248",
+    "WO-2026-00670"
+   ],
+   "contradicting_evidence": "None identified.",
+   "population_at_risk": {
+    "count": 0,
+    "description": "None.",
+    "basis": "Rate below peer median."
+   },
+   "recommended_action": "No action.",
+   "action_type": "none",
+   "business_headline": "Calderon ground faults run below the fleet average once normalised by installed base - a volume artifact, not a finding.",
+   "population_shared_with": []
+  },
+  "finance": {
+   "realised": {
+    "labor_hours": 113.0,
+    "labor_usd": 10735,
+    "truck_rolls": 24,
+    "mobilisation_usd": 10800,
+    "parts_usd": 135,
+    "parts_detail": {
+     "combiner_fuse": 3
+    },
+    "lost_mwh_reported": 55.3,
+    "energy_usd_reported": 2323,
+    "energy_usd_extrapolated": 16590,
+    "total_low_usd": 23993,
+    "total_high_usd": 38260
+   },
+   "population_at_risk": 0,
+   "replacement_exposure_usd": 0,
+   "warranty_recoverable_usd": 4710,
+   "in_warranty_members": 16
+  }
+ },
+ "CAND-015": {
+  "candidate": {
+   "kind": "site_symptom",
+   "key": "Sundowner Mesa|tracker_misalignment",
+   "label": "Sundowner Mesa, symptom 'tracker_misalignment'",
+   "members": [
+    "WO-2025-00286",
+    "WO-2025-00302",
+    "WO-2025-00339",
+    "WO-2025-00344",
+    "WO-2025-00375",
+    "WO-2025-00754",
+    "WO-2025-00930",
+    "WO-2025-01179",
+    "WO-2026-00073"
+   ],
+   "n": 9,
+   "exposure_gw_months": 5.3,
+   "rate_per_gw_month": 1.7,
+   "fleet_rate_per_gw_month": 0.51,
+   "lift": 3.36,
+   "dims": {
+    "site": "Sundowner Mesa",
+    "symptom": "tracker_misalignment"
+   },
+   "_materiality": 79.1,
+   "_volume": 47.1,
+   "_anomaly": 1.68,
+   "_labor_hours": 32.6,
+   "_lost_mwh": 4.6,
+   "candidate_id": "CAND-015"
+  },
+  "hypotheses": {
+   "hypotheses": [
+    {
+     "id": "H1",
+     "statement": "Bent limit-switch brackets and misalignment at this site are residual cleanup from the March 2025 wind event, not an ongoing tracker control problem.",
+     "type": "environmental_event",
+     "prior": "high",
+     "predictions": [
+      "most tickets fall in the weeks following the event",
+      "narratives reference the same month's other repairs",
+      "the same physical damage mode as the structural cluster"
+     ],
+     "discriminating_evidence": [
+      "date distribution relative to the event, and cross-reference to storm-damage tickets"
+     ]
+    },
+    {
+     "id": "H2",
+     "statement": "Tracker controllers at this site drift out of calibration systematically and need a control fix.",
+     "type": "systemic_defect",
+     "prior": "low",
+     "predictions": [
+      "steady arrivals across the full window rather than clustering after March 2025",
+      "narratives describe drift rather than bent hardware"
+     ],
+     "discriminating_evidence": [
+      "whether the physical finding is a bent bracket or a calibration drift"
+     ]
+    },
+    {
+     "id": "H3",
+     "statement": "The count is inflated by per-row logging at this site.",
+     "type": "data_artifact",
+     "prior": "medium",
+     "predictions": [
+      "most members carry per-row tags and one technician",
+      "low labour hours per ticket"
+     ],
+     "discriminating_evidence": [
+      "tag granularity and technician distribution across members"
+     ]
+    }
+   ]
+  },
+  "verdict": {
+   "verdict": "decline",
+   "confidence": "medium",
+   "selected_hypothesis": "H1",
+   "reasoning": "Residual cleanup from the same March 2025 wind event. The physical finding in the April tickets is a bent limit-switch bracket - mechanical deformation, not calibration drift - in WO-2025-00286, WO-2025-00344 and WO-2025-00375, and WO-2025-00286 opens with a technician noting it is the same as the others that month. Seven of nine members fall in the weeks after the event. H2 would require drift-type language and steady arrivals across the window; instead arrivals collapse after April with only WO-2025-00930 and WO-2026-00073 following later, both of which read as ordinary recalibration. H3 also contributes: eight of nine members carry per-row tags from the same technician identified in CAND-003.",
+   "supporting_wo_ids": [
+    "WO-2025-00286",
+    "WO-2025-00344",
+    "WO-2025-00375",
+    "WO-2025-00930",
+    "WO-2026-00073"
+   ],
+   "contradicting_evidence": "Two members fall well outside the event window and are genuinely routine recalibration, so the cluster is not purely event-driven. This does not change the verdict but the cluster boundary is imprecise.",
+   "population_at_risk": {
+    "count": 0,
+    "description": "None.",
+    "basis": "Event-bounded and inflated by per-row logging."
+   },
+   "recommended_action": "No action beyond confirming the bent-bracket repairs were captured in the property claim.",
+   "action_type": "none",
+   "business_headline": "Tracker misalignment at Sundowner Mesa is bent hardware from the March wind event plus row-level logging - not a control problem.",
+   "population_shared_with": []
+  },
+  "finance": {
+   "realised": {
+    "labor_hours": 32.6,
+    "labor_usd": 3097,
+    "truck_rolls": 9,
+    "mobilisation_usd": 4050,
+    "parts_usd": 5100,
+    "parts_detail": {
+     "tracker_motor": 2,
+     "gearbox": 1
+    },
+    "lost_mwh_reported": 4.6,
+    "energy_usd_reported": 194,
+    "energy_usd_extrapolated": 1386,
+    "total_low_usd": 12441,
+    "total_high_usd": 13633
+   },
+   "population_at_risk": 0,
+   "replacement_exposure_usd": 0,
+   "warranty_recoverable_usd": 0,
+   "in_warranty_members": 0
+  }
+ }
+}
