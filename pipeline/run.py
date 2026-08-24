@@ -60,7 +60,7 @@ def main(argv=None):
     else:
         client1 = LLMClient(backend=a.stage1_backend, model=a.model, accounting=acct,
                             authored_dir=a.authored_dir, concurrency=a.concurrency)
-        raw, missing1 = client1.map("stage1_extract", wos, s1.build_prompt, max_tokens=600)
+        raw, missing1 = client1.map("stage1_extract", wos, s1.build_prompt, max_tokens=900)
         for k, v in raw.items():
             ext[k], _ = schema.validate(v)
         for w in wos:                      # fall back so the run always completes

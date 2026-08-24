@@ -83,6 +83,18 @@ class Accounting:
         return "\n".join(lines)
 
 
+class BadModelResponse(Exception):
+    """A live call returned something we could not turn into a record.
+
+    Carries why, so run.py can fall back for THAT ticket instead of losing the
+    whole run. Truncation is called out separately from malformed JSON: they
+    have different fixes (raise max_tokens vs tighten the prompt).
+    """
+    def __init__(self, stage, key, reason, text=""):
+        super().__init__(f"{stage}/{key}: {reason}")
+        self.stage, self.key, self.reason, self.text = stage, key, reason, text
+
+
 class MissingAuthoredResponse(Exception):
     def __init__(self, stage, key, system, user):
         super().__init__(f"no authored response for {stage}/{key}")
@@ -102,6 +114,8 @@ class LLMClient:
         self._authored = {}
         self._cache = {}
         self._pending = []
+        self._failures = []
+        self._truncations = 0
         self._lock = threading.Lock()
         self._client = None
         os.makedirs(self.cache_dir, exist_ok=True)
@@ -160,21 +174,36 @@ class LLMClient:
         # cache_control on the system block: the schema and instructions are
         # identical across every ticket, so it should be a cache hit after the
         # first call. Volatile per-ticket content goes in the user turn.
-        resp = self._client.messages.create(
-            model=self.model,
-            max_tokens=max_tokens,
-            system=[{"type": "text", "text": system,
-                     "cache_control": {"type": "ephemeral"}}],
-            messages=[{"role": "user", "content": user}],
-        )
-        dt = time.time() - t0
-        u = resp.usage
-        self.acct.record(stage, model=self.model, calls=1, seconds=dt,
-                         tin=u.input_tokens, tout=u.output_tokens,
-                         tcache_read=getattr(u, "cache_read_input_tokens", 0) or 0,
-                         tcache_write=getattr(u, "cache_creation_input_tokens", 0) or 0)
-        text = "".join(b.text for b in resp.content if b.type == "text")
-        parsed = _parse_json(text)
+        text, truncated = "", False
+        for attempt, budget in enumerate((max_tokens, max_tokens * 3)):
+            resp = self._client.messages.create(
+                model=self.model,
+                max_tokens=budget,
+                system=[{"type": "text", "text": system,
+                         "cache_control": {"type": "ephemeral"}}],
+                messages=[{"role": "user", "content": user}],
+            )
+            u = resp.usage
+            self.acct.record(stage, model=self.model, calls=1,
+                             tin=u.input_tokens, tout=u.output_tokens,
+                             tcache_read=getattr(u, "cache_read_input_tokens", 0) or 0,
+                             tcache_write=getattr(u, "cache_creation_input_tokens", 0) or 0)
+            text = "".join(b.text for b in resp.content if b.type == "text")
+            truncated = resp.stop_reason == "max_tokens"
+            if not truncated:
+                break
+            with self._lock:
+                self._truncations += 1
+        self.acct.add_seconds(stage, time.time() - t0)
+        if truncated:
+            raise BadModelResponse(stage, key,
+                                   f"truncated at max_tokens={max_tokens * 3}", text)
+        try:
+            parsed = _parse_json(text)
+        except (json.JSONDecodeError, ValueError) as e:
+            raise BadModelResponse(stage, key, f"unparseable JSON: {e}", text)
+        if not isinstance(parsed, dict):
+            raise BadModelResponse(stage, key, f"expected an object, got {type(parsed).__name__}", text)
         self._append_cache(stage, key, parsed)
         return parsed
 
@@ -192,8 +221,10 @@ class LLMClient:
             k, sysp, usr = build_prompt(item)
             try:
                 return k, self.complete(stage, k, sysp, usr, max_tokens), None
-            except MissingAuthoredResponse as e:
+            except (MissingAuthoredResponse, BadModelResponse) as e:
                 return k, None, e
+            except Exception as e:          # network, rate limit, overload
+                return k, None, BadModelResponse(stage, k, f"{type(e).__name__}: {e}")
 
         if self.backend == "anthropic" and self.concurrency > 1:
             with ThreadPoolExecutor(max_workers=self.concurrency) as ex:
@@ -206,7 +237,8 @@ class LLMClient:
                     results[k] = r
                 else:
                     missing.append(err)
-        self.acct.add_seconds(stage, time.time() - t0)
+        with self._lock:
+            self._failures.extend(m for m in missing if isinstance(m, BadModelResponse))
         return results, missing
 
     def dump_pending(self, path):
