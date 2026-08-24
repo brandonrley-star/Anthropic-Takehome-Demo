@@ -1,7 +1,10 @@
+import os as _os, sys as _sys
+_ROOT = _os.path.dirname(_os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+_sys.path.insert(0, _os.path.join(_ROOT, "generator"))
+_sys.path.insert(0, _os.path.join(_ROOT, "eval", "audit"))
+
 import sys, json, collections
-sys.path.insert(0, "/home/user/Anthropic-Takehome-Demo/eval/audit")
 from _common import load
-sys.path.insert(0, "/home/user/Anthropic-Takehome-Demo/generator")
 import fleet, calendar_util as cal
 
 sites, assets, techs, wos = load()
@@ -119,7 +122,7 @@ gt = {
         },
     },
 }
-with open("/home/user/Anthropic-Takehome-Demo/eval/ground_truth.json", "w") as f:
+with open(_os.path.join(_ROOT, "eval", "ground_truth.json"), "w") as f:
     json.dump(gt, f, indent=1)
 print("wrote eval/ground_truth.json")
 p = gt["findings"]["signal_1_kelvara_thermal"]["population"]

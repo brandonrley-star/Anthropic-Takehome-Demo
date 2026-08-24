@@ -1,7 +1,11 @@
 """Confirm each planted pattern appears at the intended frequency and spread."""
+import os as _os, sys as _sys
+_ROOT = _os.path.dirname(_os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+_sys.path.insert(0, _os.path.join(_ROOT, "generator"))
+_sys.path.insert(0, _os.path.join(_ROOT, "eval", "audit"))
+
 import collections, sys
 from _common import load
-sys.path.insert(0, "/home/user/Anthropic-Takehome-Demo/generator")
 import fleet
 
 EXPECT = {"signal_1": 48, "signal_2": 26, "decoy_1": 31,

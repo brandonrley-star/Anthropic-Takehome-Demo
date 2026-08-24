@@ -1,5 +1,9 @@
+import os as _os, sys as _sys
+_ROOT = _os.path.dirname(_os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+_sys.path.insert(0, _os.path.join(_ROOT, "generator"))
+_sys.path.insert(0, _os.path.join(_ROOT, "eval", "audit"))
+
 import sys, json
-sys.path.insert(0, "/home/user/Anthropic-Takehome-Demo/generator")
 import narrate, fleet
 
 
@@ -14,5 +18,5 @@ def load():
 
 
 def corpus():
-    with open("/home/user/Anthropic-Takehome-Demo/corpus/work_orders.json") as f:
+    with open(_os.path.join(_ROOT, "corpus", "work_orders.json")) as f:
         return json.load(f)

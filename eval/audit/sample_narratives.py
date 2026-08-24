@@ -1,9 +1,13 @@
 """Print a seeded random sample of narratives with their structured fields."""
+import os as _os, sys as _sys
+_ROOT = _os.path.dirname(_os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))
+_sys.path.insert(0, _os.path.join(_ROOT, "generator"))
+_sys.path.insert(0, _os.path.join(_ROOT, "eval", "audit"))
+
 import sys, json, random
-sys.path.insert(0, "/home/user/Anthropic-Takehome-Demo/eval/audit")
 n = int(sys.argv[1]) if len(sys.argv) > 1 else 20
 seed = int(sys.argv[2]) if len(sys.argv) > 2 else 424242
-with open("/home/user/Anthropic-Takehome-Demo/corpus/work_orders.json") as f:
+with open(_os.path.join(_ROOT, "corpus", "work_orders.json")) as f:
     wos = json.load(f)
 rng = random.Random(seed)
 for i, w in enumerate(rng.sample(wos, n), 1):

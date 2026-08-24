@@ -1,6 +1,9 @@
 """Ingest authored narratives for one batch: TAB-separated wo_id<TAB>narrative."""
+import os as _os, sys as _sys
+_ROOT = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
+_sys.path.insert(0, _os.path.join(_ROOT, "generator"))
+
 import sys, os
-sys.path.insert(0, "/home/user/Anthropic-Takehome-Demo/generator")
 import narrate
 
 b = int(sys.argv[1]); src = sys.argv[2]
