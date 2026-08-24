@@ -160,6 +160,13 @@ narrative characters, ~102 tokens per ticket):
 
 ## Live-model variants
 
+Credentials live in `.env` at the repo root, which is gitignored and never
+committed. Load it into the shell first:
+
+```bash
+set -a && . ./.env && set +a
+```
+
 ```bash
 # live reasoning stages, cached extraction
 python3 -m pipeline.run --stage1-backend rules --backend anthropic --out /tmp/live
@@ -169,8 +176,12 @@ python3 -m pipeline.run --stage1-backend anthropic --backend anthropic \
     --model claude-opus-5 --concurrency 16 --budget 20 --out /tmp/full
 ```
 
-Requires `ANTHROPIC_API_KEY` and `pip install anthropic`. `--budget` is a hard
-stop in dollars.
+Requires `pip install anthropic` (SDK 1.0.0 is present in this environment).
+`--budget` is a hard stop in dollars.
+
+**Do not run a live variant during the demo.** Use the reference run. The live
+path exists to regenerate the reference run, not to perform in front of an
+audience — it takes minutes, costs money, and depends on the network.
 
 ---
 
