@@ -1,0 +1,20 @@
+{
+ "operator": "Northlight Renewable Services",
+ "corpus_version": "1.0.0",
+ "master_seed": 20260824,
+ "work_orders": 2398,
+ "sites": 34,
+ "registered_assets": 1378,
+ "technicians": 28,
+ "window": {
+  "start": "2024-07-01",
+  "end": "2026-06-30"
+ },
+ "files": {
+  "work_orders.json": "8d9e7638b12e87f24f6cd3aa269f280e69b5d5725f0152c91e722a385d71b598",
+  "sites.json": "fb17508f4a2d634272332c8ebf0e52886cb797567d89b2409ee5e9f6e8f08592",
+  "assets.json": "5d4535cc6eb282f3b880e07818912c61c6b9cf33744cb69fe9ed9ac49a12d5fb",
+  "technicians.json": "6cefcf2ab68f2a2fef5f286edaaeb166fc3a77a6f69a1654d03d806f42a06b61",
+  "work_orders.csv": "da0ee75c3fc13c467544f12d3196bf24b9953491572ef54ceec9190abc305b22"
+ }
+}

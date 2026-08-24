@@ -1,0 +1,611 @@
+[
+ {
+  "site_id": "NRS-001",
+  "site_name": "Caprock Mesa",
+  "region": "ERCOT / West Texas",
+  "capacity_mwdc": 180,
+  "commercial_operation_date": "2017-06-11",
+  "om_contract_start": "2024-07-01",
+  "central_inverter_models": [
+   "KVP-3600"
+  ],
+  "string_inverter_model": null,
+  "module_models": [
+   "PS-500M"
+  ],
+  "tracker_model": "Trackline H2",
+  "bess_installed": false
+ },
+ {
+  "site_id": "NRS-002",
+  "site_name": "Ryegate Plains",
+  "region": "ERCOT / West Texas",
+  "capacity_mwdc": 230,
+  "commercial_operation_date": "2021-04-15",
+  "om_contract_start": "2024-07-01",
+  "central_inverter_models": [
+   "CE-4000",
+   "KVP-3600"
+  ],
+  "string_inverter_model": null,
+  "module_models": [
+   "KP-530",
+   "PS-500M"
+  ],
+  "tracker_model": "Trackline H2",
+  "bess_installed": false
+ },
+ {
+  "site_id": "NRS-003",
+  "site_name": "Bitter Draw",
+  "region": "ERCOT / West Texas",
+  "capacity_mwdc": 165,
+  "commercial_operation_date": "2019-09-25",
+  "om_contract_start": "2024-07-01",
+  "central_inverter_models": [
+   "CE-4000",
+   "KVP-3600"
+  ],
+  "string_inverter_model": "ST-250",
+  "module_models": [
+   "AX-455"
+  ],
+  "tracker_model": "Trackline H2",
+  "bess_installed": false
+ },
+ {
+  "site_id": "NRS-004",
+  "site_name": "Hollowell Ranch",
+  "region": "ERCOT / West Texas",
+  "capacity_mwdc": 250,
+  "commercial_operation_date": "2025-04-16",
+  "om_contract_start": "2024-07-01",
+  "central_inverter_models": [
+   "CE-4000",
+   "KVP-3600"
+  ],
+  "string_inverter_model": null,
+  "module_models": [
+   "KP-530",
+   "AX-540"
+  ],
+  "tracker_model": "Trackline H2",
+  "bess_installed": true
+ },
+ {
+  "site_id": "NRS-005",
+  "site_name": "Sablewood Ridge",
+  "region": "ERCOT / West Texas",
+  "capacity_mwdc": 195,
+  "commercial_operation_date": "2022-08-06",
+  "om_contract_start": "2025-01-01",
+  "central_inverter_models": [
+   "KVP-2400"
+  ],
+  "string_inverter_model": null,
+  "module_models": [
+   "AX-540"
+  ],
+  "tracker_model": "RS-Track",
+  "bess_installed": false
+ },
+ {
+  "site_id": "NRS-006",
+  "site_name": "Blackfoot Draw",
+  "region": "ERCOT / West Texas",
+  "capacity_mwdc": 140,
+  "commercial_operation_date": "2018-03-27",
+  "om_contract_start": "2025-10-01",
+  "central_inverter_models": [
+   "KVP-3600",
+   "MG-3300"
+  ],
+  "string_inverter_model": "ST-250",
+  "module_models": [
+   "KP-530"
+  ],
+  "tracker_model": "Trackline H2",
+  "bess_installed": false
+ },
+ {
+  "site_id": "NRS-007",
+  "site_name": "Sandhill Bend",
+  "region": "ERCOT / West Texas",
+  "capacity_mwdc": 225,
+  "commercial_operation_date": "2025-02-13",
+  "om_contract_start": "2024-07-01",
+  "central_inverter_models": [
+   "CE-4000",
+   "KVP-3600"
+  ],
+  "string_inverter_model": null,
+  "module_models": [
+   "AX-540"
+  ],
+  "tracker_model": "RS-Track",
+  "bess_installed": false
+ },
+ {
+  "site_id": "NRS-008",
+  "site_name": "Pecan Fork",
+  "region": "ERCOT / West Texas",
+  "capacity_mwdc": 175,
+  "commercial_operation_date": "2020-11-26",
+  "om_contract_start": "2024-07-01",
+  "central_inverter_models": [
+   "KVP-3600",
+   "MG-3300"
+  ],
+  "string_inverter_model": null,
+  "module_models": [
+   "KP-530"
+  ],
+  "tracker_model": "RS-Track",
+  "bess_installed": false
+ },
+ {
+  "site_id": "NRS-009",
+  "site_name": "Tidemarsh Bay",
+  "region": "ERCOT / South Texas",
+  "capacity_mwdc": 210,
+  "commercial_operation_date": "2024-10-26",
+  "om_contract_start": "2024-07-01",
+  "central_inverter_models": [
+   "KVP-2400",
+   "KVP-3600"
+  ],
+  "string_inverter_model": null,
+  "module_models": [
+   "KP-530"
+  ],
+  "tracker_model": "Trackline H2",
+  "bess_installed": true
+ },
+ {
+  "site_id": "NRS-010",
+  "site_name": "Coralito Flats",
+  "region": "ERCOT / South Texas",
+  "capacity_mwdc": 155,
+  "commercial_operation_date": "2019-05-25",
+  "om_contract_start": "2024-07-01",
+  "central_inverter_models": [
+   "CE-4000",
+   "KVP-3600"
+  ],
+  "string_inverter_model": "ST-250",
+  "module_models": [
+   "AX-455"
+  ],
+  "tracker_model": "Trackline H2",
+  "bess_installed": false
+ },
+ {
+  "site_id": "NRS-011",
+  "site_name": "Amberline Flats",
+  "region": "ERCOT / South Texas",
+  "capacity_mwdc": 240,
+  "commercial_operation_date": "2024-11-27",
+  "om_contract_start": "2025-08-01",
+  "central_inverter_models": [
+   "CE-4000",
+   "KVP-2400",
+   "KVP-3600"
+  ],
+  "string_inverter_model": null,
+  "module_models": [
+   "AX-540"
+  ],
+  "tracker_model": "Trackline H2",
+  "bess_installed": false
+ },
+ {
+  "site_id": "NRS-012",
+  "site_name": "Salt Fork Landing",
+  "region": "ERCOT / South Texas",
+  "capacity_mwdc": 190,
+  "commercial_operation_date": "2021-09-10",
+  "om_contract_start": "2024-07-01",
+  "central_inverter_models": [
+   "CE-4000",
+   "KVP-3600"
+  ],
+  "string_inverter_model": null,
+  "module_models": [
+   "PS-500M"
+  ],
+  "tracker_model": "RS-Track",
+  "bess_installed": false
+ },
+ {
+  "site_id": "NRS-013",
+  "site_name": "Kernwood Basin",
+  "region": "CAISO / Central Valley CA",
+  "capacity_mwdc": 200,
+  "commercial_operation_date": "2018-07-08",
+  "om_contract_start": "2024-07-01",
+  "central_inverter_models": [
+   "KVP-3600",
+   "MG-3300"
+  ],
+  "string_inverter_model": null,
+  "module_models": [
+   "AX-540"
+  ],
+  "tracker_model": "Trackline H2",
+  "bess_installed": false
+ },
+ {
+  "site_id": "NRS-014",
+  "site_name": "Dry Creek Junction",
+  "region": "CAISO / Central Valley CA",
+  "capacity_mwdc": 160,
+  "commercial_operation_date": "2016-10-23",
+  "om_contract_start": "2024-07-01",
+  "central_inverter_models": [
+   "KVP-2400"
+  ],
+  "string_inverter_model": "CE-275",
+  "module_models": [
+   "AX-455"
+  ],
+  "tracker_model": "Trackline H2",
+  "bess_installed": false
+ },
+ {
+  "site_id": "NRS-015",
+  "site_name": "Almond Row",
+  "region": "CAISO / Central Valley CA",
+  "capacity_mwdc": 230,
+  "commercial_operation_date": "2024-12-23",
+  "om_contract_start": "2024-07-01",
+  "central_inverter_models": [
+   "CE-4000",
+   "KVP-3600"
+  ],
+  "string_inverter_model": null,
+  "module_models": [
+   "AX-455",
+   "PS-500M"
+  ],
+  "tracker_model": "RS-Track",
+  "bess_installed": true
+ },
+ {
+  "site_id": "NRS-016",
+  "site_name": "Vireo Valley",
+  "region": "CAISO / Central Valley CA",
+  "capacity_mwdc": 145,
+  "commercial_operation_date": "2020-06-01",
+  "om_contract_start": "2024-07-01",
+  "central_inverter_models": [
+   "KVP-3600",
+   "MG-3300"
+  ],
+  "string_inverter_model": "ST-250",
+  "module_models": [
+   "AX-455"
+  ],
+  "tracker_model": "RS-Track",
+  "bess_installed": false
+ },
+ {
+  "site_id": "NRS-017",
+  "site_name": "Two Rivers Crossing",
+  "region": "CAISO / Central Valley CA",
+  "capacity_mwdc": 185,
+  "commercial_operation_date": "2021-12-03",
+  "om_contract_start": "2025-05-01",
+  "central_inverter_models": [
+   "KVP-2400"
+  ],
+  "string_inverter_model": null,
+  "module_models": [
+   "PS-500M"
+  ],
+  "tracker_model": "RS-Track",
+  "bess_installed": false
+ },
+ {
+  "site_id": "NRS-018",
+  "site_name": "Sundowner Mesa",
+  "region": "CAISO / Mojave",
+  "capacity_mwdc": 220,
+  "commercial_operation_date": "2019-11-06",
+  "om_contract_start": "2024-07-01",
+  "central_inverter_models": [
+   "KVP-2400",
+   "KVP-3600"
+  ],
+  "string_inverter_model": null,
+  "module_models": [
+   "AX-455",
+   "PS-500M"
+  ],
+  "tracker_model": "Trackline H2",
+  "bess_installed": false
+ },
+ {
+  "site_id": "NRS-019",
+  "site_name": "Joshua Fork",
+  "region": "CAISO / Mojave",
+  "capacity_mwdc": 215,
+  "commercial_operation_date": "2025-01-05",
+  "om_contract_start": "2024-07-01",
+  "central_inverter_models": [
+   "KVP-3600",
+   "MG-3300"
+  ],
+  "string_inverter_model": null,
+  "module_models": [
+   "AX-540"
+  ],
+  "tracker_model": "RS-Track",
+  "bess_installed": true
+ },
+ {
+  "site_id": "NRS-020",
+  "site_name": "Ashvale Dry Lake",
+  "region": "CAISO / Mojave",
+  "capacity_mwdc": 150,
+  "commercial_operation_date": "2017-04-02",
+  "om_contract_start": "2024-07-01",
+  "central_inverter_models": [
+   "KVP-2400",
+   "KVP-3600"
+  ],
+  "string_inverter_model": null,
+  "module_models": [
+   "AX-455"
+  ],
+  "tracker_model": "Trackline H2",
+  "bess_installed": false
+ },
+ {
+  "site_id": "NRS-021",
+  "site_name": "Kettle Run",
+  "region": "MISO / Upper Midwest",
+  "capacity_mwdc": 130,
+  "commercial_operation_date": "2020-08-26",
+  "om_contract_start": "2025-03-01",
+  "central_inverter_models": [
+   "CE-4000",
+   "KVP-3600"
+  ],
+  "string_inverter_model": null,
+  "module_models": [
+   "PS-500M"
+  ],
+  "tracker_model": "RS-Track",
+  "bess_installed": false
+ },
+ {
+  "site_id": "NRS-022",
+  "site_name": "Birch Coulee",
+  "region": "MISO / Upper Midwest",
+  "capacity_mwdc": 175,
+  "commercial_operation_date": "2022-05-04",
+  "om_contract_start": "2024-07-01",
+  "central_inverter_models": [
+   "KVP-3600",
+   "MG-3300"
+  ],
+  "string_inverter_model": null,
+  "module_models": [
+   "PS-500M"
+  ],
+  "tracker_model": "RS-Track",
+  "bess_installed": false
+ },
+ {
+  "site_id": "NRS-023",
+  "site_name": "Northfield Bend",
+  "region": "MISO / Upper Midwest",
+  "capacity_mwdc": 95,
+  "commercial_operation_date": "2018-09-02",
+  "om_contract_start": "2024-07-01",
+  "central_inverter_models": [
+   "KVP-3600"
+  ],
+  "string_inverter_model": null,
+  "module_models": [
+   "KP-530"
+  ],
+  "tracker_model": "Trackline H2",
+  "bess_installed": false
+ },
+ {
+  "site_id": "NRS-024",
+  "site_name": "Frostline Prairie",
+  "region": "MISO / Upper Midwest",
+  "capacity_mwdc": 205,
+  "commercial_operation_date": "2025-03-08",
+  "om_contract_start": "2024-07-01",
+  "central_inverter_models": [
+   "KVP-3600",
+   "MG-3300"
+  ],
+  "string_inverter_model": null,
+  "module_models": [
+   "AX-540"
+  ],
+  "tracker_model": "Trackline H2",
+  "bess_installed": true
+ },
+ {
+  "site_id": "NRS-025",
+  "site_name": "Wren Hollow",
+  "region": "PJM / Mid-Atlantic",
+  "capacity_mwdc": 110,
+  "commercial_operation_date": "2021-06-10",
+  "om_contract_start": "2026-01-01",
+  "central_inverter_models": [
+   "KVP-2400",
+   "KVP-3600"
+  ],
+  "string_inverter_model": null,
+  "module_models": [
+   "AX-455"
+  ],
+  "tracker_model": "RS-Track",
+  "bess_installed": false
+ },
+ {
+  "site_id": "NRS-026",
+  "site_name": "Blue Slate Ridge",
+  "region": "PJM / Mid-Atlantic",
+  "capacity_mwdc": 160,
+  "commercial_operation_date": "2019-03-16",
+  "om_contract_start": "2024-07-01",
+  "central_inverter_models": [
+   "CE-4000",
+   "KVP-3600"
+  ],
+  "string_inverter_model": "ST-250",
+  "module_models": [
+   "KP-530"
+  ],
+  "tracker_model": "Trackline H2",
+  "bess_installed": false
+ },
+ {
+  "site_id": "NRS-027",
+  "site_name": "Marlow Crossing",
+  "region": "PJM / Mid-Atlantic",
+  "capacity_mwdc": 85,
+  "commercial_operation_date": "2016-05-08",
+  "om_contract_start": "2024-07-01",
+  "central_inverter_models": [
+   "CE-4000",
+   "KVP-3600"
+  ],
+  "string_inverter_model": null,
+  "module_models": [
+   "AX-540"
+  ],
+  "tracker_model": "Trackline H2",
+  "bess_installed": false
+ },
+ {
+  "site_id": "NRS-028",
+  "site_name": "Chestnut Hollow",
+  "region": "PJM / Mid-Atlantic",
+  "capacity_mwdc": 145,
+  "commercial_operation_date": "2025-05-10",
+  "om_contract_start": "2024-07-01",
+  "central_inverter_models": [
+   "KVP-3600"
+  ],
+  "string_inverter_model": "ST-250",
+  "module_models": [
+   "AX-455"
+  ],
+  "tracker_model": "RS-Track",
+  "bess_installed": false
+ },
+ {
+  "site_id": "NRS-029",
+  "site_name": "Cypress Landing",
+  "region": "Southeast / Non-ISO",
+  "capacity_mwdc": 200,
+  "commercial_operation_date": "2022-10-14",
+  "om_contract_start": "2024-07-01",
+  "central_inverter_models": [
+   "CE-4000"
+  ],
+  "string_inverter_model": "ST-250",
+  "module_models": [
+   "AX-455"
+  ],
+  "tracker_model": "Trackline H2",
+  "bess_installed": true
+ },
+ {
+  "site_id": "NRS-030",
+  "site_name": "Palmetto Bend",
+  "region": "Southeast / Non-ISO",
+  "capacity_mwdc": 180,
+  "commercial_operation_date": "2020-02-02",
+  "om_contract_start": "2024-07-01",
+  "central_inverter_models": [
+   "KVP-2400",
+   "KVP-3600"
+  ],
+  "string_inverter_model": "ST-250",
+  "module_models": [
+   "PS-500M"
+  ],
+  "tracker_model": "Trackline H2",
+  "bess_installed": false
+ },
+ {
+  "site_id": "NRS-031",
+  "site_name": "Red Clay Flats",
+  "region": "Southeast / Non-ISO",
+  "capacity_mwdc": 120,
+  "commercial_operation_date": "2017-08-15",
+  "om_contract_start": "2024-07-01",
+  "central_inverter_models": [
+   "MG-3300"
+  ],
+  "string_inverter_model": "ST-250",
+  "module_models": [
+   "AX-540"
+  ],
+  "tracker_model": "Trackline H2",
+  "bess_installed": false
+ },
+ {
+  "site_id": "NRS-032",
+  "site_name": "Sawgrass Reach",
+  "region": "Southeast / Non-ISO",
+  "capacity_mwdc": 400,
+  "commercial_operation_date": "2025-03-20",
+  "om_contract_start": "2024-07-01",
+  "central_inverter_models": [
+   "KVP-3600",
+   "MG-3300"
+  ],
+  "string_inverter_model": null,
+  "module_models": [
+   "AX-455",
+   "PS-500M"
+  ],
+  "tracker_model": "Trackline H2",
+  "bess_installed": true
+ },
+ {
+  "site_id": "NRS-033",
+  "site_name": "Tallow Branch",
+  "region": "Southeast / Non-ISO",
+  "capacity_mwdc": 90,
+  "commercial_operation_date": "2016-11-07",
+  "om_contract_start": "2024-07-01",
+  "central_inverter_models": [
+   "KVP-2400"
+  ],
+  "string_inverter_model": "CE-275",
+  "module_models": [
+   "AX-455"
+  ],
+  "tracker_model": "Trackline H2",
+  "bess_installed": false
+ },
+ {
+  "site_id": "NRS-034",
+  "site_name": "Pine Hollow Station",
+  "region": "Southeast / Non-ISO",
+  "capacity_mwdc": 165,
+  "commercial_operation_date": "2024-09-26",
+  "om_contract_start": "2024-07-01",
+  "central_inverter_models": [
+   "CE-4000",
+   "KVP-3600"
+  ],
+  "string_inverter_model": null,
+  "module_models": [
+   "KP-530"
+  ],
+  "tracker_model": "RS-Track",
+  "bess_installed": false
+ }
+]

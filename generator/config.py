@@ -77,6 +77,8 @@ FORBIDDEN_CORPUS_TOKENS = [
 ]
 
 # ------------------------------------------------------------------ paths
-CORPUS_DIR = "corpus"
-EVAL_DIR = "eval"          # detection pipeline must never read this
-CHECKPOINT_DIR = ".checkpoints"
+import os as _os
+_ROOT = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
+CORPUS_DIR = _os.path.join(_ROOT, "corpus")
+EVAL_DIR = _os.path.join(_ROOT, "eval")   # detection pipeline must never read this
+CHECKPOINT_DIR = _os.path.join(_ROOT, ".checkpoints")

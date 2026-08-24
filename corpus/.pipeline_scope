@@ -1,0 +1,4 @@
+Detection pipeline input scope.
+
+Read: everything in this directory.
+Do NOT read: ../eval/ (ground truth), ../generator/, ../.checkpoints/

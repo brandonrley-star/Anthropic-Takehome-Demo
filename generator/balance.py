@@ -13,6 +13,11 @@ here rather than patched after the text exists.
 
 import collections
 from config import substream
+import calendar_util as _cal
+
+
+def cal_end():
+    return _cal.WINDOW_END
 
 INV_THEMES = {"cm_inv_dcgf", "cm_inv_acfault", "cm_inv_part", "cm_inv_cooling",
               "wty_inverter", "pm_inverter"}
@@ -77,6 +82,23 @@ def balance(wos, tolerance=1.6, verbose=True):
                         w["estimated_lost_production_mwh"] = rng.choice(mags)
                 else:
                     w["estimated_lost_production_mwh"] = None
+
+        # --- still-open rate: planted work leans on ESCALATED / VENDOR-REFERRED,
+        #     which carries a much higher chance of an open ticket. Left alone,
+        #     "sort by tickets still open" enriches for the planted set.
+        for wt, pool in ctl_by_type.items():
+            if not pool:
+                continue
+            rate = sum(1 for w in pool if w["date_closed"] is None) / len(pool)
+            closed = [w["date_closed"] for w in pool if w["date_closed"] is not None]
+            for w in [x for x in target if x["wo_type"] == wt]:
+                if rng.random() < rate:
+                    w["date_closed"] = None
+                elif w["date_closed"] is None and closed:
+                    from datetime import timedelta
+                    lag = rng.choice([0, 0, 1, 2, 3, 5, 9, 14, 21])
+                    d = w["date_opened"] + timedelta(days=lag)
+                    w["date_closed"] = d if d <= cal_end() else None
 
         report.append((cls, len(target), len(ctl_all)))
 

@@ -1,0 +1,142 @@
+[
+ {
+  "technician_id": "TECH-0044",
+  "home_region": "ERCOT / West Texas",
+  "hire_date": "2015-04-27"
+ },
+ {
+  "technician_id": "TECH-0051",
+  "home_region": "CAISO / Central Valley CA",
+  "hire_date": "2015-09-11"
+ },
+ {
+  "technician_id": "TECH-0063",
+  "home_region": "Southeast / Non-ISO",
+  "hire_date": "2016-02-10"
+ },
+ {
+  "technician_id": "TECH-0072",
+  "home_region": "ERCOT / West Texas",
+  "hire_date": "2016-06-20"
+ },
+ {
+  "technician_id": "TECH-0088",
+  "home_region": "MISO / Upper Midwest",
+  "hire_date": "2016-11-01"
+ },
+ {
+  "technician_id": "TECH-0095",
+  "home_region": "PJM / Mid-Atlantic",
+  "hire_date": "2017-03-19"
+ },
+ {
+  "technician_id": "TECH-0103",
+  "home_region": "CAISO / Mojave",
+  "hire_date": "2017-08-22"
+ },
+ {
+  "technician_id": "TECH-0110",
+  "home_region": "ERCOT / South Texas",
+  "hire_date": "2018-01-18"
+ },
+ {
+  "technician_id": "TECH-0117",
+  "home_region": "ERCOT / West Texas",
+  "hire_date": "2018-05-17"
+ },
+ {
+  "technician_id": "TECH-0124",
+  "home_region": "CAISO / Central Valley CA",
+  "hire_date": "2018-09-08"
+ },
+ {
+  "technician_id": "TECH-0131",
+  "home_region": "ERCOT / West Texas",
+  "hire_date": "2019-02-15"
+ },
+ {
+  "technician_id": "TECH-0138",
+  "home_region": "MISO / Upper Midwest",
+  "hire_date": "2019-06-01"
+ },
+ {
+  "technician_id": "TECH-0145",
+  "home_region": "PJM / Mid-Atlantic",
+  "hire_date": "2019-10-06"
+ },
+ {
+  "technician_id": "TECH-0152",
+  "home_region": "Multi-region (travelling)",
+  "hire_date": "2020-01-05"
+ },
+ {
+  "technician_id": "TECH-0159",
+  "home_region": "ERCOT / South Texas",
+  "hire_date": "2020-04-28"
+ },
+ {
+  "technician_id": "TECH-0166",
+  "home_region": "CAISO / Central Valley CA",
+  "hire_date": "2020-08-23"
+ },
+ {
+  "technician_id": "TECH-0173",
+  "home_region": "Southeast / Non-ISO",
+  "hire_date": "2021-01-24"
+ },
+ {
+  "technician_id": "TECH-0180",
+  "home_region": "ERCOT / West Texas",
+  "hire_date": "2021-05-08"
+ },
+ {
+  "technician_id": "TECH-0187",
+  "home_region": "Multi-region (travelling)",
+  "hire_date": "2021-09-26"
+ },
+ {
+  "technician_id": "TECH-0194",
+  "home_region": "CAISO / Mojave",
+  "hire_date": "2022-02-02"
+ },
+ {
+  "technician_id": "TECH-0201",
+  "home_region": "MISO / Upper Midwest",
+  "hire_date": "2022-06-12"
+ },
+ {
+  "technician_id": "TECH-0208",
+  "home_region": "Southeast / Non-ISO",
+  "hire_date": "2022-10-22"
+ },
+ {
+  "technician_id": "TECH-0215",
+  "home_region": "Southeast / Non-ISO",
+  "hire_date": "2023-03-28"
+ },
+ {
+  "technician_id": "TECH-0222",
+  "home_region": "ERCOT / South Texas",
+  "hire_date": "2023-08-22"
+ },
+ {
+  "technician_id": "TECH-0229",
+  "home_region": "CAISO / Central Valley CA",
+  "hire_date": "2024-01-17"
+ },
+ {
+  "technician_id": "TECH-0231",
+  "home_region": "CAISO / Mojave",
+  "hire_date": "2025-03-24"
+ },
+ {
+  "technician_id": "TECH-0236",
+  "home_region": "ERCOT / West Texas",
+  "hire_date": "2025-06-18"
+ },
+ {
+  "technician_id": "TECH-0240",
+  "home_region": "Multi-region (travelling)",
+  "hire_date": "2025-09-01"
+ }
+]
