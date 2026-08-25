@@ -54,19 +54,19 @@ async function renderOverview(){
         <div class="s">Examined and found not to be a finding</div></div>
     </div>
 
-    <h3>Commercial summary — escalated findings</h3>
-    <div class="grid g4" style="margin-bottom:12px">
-      <div class="stat"><div class="k">Cost incurred</div>
-        <div class="v" style="font-size:22px">${usd(c.incurred_low)}–${usd(c.incurred_high)}</div>
+    <h3>The analysis that produced these findings</h3>
+    <div class="grid g4" style="margin-bottom:14px">
+      <div class="stat"><div class="k">Cost of analysis</div>
+        <div class="v">${usd(p.findings_cost_usd)}</div>
+        <div class="s">To interpret and triage all ${o.work_orders.toLocaleString()} reports</div></div>
+      <div class="stat"><div class="k">Original run time</div>
+        <div class="v">~${p.analysis_minutes} min</div>
+        <div class="s">Live model calls, 16-way concurrency</div></div>
+      <div class="stat"><div class="k">Cost incurred to date</div>
+        <div class="v" style="font-size:21px">${usd(c.incurred_low)}–${usd(c.incurred_high)}</div>
         <div class="s">${c.incurred_work_orders} work orders · ${c.labor_hours} labour hours</div></div>
-      <div class="stat"><div class="k">Inverters exposed</div>
-        <div class="v">${c.inverters_exposed}</div>
-        <div class="s">Units not yet failed</div></div>
-      <div class="stat"><div class="k">Replacement exposure</div>
-        <div class="v" style="font-size:22px">${usd(c.replacement_exposure)}</div>
-        <div class="s">If left unremediated</div></div>
       <div class="stat"><div class="k">Warranty recovery</div>
-        <div class="v" style="font-size:22px">${usd(c.warranty_recoverable)}</div>
+        <div class="v" style="font-size:21px">${usd(c.warranty_recoverable)}</div>
         <div class="s">Potentially recoverable from suppliers</div></div>
     </div>
 
@@ -74,16 +74,12 @@ async function renderOverview(){
       Claude interprets and evaluates the operational evidence.
       Deterministic code calculates financial impact from explicit assumptions.
     </div>
-    <div class="warn" style="margin-bottom:24px">
-      <b>How replacement exposure is scoped.</b> The cost model prices one thing:
-      inverter replacement. The figure above covers the KVP-3600 inverter
-      population only, de-duplicated across overlapping findings
-      (${esc(c.exposure_basis_candidate)} contains the other inverter cohorts).
-      ${c.other_populations.length} escalated findings describe non-inverter
-      populations — ${c.other_populations.map(x =>
-        `${x.count} units in ${esc(x.candidate_id)}`).join(', ')} — reported as
-      counts on their own finding pages rather than priced at inverter cost.
-    </div>
+    <p class="small muted" style="margin-bottom:24px">
+      The two cost figures above are realised spend on work already performed,
+      de-duplicated across findings that share work orders. Forward-looking
+      replacement exposure is reported on individual findings, where the
+      population it applies to is stated, rather than aggregated here.
+    </p>
 
     <div class="panel replay" id="replay-panel">
       <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
@@ -312,7 +308,6 @@ async function renderDetail(cid){
       <h4>Population basis</h4>
       <p class="small" style="color:var(--ink-2)">${esc(d.population_detail.description||'—')}</p>
       <p class="small muted" style="margin-top:7px">${esc(d.population_detail.basis||'')}</p>
-      ${d.exposure_note?`<div class="warn" style="margin-top:11px">${esc(d.exposure_note)}</div>`:''}
     </div>
 
     <div class="panel" style="margin-bottom:14px">
@@ -496,50 +491,72 @@ async function comparePanel(){
 }
 
 /* ------------------------------- DEMO MOMENT 3: a signal counting can't see */
+/* No invented time series. Two evidence groups, quoted from the reports the
+   finding actually cites, plus the historical set the verification named as
+   boilerplate. Every quote is verbatim; every ID is clickable. */
+const WASH_HIST = ['WO-2025-00810','WO-2024-00049','WO-2024-00145','WO-2024-00194'];
+const WASH_RECENT = ['WO-2025-00715','WO-2025-00856','WO-2025-01057','WO-2026-00620'];
+
 async function washPanel(d){
-  const ids = ['WO-2024-00049','WO-2025-00810','WO-2025-00856','WO-2025-01057','WO-2026-00620'];
-  const wos = (await Promise.all(ids.map(i=>api('/api/work_order/'+i)))).filter(w=>!w.error);
-  const pts = [{d:'2024',v:5,l:'~5% reported'},{d:'Aug 2025',v:5,l:'~5% reported'},
-               {d:'Sep 2025',v:2,l:'<2%'},{d:'Oct 2025',v:1,l:'~1%'},{d:'Jun 2026',v:1,l:'~1%'}];
-  const w = 560, h = 130, pad = 30;
-  const pathd = pts.map((p,i)=>{
-    const x = pad + i*((w-pad*2)/(pts.length-1));
-    const y = h - pad - (p.v/6)*(h-pad*2);
-    return `${i?'L':'M'}${x.toFixed(0)},${y.toFixed(0)}`;
-  }).join(' ');
+  const [hist, recent] = await Promise.all([
+    Promise.all(WASH_HIST.map(i=>api('/api/work_order/'+i))),
+    Promise.all(WASH_RECENT.map(i=>api('/api/work_order/'+i)))]);
+  const cited = new Set(d.supporting_wo_ids);
+  const quote = w => `
+    <div style="border-left:2px solid var(--line);padding:7px 0 7px 12px;margin-bottom:11px">
+      <div style="font-size:13.5px;line-height:1.6;color:var(--ink-2)">“${esc(w.narrative)}”</div>
+      <div class="small muted" style="margin-top:5px">
+        <button class="woid" data-wo="${w.wo_id}">${w.wo_id}</button>
+        ${esc(w.date)} · ${esc(w.technician_id)}
+        ${cited.has(w.wo_id)?'<span class="pill plain" style="font-size:10px;padding:1px 6px">cited</span>':''}
+      </div>
+    </div>`;
   return `
   <div class="panel" style="margin-bottom:14px;border-left:3px solid var(--accent)">
-    <h3>Post-wash recovery at blocks B01 and B03</h3>
-    <p class="small muted" style="margin-bottom:6px">
-      There is no failure cluster here to count. The signal is how the outcome of
-      a repeated intervention changed over time.</p>
-    <svg viewBox="0 0 ${w} ${h}" style="width:100%;max-width:${w}px;height:auto;margin:8px 0">
-      <line x1="${pad}" y1="${h-pad}" x2="${w-pad}" y2="${h-pad}" stroke="#E4E4DE"/>
-      <line x1="${pad}" y1="${pad-10}" x2="${pad}" y2="${h-pad}" stroke="#E4E4DE"/>
-      <path d="${pathd}" fill="none" stroke="#A8442A" stroke-width="2"/>
-      ${pts.map((p,i)=>{
-        const x = pad + i*((w-pad*2)/(pts.length-1));
-        const y = h - pad - (p.v/6)*(h-pad*2);
-        return `<circle cx="${x.toFixed(0)}" cy="${y.toFixed(0)}" r="4" fill="#A8442A"/>
-          <text x="${x.toFixed(0)}" y="${(y-11).toFixed(0)}" font-size="10" fill="#77776F"
-            text-anchor="middle">${p.l}</text>
-          <text x="${x.toFixed(0)}" y="${h-pad+14}" font-size="10" fill="#77776F"
-            text-anchor="middle">${p.d}</text>`;}).join('')}
-    </svg>
-    <div class="grid g2" style="margin-top:6px">
-      <div class="note"><b>Signal.</b> Post-wash recovery appears to have
-        deteriorated materially. Technicians re-washed to confirm, and reported
-        the glass was clean and recovery stayed weak.</div>
-      <div class="warn"><b>Caveat.</b> The exact magnitude is uncertain. The early
-        5.0% values are boilerplate repeated verbatim across several reports, so
-        the baseline is a template default rather than an independent measurement.</div>
+    <h3>How the outcome of a repeated intervention changed</h3>
+    <p class="small muted" style="margin-bottom:16px">
+      There is no failure cluster here to count. Nothing broke. The signal is
+      that the same maintenance action stopped producing the same result — and it
+      exists only in what technicians wrote down.</p>
+
+    <div class="split">
+      <div class="wo" style="border-top:3px solid var(--dec)">
+        <div class="pill decline" style="margin-bottom:4px">Historical reports</div>
+        <div style="font-size:19px;font-weight:660;letter-spacing:-.02em;margin:8px 0 3px">
+          ~5% recovery</div>
+        <div class="small muted" style="margin-bottom:14px">repeatedly reported after a wash</div>
+        ${hist.map(quote).join('')}
+      </div>
+      <div class="wo" style="border-top:3px solid var(--esc)">
+        <div class="pill escalate" style="margin-bottom:4px">Recent reports</div>
+        <div style="font-size:19px;font-weight:660;letter-spacing:-.02em;margin:8px 0 3px;color:var(--esc)">
+          ~1–2% recovery</div>
+        <div class="small muted" style="margin-bottom:14px">re-washing did not restore it; glass reported clean</div>
+        ${recent.map(quote).join('')}
+      </div>
     </div>
-    <h4 style="margin-top:18px">The original field reports</h4>
-    ${wos.map(x=>`<div class="wo" style="margin-bottom:9px">
-      <div class="id">${esc(x.wo_id)}</div>
-      <div class="sub">${esc(x.site)} · ${esc(x.date)} · block ${esc(x.asset_id)}
-        · ${esc(x.technician_id)}</div>
-      <div class="nar">${esc(x.narrative)}</div></div>`).join('')}
+
+    <div class="grid g2" style="margin-top:16px">
+      <div class="note"><b>What the evidence shows.</b> Two technicians
+        independently tested the obvious explanation and ruled it out: on
+        <button class="woid" data-wo="WO-2025-01057">WO-2025-01057</button> the crew
+        re-washed two rows in case they had rushed the job and got the same ~1%;
+        on <button class="woid" data-wo="WO-2026-00620">WO-2026-00620</button> the
+        technician walked the block himself and recorded clean glass. If the
+        deficit were soiling, washing would have removed it.</div>
+      <div class="warn"><b>What it does not show.</b> This is directional evidence
+        drawn from unstructured narratives, not measured telemetry. The historical
+        ~5% figure appears as repeated boilerplate across several reports
+        (<button class="woid" data-wo="WO-2024-00049">WO-2024-00049</button>,
+        <button class="woid" data-wo="WO-2024-00145">WO-2024-00145</button>,
+        <button class="woid" data-wo="WO-2024-00194">WO-2024-00194</button>), so
+        the baseline is a template default rather than an independent measurement.
+        The direction is credible; the exact magnitude is not.</div>
+    </div>
+    <p class="small muted" style="margin-top:13px">
+      Blocks are as stated in each narrative. The finding also notes that the
+      structured <span class="mono">asset_id</span> field contradicts the narrative
+      on several of these reports — a data-quality issue it recommends fixing.</p>
   </div>`;
 }
 

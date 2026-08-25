@@ -83,21 +83,12 @@ def overview():
               for v in VERDICTS}
     realised, n_wo = _dedup_realised(esc)
 
-    inv = [(c, FINDINGS[c]["finance"]["population_at_risk"])
-           for c in INVERTER_POPULATION_FINDINGS if c in FINDINGS]
-    lead_cid, lead_pop = max(inv, key=lambda x: x[1]) if inv else (None, 0)
-    from pipeline import cost_model as cm
-    exposure = cm.exposure_value(lead_pop) if lead_pop else 0
-
-    other_pops = []
-    for c in esc:
-        if c in INVERTER_POPULATION_FINDINGS:
-            continue
-        p = FINDINGS[c]["verdict"]["population_at_risk"]
-        if p.get("count"):
-            other_pops.append({"candidate_id": c, "count": p["count"],
-                               "description": p.get("description", "")})
-
+    # No aggregate replacement-exposure figure is published at fleet level.
+    # The per-finding populations overlap (CAND-002's 179 units contain
+    # CAND-006's 44 and CAND-014's 8) and the cost model prices only inverter
+    # replacement, so summing them across heterogeneous populations produces a
+    # number that cannot be defended. Exposure stays on individual findings,
+    # where its basis is stated. See _exposure_note().
     warranty = sum(FINDINGS[c]["finance"]["warranty_recoverable_usd"] for c in esc)
     total_mw = sum(s["capacity_mwdc"] for s in SITES.values())
 
@@ -114,11 +105,7 @@ def overview():
             "incurred_high": realised["total_high_usd"] if realised else 0,
             "incurred_work_orders": n_wo,
             "labor_hours": round(realised["labor_hours"], 1) if realised else 0,
-            "inverters_exposed": lead_pop,
-            "replacement_exposure": exposure,
-            "exposure_basis_candidate": lead_cid,
             "warranty_recoverable": warranty,
-            "other_populations": other_pops,
         },
         "replay_steps": [
             f"{MANIFEST['work_orders']:,} technician reports interpreted",
@@ -130,6 +117,15 @@ def overview():
             f"· {counts['decline']} declined",
         ],
     }
+
+
+# Elapsed wall clock of the runs that actually produced these findings.
+# run_manifest["wall_clock_seconds"] is NOT usable for this: the last write to
+# that file came from a cache replay and reads 0.4s. These two figures are the
+# `[done]` totals of the runs that made live calls.
+STAGE1_RUN_SECONDS = 985.4      # live Stage 1 extraction, 2,388 calls
+STAGE34_RUN_SECONDS = 231.8     # live Stages 3-4, 64 calls
+ANALYSIS_SECONDS = STAGE1_RUN_SECONDS + STAGE34_RUN_SECONDS
 
 
 def provenance():
@@ -147,6 +143,8 @@ def provenance():
         "generated_at_utc": MANIFEST.get("generated_at_utc"),
         "stages": stages,
         "findings_cost_usd": p.get("total_usd_to_produce", a.get("total_usd")),
+        "analysis_seconds": round(ANALYSIS_SECONDS),
+        "analysis_minutes": round(ANALYSIS_SECONDS / 60),
         "session_cost_usd": p.get("session_total_usd"),
         "extraction_quality": MANIFEST["extraction_quality"],
     }
