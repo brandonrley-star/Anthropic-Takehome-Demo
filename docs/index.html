@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Field Intelligence</title>
+<link rel="stylesheet" href="app.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%2317594A'/></svg>">
+</head>
+<body>
+
+<div class="synthetic">
+  Synthetic demonstration — all sites, equipment manufacturers, personnel, and operational data are fictional.
+</div>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <div class="brand">
+      <span class="mark"></span>
+      <h1>Field Intelligence</h1>
+      <span>AI-assisted fleet intelligence across unstructured O&amp;M field reports</span>
+    </div>
+    <nav id="nav">
+      <a href="#/overview">Fleet Overview</a>
+      <a href="#/baseline">Baseline Analysis</a>
+      <a href="#/findings">Claude Findings</a>
+      <a href="#/evidence">Evidence Explorer</a>
+      <a href="#/how">How It Works</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section id="v-overview"  class="view"></section>
+  <section id="v-baseline"  class="view"></section>
+  <section id="v-findings"  class="view"></section>
+  <section id="v-evidence"  class="view"></section>
+  <section id="v-how"       class="view"></section>
+</main>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer"></aside>
+
+<div class="strip" id="strip">
+  <div class="strip-in">
+    <span class="small muted" style="font-weight:600">Demo</span>
+    <div class="steps" id="strip-steps"></div>
+    <button class="btn ghost sm" id="strip-prev">← Prev</button>
+    <button class="btn sm" id="strip-next">Next →</button>
+    <button class="btn ghost sm" id="strip-off">Exit</button>
+  </div>
+</div>
+
+<script>window.FI_STATIC=true;</script>
+<script src="app.js"></script>
+</body>
+</html>

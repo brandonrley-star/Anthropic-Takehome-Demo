@@ -1,67 +1,110 @@
-# Synthetic Solar O&M Field Report Corpus
+# Field Intelligence
 
-A corpus of 2,398 utility-scale solar O&M work orders across a fictional 34-site,
-6.1 GW fleet, containing four deliberately planted findings. Built to demonstrate
-fleet-wide pattern detection.
+An AI-assisted fleet intelligence demo: a four-stage Claude pipeline reads 2,398
+unstructured solar O&M technician reports across a synthetic 34-site, 6.1 GW
+fleet and returns three kinds of answer — **escalate, deprioritize, or decline** —
+each with a dollar figure, an exposed-asset count, a named commercial action, and
+citations back to the field reports that support it. The whole environment is
+invented; the analysis that produced the findings is a real Claude model run,
+costing $30.86 and 20.3 minutes, whose outputs are committed to this repository.
 
-**Every manufacturer, model, site and person in this corpus is invented.**
+### ▶ [Open the live demo](https://brandonrley-star.github.io/Anthropic-Takehome-Demo/)
 
-```
-corpus/     ← the ONLY directory a detection pipeline may read
-eval/       ← ground truth and audits. NEVER expose this to the pipeline.
-generator/  ← the build
-pipeline/   ← the four-stage detection pipeline
-demo/       ← reference runs, scoring, runbook
-demo_ui/    ← Field Intelligence — the browser demo
-.checkpoints/  resumable generation state (committed: the narratives live here)
-```
+### 🎥 Walkthrough video
 
-## Field Intelligence — the browser demo
+_Loom link to be added._
 
-A local, customer-facing view of the analysis. Open a terminal and run:
+---
+
+## Run it locally (adds live Claude Q&A)
 
 ```bash
-cd <this folder>
 python3 demo_ui/serve.py
 ```
 
-Your browser opens at **http://127.0.0.1:8000**. Press `Ctrl-C` in the terminal
-to stop it.
+Opens at `http://127.0.0.1:8000`. Python 3.11+, no installation, no build step,
+no dependencies beyond the standard library. `Ctrl-C` stops it.
 
-No installation, no build step, no internet connection required. It uses only
-the Python standard library and reads the committed results in
-`demo/live_run/`.
+Or **double-click `Launch-Demo.command`** (macOS) / **`Launch-Demo.bat`** (Windows).
 
-**Optional live Claude Q&A.** Each finding page has an *Ask Claude about this
-finding* panel. It works only if an API key is present:
+The local version adds one feature the hosted version cannot have: *Ask Claude
+about this finding*, a live, bounded question against a single finding and only
+the work orders it cites. It needs an API key:
 
 ```bash
 set -a && . ./.env && set +a && python3 demo_ui/serve.py
 ```
 
-Without a key the rest of the application is fully functional and the panel
-says so. Set `ANTHROPIC_MODEL` to change the model (default `claude-opus-5`).
+Without a key everything else is fully functional.
 
-Press `Shift+D` for Demo Mode — a step strip along the bottom that walks the
-intended presentation order.
+---
 
-The UI never reads `eval/`, never recomputes a finding, never asks a model for
-a dollar figure, and never writes to disk.
+## What is real and what is not
 
-**`demo/live_run/` is immutable.** It holds the committed model outputs the
-project is evidenced on. Replay it with `python3 demo/replay.py`, which writes
-to a scratch directory and verifies the source of truth is untouched. Never
-point `pipeline.run --out` at it. To check at any time:
+| | |
+|---|---|
+| **The fleet** | Synthetic. Every site, manufacturer, model, technician and work order is invented. No real company's operational data appears anywhere. |
+| **The analysis** | A real `claude-opus-5` run — 2,388 extraction calls plus 64 reasoning calls, $30.86, 20.3 minutes. Outputs committed under `demo/live_run/`. |
+| **The hosted site** | A replay of those committed outputs. **No model calls are made by the hosted static site.** |
+| **Financial figures** | Deterministic code, not model output. The model supplies quantities; `pipeline/cost_model.py` applies costs from stated assumptions. |
+| **Live Claude Q&A** | Local only. |
 
-```bash
-python3 demo/verify_immutable.py
+---
+
+## Why `eval/GROUND_TRUTH.md` is public on purpose
+
+This repository contains its own answer key, and that is deliberate.
+
+The corpus has planted findings — real signals, decoys that look meaningful but
+are benign, and real-but-minor patterns that should be deprioritised rather than
+escalated. Publishing the key lets anyone check the scoring in
+`demo/SCORING.md` instead of taking my word for it.
+
+The detector never saw it:
+
+- `pipeline/paths.py` raises `PermissionError` on any read under `eval/`. It is
+  blocked in code, not by convention.
+- Ground truth was opened once, **after** the code freeze at commit `27e37cf`,
+  from outside the pipeline.
+- **The commit order in git is the proof.** `27e37cf` freezes the pipeline;
+  `a12ecac` adds the scoring. Nothing under `pipeline/` changed between them.
+
+A detector built while looking at the answers is not a detector. The sequence is
+verifiable rather than asserted.
+
+---
+
+## How the repository is organised
+
+```
+corpus/     the ONLY directory the detection pipeline may read
+eval/       ground truth and audits — the pipeline is code-blocked from this
+generator/  how the synthetic corpus was built
+pipeline/   the four-stage detection pipeline
+demo/       committed model runs, three-tier scoring, presenter runbook
+demo_ui/    Field Intelligence — the browser application
+docs/       the static build published to GitHub Pages
 ```
 
-Run time of the analysis is **20.3 minutes** (1,217.2s), the measured total of
-the two invocations that made live model calls. It is recorded in
-`demo/live_run/run_manifest.json` under `runtime`, with the per-run breakdown
-and the archived stdout of both runs under `demo/live_run/provenance/`.
+`demo/live_run/` is **immutable** — it holds the committed model outputs this
+project is evidenced on. Replay it with `python3 demo/replay.py`, which writes to
+a scratch directory and verifies the source of truth is untouched. Check at any
+time with `python3 demo/verify_immutable.py`.
 
+The browser UI never reads `eval/`, never recomputes a finding, never asks a
+model for a dollar figure, and never writes to disk. `Shift+D` toggles Demo Mode,
+a step strip that walks the intended presentation order.
+
+To regenerate the hosted static site after changing anything:
+
+```bash
+python3 demo_ui/export_static.py    # rewrites docs/ from the same data the local app serves
+```
+
+Analysis run time is **20.3 minutes** (1,217.2s), the measured total of the two
+invocations that made live model calls, recorded in
+`demo/live_run/run_manifest.json` under `runtime` with the archived stdout of
+both runs under `demo/live_run/provenance/`.
 
 ## corpus/
 
