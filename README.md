@@ -10,8 +10,44 @@ fleet-wide pattern detection.
 corpus/     ← the ONLY directory a detection pipeline may read
 eval/       ← ground truth and audits. NEVER expose this to the pipeline.
 generator/  ← the build
+pipeline/   ← the four-stage detection pipeline
+demo/       ← reference runs, scoring, runbook
+demo_ui/    ← Field Intelligence — the browser demo
 .checkpoints/  resumable generation state (committed: the narratives live here)
 ```
+
+## Field Intelligence — the browser demo
+
+A local, customer-facing view of the analysis. Open a terminal and run:
+
+```bash
+cd <this folder>
+python3 demo_ui/serve.py
+```
+
+Your browser opens at **http://127.0.0.1:8000**. Press `Ctrl-C` in the terminal
+to stop it.
+
+No installation, no build step, no internet connection required. It uses only
+the Python standard library and reads the committed results in
+`demo/live_run/`.
+
+**Optional live Claude Q&A.** Each finding page has an *Ask Claude about this
+finding* panel. It works only if an API key is present:
+
+```bash
+set -a && . ./.env && set +a && python3 demo_ui/serve.py
+```
+
+Without a key the rest of the application is fully functional and the panel
+says so. Set `ANTHROPIC_MODEL` to change the model (default `claude-opus-5`).
+
+Press `Shift+D` for Demo Mode — a step strip along the bottom that walks the
+intended presentation order.
+
+The UI never reads `eval/`, never recomputes a finding, and never asks a model
+for a dollar figure.
+
 
 ## corpus/
 
