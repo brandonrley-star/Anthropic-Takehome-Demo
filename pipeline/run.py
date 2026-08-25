@@ -24,7 +24,7 @@ def main(argv=None):
     ap.add_argument("--backend", default="authored", choices=["authored", "anthropic"],
                     help="backend for the reasoning stages (3 and 4)")
     ap.add_argument("--model", default=DEFAULT_MODEL)
-    ap.add_argument("--budget", type=int, default=15,
+    ap.add_argument("--budget", type=int, default=None,
                     help="candidates carried into stages 3-4")
     ap.add_argument("--concurrency", type=int, default=16)
     ap.add_argument("--out", default=paths.REFERENCE_RUN)
@@ -85,15 +85,15 @@ def main(argv=None):
                        authored_dir=a.authored_dir, concurrency=a.concurrency)
     hyp, miss3 = client.map("stage3_hypothesize", top,
                             lambda c: s3.build_prompt(c, recs_by_id, wo_by_id),
-                            max_tokens=1600)
+                            max_tokens=5000)
     print(f"[stage3]  {len(hyp)} hypothesis sets"
           + (f", {len(miss3)} unauthored" if miss3 else ""))
 
-    ready = [c for c in top if c["candidate_id"] in hyp]
+    ready = [c for c in top if s3.cache_key(c) in hyp]
     ver, miss4 = client.map("stage4_verify", ready,
-                            lambda c: s4.build_prompt(c, hyp[c["candidate_id"]],
+                            lambda c: s4.build_prompt(c, hyp[s3.cache_key(c)],
                                                       recs, recs_by_id, wo_by_id, assets),
-                            max_tokens=2200)
+                            max_tokens=5000)
     print(f"[stage4]  {len(ver)} verdicts"
           + (f", {len(miss4)} unauthored" if miss4 else ""))
 
@@ -104,11 +104,12 @@ def main(argv=None):
 
     # -------------------------------------------------------------- render
     results = {}
-    by_cid = {c["candidate_id"]: c for c in top}
-    for cid, v in ver.items():
-        c = by_cid[cid]
-        results[cid] = {"candidate": c, "hypotheses": hyp.get(cid, {}), "verdict": v,
-                        "finance": render.finance(c, v, wo_by_id)}
+    by_key = {s3.cache_key(c): c for c in top}
+    for k, v in ver.items():
+        c = by_key[k]
+        results[c["candidate_id"]] = {
+            "candidate": c, "hypotheses": hyp.get(k, {}), "verdict": v,
+            "finance": render.finance(c, v, wo_by_id)}
 
     meta = {"work_orders": len(wos), "sites": len(sites),
             "window": "2024-07-01 to 2026-06-30",

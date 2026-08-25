@@ -424,7 +424,7 @@
    "in_warranty_members": 0
   }
  },
- "CAND-004": {
+ "CAND-005": {
   "candidate": {
    "kind": "temporal_burst",
    "key": "Sundowner Mesa|tracker_structure|2025-03-16",
@@ -462,7 +462,7 @@
    "_anomaly": 2.14,
    "_labor_hours": 79.1,
    "_lost_mwh": 63.0,
-   "candidate_id": "CAND-004"
+   "candidate_id": "CAND-005"
   },
   "hypotheses": {
    "hypotheses": [
@@ -555,7 +555,7 @@
    "in_warranty_members": 0
   }
  },
- "CAND-005": {
+ "CAND-007": {
   "candidate": {
    "kind": "site_symptom",
    "key": "Ashvale Dry Lake|drive_grease_degradation",
@@ -585,7 +585,7 @@
    "_anomaly": 4.77,
    "_labor_hours": 39.7,
    "_lost_mwh": 4.5,
-   "candidate_id": "CAND-005"
+   "candidate_id": "CAND-007"
   },
   "hypotheses": {
    "hypotheses": [
@@ -679,7 +679,7 @@
    "in_warranty_members": 0
   }
  },
- "CAND-006": {
+ "CAND-008": {
   "candidate": {
    "kind": "site_symptom",
    "key": "Dry Creek Junction|drive_grease_degradation",
@@ -708,7 +708,7 @@
    "_anomaly": 3.98,
    "_labor_hours": 27.6,
    "_lost_mwh": 4.8,
-   "candidate_id": "CAND-006"
+   "candidate_id": "CAND-008"
   },
   "hypotheses": {
    "hypotheses": [
@@ -800,7 +800,7 @@
    "in_warranty_members": 0
   }
  },
- "CAND-007": {
+ "CAND-009": {
   "candidate": {
    "kind": "site_symptom",
    "key": "Red Clay Flats|drive_grease_degradation",
@@ -828,7 +828,7 @@
    "_anomaly": 4.63,
    "_labor_hours": 28.9,
    "_lost_mwh": 0,
-   "candidate_id": "CAND-007"
+   "candidate_id": "CAND-009"
   },
   "hypotheses": {
    "hypotheses": [
@@ -920,7 +920,7 @@
    "in_warranty_members": 0
   }
  },
- "CAND-008": {
+ "CAND-010": {
   "candidate": {
    "kind": "model_symptom",
    "key": "KVP-3600|thermal_derate",
@@ -948,7 +948,7 @@
    "_anomaly": 2.5,
    "_labor_hours": 28.5,
    "_lost_mwh": 20.4,
-   "candidate_id": "CAND-008"
+   "candidate_id": "CAND-010"
   },
   "hypotheses": {
    "hypotheses": [
@@ -1045,7 +1045,7 @@
    "in_warranty_members": 7
   }
  },
- "CAND-009": {
+ "CAND-011": {
   "candidate": {
    "kind": "model_symptom",
    "key": "KVP-3600|overtemperature_trip",
@@ -1078,7 +1078,7 @@
    "_anomaly": 2.29,
    "_labor_hours": 50.6,
    "_lost_mwh": 3.5,
-   "candidate_id": "CAND-009"
+   "candidate_id": "CAND-011"
   },
   "hypotheses": {
    "hypotheses": [
@@ -1172,7 +1172,7 @@
    "in_warranty_members": 12
   }
  },
- "CAND-010": {
+ "CAND-012": {
   "candidate": {
    "kind": "model_symptom",
    "key": "KVP-3600|ground_fault",
@@ -1224,7 +1224,7 @@
    "_anomaly": 0.56,
    "_labor_hours": 160.4,
    "_lost_mwh": 50.1,
-   "candidate_id": "CAND-010"
+   "candidate_id": "CAND-012"
   },
   "hypotheses": {
    "hypotheses": [
@@ -1317,7 +1317,7 @@
    "in_warranty_members": 13
   }
  },
- "CAND-011": {
+ "CAND-014": {
   "candidate": {
    "kind": "model_symptom",
    "key": "KVP-3600|cooling_airflow_low",
@@ -1355,7 +1355,7 @@
    "_anomaly": 1.08,
    "_labor_hours": 82.0,
    "_lost_mwh": 8.0,
-   "candidate_id": "CAND-011"
+   "candidate_id": "CAND-014"
   },
   "hypotheses": {
    "hypotheses": [
@@ -1446,7 +1446,7 @@
    "in_warranty_members": 11
   }
  },
- "CAND-012": {
+ "CAND-015": {
   "candidate": {
    "kind": "site_symptom",
    "key": "Palmetto Bend|reporting_dropout",
@@ -1473,7 +1473,7 @@
    "_anomaly": 3.69,
    "_labor_hours": 10.6,
    "_lost_mwh": 0.1,
-   "candidate_id": "CAND-012"
+   "candidate_id": "CAND-015"
   },
   "hypotheses": {
    "hypotheses": [
@@ -1564,7 +1564,7 @@
    "in_warranty_members": 0
   }
  },
- "CAND-013": {
+ "CAND-017": {
   "candidate": {
    "kind": "model_symptom",
    "key": "MG-3300|ground_fault",
@@ -1608,7 +1608,7 @@
    "_anomaly": 0.55,
    "_labor_hours": 93.2,
    "_lost_mwh": 46.0,
-   "candidate_id": "CAND-013"
+   "candidate_id": "CAND-017"
   },
   "hypotheses": {
    "hypotheses": [
@@ -1686,7 +1686,7 @@
    "in_warranty_members": 14
   }
  },
- "CAND-014": {
+ "CAND-018": {
   "candidate": {
    "kind": "model_symptom",
    "key": "CE-4000|ground_fault",
@@ -1731,7 +1731,7 @@
    "_anomaly": 0.46,
    "_labor_hours": 113.0,
    "_lost_mwh": 55.3,
-   "candidate_id": "CAND-014"
+   "candidate_id": "CAND-018"
   },
   "hypotheses": {
    "hypotheses": [
@@ -1809,7 +1809,7 @@
    "in_warranty_members": 16
   }
  },
- "CAND-015": {
+ "CAND-019": {
   "candidate": {
    "kind": "site_symptom",
    "key": "Sundowner Mesa|tracker_misalignment",
@@ -1839,7 +1839,7 @@
    "_anomaly": 1.68,
    "_labor_hours": 32.6,
    "_lost_mwh": 4.6,
-   "candidate_id": "CAND-015"
+   "candidate_id": "CAND-019"
   },
   "hypotheses": {
    "hypotheses": [

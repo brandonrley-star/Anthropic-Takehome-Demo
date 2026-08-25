@@ -8,6 +8,20 @@ would tell them apart?" is what makes Stage 4 able to decline.
 """
 import json, random
 
+def cache_key(cand):
+    """Stable identity for caching and authored responses.
+
+    NOT candidate_id: that is assigned by materiality rank, so CAND-005 means a
+    different cluster in every run. Keying on it let a cached response from one
+    run be served for an unrelated cluster in the next — the authored demo run
+    silently returned live verdicts attached to the wrong findings.
+
+    kind|key is content-derived and survives re-ranking, re-budgeting and new
+    generators appearing above a cluster in the ordering.
+    """
+    return f"{cand['kind']}|{cand['key']}"
+
+
 SYSTEM = """You are a reliability engineer reviewing candidate patterns from a \
 utility-scale solar O&M work-order corpus.
 
@@ -70,4 +84,4 @@ def build_prompt(cand, recs_by_id, wo_by_id):
                        "narrative": w["narrative"]})
     user = json.dumps({"candidate": profile, "sample_narratives": sample},
                       ensure_ascii=False, indent=1)
-    return cand["candidate_id"], SYSTEM, user
+    return cache_key(cand), SYSTEM, user

@@ -151,7 +151,11 @@ class LLMClient:
     def complete(self, stage, key, system, user, max_tokens=2000):
         """Return a parsed JSON object for (stage, key)."""
         self.load_stage(stage)
-        if key in self._cache[stage]:
+        # The live-call cache belongs to live backends only. An authored run is
+        # meant to prove the pipeline WITHOUT a model, so letting it serve
+        # cached model output would quietly turn the demo-safe run into a
+        # replay of live results under a different label.
+        if self.backend != "authored" and key in self._cache[stage]:
             self.acct.record(stage, model=self.model, cache_hits=1)
             return self._cache[stage][key]
         if self.backend == "authored":

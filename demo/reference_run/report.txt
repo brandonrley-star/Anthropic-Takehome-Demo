@@ -4,7 +4,7 @@ NORTHLIGHT RENEWABLE SERVICES — FLEET PATTERN DETECTION
   corpus            2398 work orders, 34 sites, 2024-07-01 to 2026-06-30
   stage 1 backend   rules   (deterministic stand-in, not a model)
   reasoning backend authored  model claude-opus-5
-  candidates        43 generated, 15 examined
+  candidates        52 generated, 15 examined
   outcome           3 escalated | 6 real but deprioritised | 6 examined and declined
 
 ==============================================================================
@@ -290,31 +290,31 @@ DECLINED #1 — Sundowner Mesa's tracker spike is a March 2025 microburst alread
 
 ------------------------------------------------------------------------------
 DECLINED #2 — The same March 2025 wind event seen a second way - time-bounded, insured, and not a Trackline H2 defect.
-  Candidate CAND-004  |  18 work orders  |  confidence high
+  Candidate CAND-005  |  18 work orders  |  confidence high
   Accepted explanation: [environmental_event] A discrete microburst on 2025-03-14 produced a bounded cleanup campaign that concentrates 82 percent of this site's tracker-structure tickets into eight weeks.
   Why not escalated: Same event as CAND-001, viewed through a different aggregation. Eighty-two percent of this site's tracker-structure tickets fall in the eight weeks starting 2025-03-16, two days after the microburst named in WO-2025-00218. The damage descriptions are the varied mechanical signature of wind loading on rows caught partway to stow - bent purlins (WO-2025-00223, WO-2025-00349), torque tubes out of true (WO-2025-00324, WO-2025-00350), pulled clamps and damaged stow pins. H2 requires the elevated rate to persist beyond the window and it does not. The remaining 18 percent of this site's tracker-structure tickets are spread across the other 22 months, which is the correct baseline comparison.
 
 ------------------------------------------------------------------------------
 DECLINED #3 — Ground faults on Kelvara inverters run at the same rate as every other model in the fleet - a baseline maintenance cost, not a defect.
-  Candidate CAND-010  |  31 work orders  |  confidence high
+  Candidate CAND-012  |  31 work orders  |  confidence high
   Accepted explanation: [benign_operational] DC ground faults on this model are ordinary balance-of-plant events caused by chafed or pinched conductors, not an inverter defect.
   Why not escalated: Ground faults on this model are balance-of-plant events, not inverter faults. Every narrative locates the cause outside the inverter: a home run chafed against racking in WO-2024-00002, pinched connectors in combiners in WO-2025-00524, WO-2026-00229 and WO-2026-00699. Affected serials span 2016 to 2024 builds (1629C, 1635C, 1743D, 1845D, 1922B, 2438C) with no cohort concentration. Decisively, the normalised rate is 0.082 faults per installed unit against a peer median of 0.073 - the same symptom appears on CE-4000 at 0.073, MG-3300 at 0.080 and KVP-2400 at 0.046. This is a fleet baseline phenomenon appearing here only because KVP-3600 has the largest installed base. Escalating it would be a false positive.
 
 ------------------------------------------------------------------------------
 DECLINED #4 — Meridian ground-fault rate matches the fleet baseline - nothing to pursue.
-  Candidate CAND-013  |  23 work orders  |  confidence high
+  Candidate CAND-017  |  23 work orders  |  confidence high
   Accepted explanation: [benign_operational] Ground faults on this model are ordinary conductor and connector events, at a rate indistinguishable from every other inverter model in the fleet.
   Why not escalated: Normalised rate is 0.080 faults per installed unit against a peer median of 0.073 - statistically indistinguishable from the other three inverter models. Causes are located outside the inverter in every sampled narrative: a chafed home run in WO-2025-00120, a pinched connector in a combiner in WO-2026-00544, and no fault found on inspection in WO-2024-00037, WO-2024-00074 and WO-2026-00037. Serials span 2018 to 2024 builds with no concentration. Same conclusion as CAND-010 for the same reasons.
 
 ------------------------------------------------------------------------------
 DECLINED #5 — Calderon ground faults run below the fleet average once normalised by installed base - a volume artifact, not a finding.
-  Candidate CAND-014  |  24 work orders  |  confidence high
+  Candidate CAND-018  |  24 work orders  |  confidence high
   Accepted explanation: [benign_operational] Ground faults on this model are ordinary balance-of-plant events; the normalised rate is below the fleet peer median, so the cluster exists only because the installed base is large.
   Why not escalated: The normalised rate here is 0.073 per installed unit against a peer median of 0.080 - this model is slightly better than its peers, and the cluster exists only because 327 units generate a lot of absolute tickets. This is the clearest illustration in the run of why raw counts mislead: 24 tickets and 113 labour hours look material until divided by installed base. Causes are again external to the inverter - a pinched connector in WO-2024-00069, a chafed home run in WO-2024-00185, no fault found in WO-2025-00084, WO-2025-01248 and WO-2026-00670.
 
 ------------------------------------------------------------------------------
 DECLINED #6 — Tracker misalignment at Sundowner Mesa is bent hardware from the March wind event plus row-level logging - not a control problem.
-  Candidate CAND-015  |  9 work orders  |  confidence medium
+  Candidate CAND-019  |  9 work orders  |  confidence medium
   Accepted explanation: [environmental_event] Bent limit-switch brackets and misalignment at this site are residual cleanup from the March 2025 wind event, not an ongoing tracker control problem.
   Why not escalated: Residual cleanup from the same March 2025 wind event. The physical finding in the April tickets is a bent limit-switch bracket - mechanical deformation, not calibration drift - in WO-2025-00286, WO-2025-00344 and WO-2025-00375, and WO-2025-00286 opens with a technician noting it is the same as the others that month. Seven of nine members fall in the weeks after the event. H2 would require drift-type language and steady arrivals across the window; instead arrivals collapse after April with only WO-2025-00930 and WO-2026-00073 following later, both of which read as ordinary recalibration. H3 also contributes: eight of nine members carry per-row tags from the same technician identified in CAND-003.
 
@@ -331,7 +331,7 @@ stage                     model               calls  cached    in tok  out tok  
 -----------------------------------------------------------------------------------------------
 load_corpus               -                       0       0         0        0    0.000     0.0
 stage1_deterministic      -                       0       0         0        0    0.000     0.1
-stage1_rules              -                       0       0         0        0    0.000     0.1
+stage1_rules              -                       0       0         0        0    0.000     0.2
 stage2_cluster            -                       0       0         0        0    0.000     0.0
 stage3_hypothesize        claude-opus-5           0      15         0        0    0.000     0.0
 stage4_verify             claude-opus-5           0      15         0        0    0.000     0.0

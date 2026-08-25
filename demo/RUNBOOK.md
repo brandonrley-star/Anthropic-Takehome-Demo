@@ -1,5 +1,30 @@
 # Demo runbook
 
+## Two reference runs — do not confuse them
+
+| | `demo/reference_run/` | `demo/live_run/` |
+|---|---|---|
+| **Stage 1** | `rules` — deterministic stand-in, **no model** | `claude-opus-5`, 2,398 live calls |
+| **Stages 3-4** | `authored` — human-written responses replayed | `claude-opus-5`, 62 live calls |
+| Candidates | 43 generated, 15 examined | 71 generated, **31 examined** |
+| Unclassified symptoms | 24.7% | **6.9%** |
+| Outcome | 3 escalate / 6 deprioritise / 6 decline | **6 escalate / 5 deprioritise / 20 decline** |
+| Cost to produce | $0.00 | **$37.10** across two runs |
+| Reproduces offline | yes, in 0.4s | yes, from `demo/live_run/cache/` |
+
+**`reference_run` is the demo-safe skeleton.** It proves the pipeline shape end
+to end with no API key, no network and no spend. Its findings are *authored by
+hand*, so it demonstrates the machinery, not model judgment.
+
+**`live_run` is the real result.** Every extraction and every verdict came from
+`claude-opus-5`. This is the one to show and to defend. Its Stage 1, 3 and 4
+responses are committed under `demo/live_run/cache/`, so it replays for free.
+
+Never present `reference_run`'s findings as model output. Never present
+`live_run` as something that runs instantly — it took 20 minutes and $37 to
+produce, and only replays quickly because the responses are committed.
+
+
 Two things to show, in this order. The first sets up why the second is
 credible. Total live runtime is under a second — **nothing in this demo
 depends on a live API call.**
@@ -50,14 +75,23 @@ detector cannot disagree."
 
 ## Act 2 — the pipeline (1 minute)
 
+Show the **live** run. It is the real result.
+
 ```bash
-python3 -m pipeline.run --stage1-backend rules --backend authored --out demo/reference_run
+less demo/live_run/report.txt
 ```
 
-Prints stage-by-stage progress and a cost/time table, then writes the report.
+To re-run it from the committed cache (free, no API key, a few seconds):
 
 ```bash
-less demo/reference_run/report.txt
+cp demo/live_run/cache/*.jsonl .pipeline_cache/
+python3 -m pipeline.run --stage1-backend anthropic --backend anthropic --out demo/live_run
+```
+
+The demo-safe skeleton, if you need a run that touches nothing:
+
+```bash
+python3 -m pipeline.run --stage1-backend rules --backend authored --out demo/reference_run
 ```
 
 ### The four stages, in one sentence each
@@ -82,38 +116,51 @@ less demo/reference_run/report.txt
 Scroll to each. This is the part that separates a detector from a keyword
 search.
 
-- **COMMERCIAL SUMMARY** — de-duplicated totals. Three of the escalated
-  findings are three severity stages of *one* cohort fault, so their
-  $3.6M replacement exposure is counted **once**, not three times. Say this
-  out loud; a VP will check it.
-- **ESCALATED (3)** — every finding leads with cost incurred, assets
-  exposed, warranty recoverable, and the action. Technical evidence sits
-  underneath. Each one is paste-able into an email.
-- **REAL BUT DEPRIORITISED (6)** — confirmed real, with the impact estimate
-  that justifies not acting. The tracker-logging finding costs more in
-  absolute terms ($52k) than two of the escalated findings, and is still
-  deprioritised, because there is no supplier exposure and no population
-  failing ahead of expectation.
-- **EXAMINED AND DECLINED (6)** — the storm-damage cluster at Sundowner Mesa
-  is 20 tickets in six weeks and looks exactly like a tracker defect until
-  you read the narratives and find a property-claim number. **The declined
-  category renders as a result, not as an absence.** This is the single most
-  important slide for a technical audience: it is evidence the system can be
-  wrong in the safe direction.
+- **COMMERCIAL SUMMARY** — de-duplicated totals across 6 escalated findings:
+  $232,909-$287,656 already incurred, 262 units exposed, $16.2M replacement
+  exposure, $122,850 of warranty recovery in play. Exposure is counted once per
+  physical population, never summed across findings that share a fleet.
+- **ESCALATED (6)** — each leads with cost, exposure, warranty and the action.
+  Paste-able into an email.
+- **REAL BUT DEPRIORITISED (5)** — confirmed real, with the impact estimate that
+  justifies not acting.
+- **EXAMINED AND DECLINED (20)** — two thirds of everything examined. **The
+  declined category renders as a result, not an absence.**
 
-### The headline finding
+### The two findings to actually show
 
-> 74 Kelvara KVP-3600 inverters from one 2024 build window are failing
-> thermally while still inside parts warranty.
+**1. The pipeline declining its own top-ranked cohort.** Candidate rank 3 is
+"KVP-3600 manufactured 24Q2, 53 units, lift 2.57" — the single most materially
+ranked equipment cluster in the fleet. Stage 4 **declined it**:
 
-Derived only from what the pipeline saw: every affected serial decodes to a
-2024 manufacture week between 18 and 36, the installed base holds 74 units in
-that window, 16 have already presented, two units recur with escalating
-severity on the same serial, and peer models co-located at the same sites show
-zero equivalent tickets.
+> The controls look like the members. WO-2026-00571 (week 20, in-cohort)
+> against control WO-2026-00586 (week 27, one week outside the Q2 boundary):
+> near-identical afternoon thermal derate, OEM case opened, filters clear, all
+> fans turning — the control narrative is actually the more detailed of the two.
 
-$78k–$115k already spent. $44,820 potentially recoverable from the supplier.
-58 units not yet failed.
+Meanwhile rank 6 — the *adjacent quarter*, 24Q3, 44 units — **escalated**,
+because there the members share one causal chain (low airflow with clean
+filters → afternoon derate → power-stage thermal damage) and two assets at two
+different sites show the identical 'IGBT module 2, busbar heat marked'
+signature.
+
+Same generator, adjacent build quarters, opposite verdicts, each justified by
+named work orders. That is the strongest evidence on the table that this
+discriminates rather than pattern-matches.
+
+**2. Efficacy decay — the pattern occurrence-counting cannot see.** Caprock
+Mesa, rank 17:
+
+> Washing blocks B01 and B03 now returns about 1-2% instead of the historical
+> ~5%, with technicians confirming clean glass and re-washing to no effect — the
+> remaining deficit is likely not soiling and warrants a module diagnostic
+> before further wash spend.
+
+No cluster of failures exists here. The signal is *declining benefit from a
+repeated intervention*, and it is invisible to any method that counts events.
+It requires `outcome` and `quantified_benefit_pct` from Stage 1 — fields the
+rules backend produced on 1 ticket out of 2,398, which is why this pattern is
+completely absent from `reference_run`.
 
 ---
 
@@ -137,26 +184,26 @@ narrative characters, ~102 tokens per ticket):
 
 ## Known weaknesses — say these before you are asked
 
-1. **Stage 1 runs on the `rules` backend in the reference run**, not a model.
-   It leaves 24.7% of symptoms unclassified and finds `outcome=no_change` on
-   exactly 1 of 2,398 tickets. The report prints this in the EXTRACTION
-   QUALITY block rather than hiding it. Efficacy-decay detection depends on
-   that field, so it currently has almost nothing to work with. This is the
-   single highest-leverage fix and it is a backend flag, not a rewrite:
-   `--stage1-backend anthropic`.
-2. **Stages 3 and 4 replay authored responses** in the reference run, so it is
-   reproducible and demo-safe but is not a live measurement of model
-   judgment. `--backend anthropic` runs it live.
-3. **Cost figures are a model of cost, not observed cost.** Every assumption
-   — $95/h loaded labour, $450 per truck roll, $42/MWh, per-part prices — is
+1. **Cost estimation was wrong by 2x.** I projected $14 for the full live run;
+   it cost $29.56, then $7.54 more to re-run stages 2-4 after two Stage 2 fixes.
+   Total $37.10. The error was in measuring Stage 1 output tokens by
+   re-tokenizing the stored parsed JSON, which strips whitespace and undercounts
+   the model's actual emission by 2.6x (132 vs 339 tokens/ticket). The per-stage
+   accounting in the report is measured, not estimated.
+2. **Cost figures are a model of cost, not observed cost.** Every assumption -
+   $95/h loaded labour, $450 per truck roll, $42/MWh, per-part prices - is
    printed at the bottom of the report with its rationale. Change the number,
-   change the finding. That is deliberate: a customer will want to substitute
-   their own rates.
-4. **The 14% lost-production reporting rate** drives the upper bound on every
-   energy figure. It is an assumption about reporting discipline, and it is
-   the most fragile number in the model.
-
----
+   change the finding. A customer will want to substitute their own rates.
+3. **The 14% lost-production reporting rate** drives the upper bound on every
+   energy figure. It is an assumption about reporting discipline and it is the
+   most fragile number in the model.
+4. **Serial cohorts use calendar quarters.** The Kelvara build window spans
+   weeks 18-36, which straddles a quarter boundary, so it surfaces as two
+   candidates (24Q2 and 24Q3) rather than one. Both rank top-6 so nothing is
+   lost, but a sliding window would be cleaner.
+5. **Confidence is self-reported by the model.** It is not calibrated against
+   outcomes. Treat 'high' as 'the evidence in front of it was consistent', not
+   as a probability.
 
 ## Live-model variants
 

@@ -132,6 +132,83 @@
   "candidate_id": "CAND-003"
  },
  {
+  "kind": "serial_cohort",
+  "key": "KVP-3600|24Q2",
+  "label": "KVP-3600 manufactured 24Q2 (53 units): cooling_airflow_low x7, overtemperature_trip x6, thermal_derate x4, overcurrent_trip x3",
+  "members": [
+   "WO-2024-00163",
+   "WO-2024-00167",
+   "WO-2024-00187",
+   "WO-2024-00196",
+   "WO-2024-00217",
+   "WO-2025-00248",
+   "WO-2025-00379",
+   "WO-2025-00465",
+   "WO-2025-00614",
+   "WO-2025-00623",
+   "WO-2025-00674",
+   "WO-2025-00688",
+   "WO-2025-00700",
+   "WO-2025-00720",
+   "WO-2025-00770",
+   "WO-2025-00782",
+   "WO-2025-00808",
+   "WO-2025-00813",
+   "WO-2025-00847",
+   "WO-2025-01005",
+   "WO-2025-01045",
+   "WO-2025-01068",
+   "WO-2025-01147",
+   "WO-2026-00049",
+   "WO-2026-00107",
+   "WO-2026-00167",
+   "WO-2026-00286",
+   "WO-2026-00480",
+   "WO-2026-00510",
+   "WO-2026-00571",
+   "WO-2026-00579",
+   "WO-2026-00595",
+   "WO-2026-00627",
+   "WO-2026-00693"
+  ],
+  "n": 34,
+  "units_in_cohort": 53,
+  "rate_per_unit": 0.642,
+  "peer_median_rate": 0.244,
+  "peer_quarters": 12,
+  "symptom_mix": {
+   "thermal_derate": 4,
+   "grid_ride_through": 2,
+   "no_fault_found": 1,
+   "overcurrent_trip": 3,
+   "overtemperature_trip": 6,
+   "undervoltage_trip": 2,
+   "hard_fault": 2,
+   "cooling_airflow_low": 7,
+   "ground_fault": 3,
+   "component_thermal_damage": 3,
+   "contactor_welded": 1
+  },
+  "distinct_symptoms": 11,
+  "lift": 2.63,
+  "dims": {
+   "model": "KVP-3600",
+   "mfg_quarter": "24Q2",
+   "symptoms": [
+    "cooling_airflow_low",
+    "overtemperature_trip",
+    "thermal_derate",
+    "overcurrent_trip"
+   ]
+  },
+  "_materiality": 443.8,
+  "_volume": 337.5,
+  "_anomaly": 1.31,
+  "_labor_hours": 174.1,
+  "_lost_mwh": 148.2,
+  "candidate_id": "CAND-004"
+ },
+ {
   "kind": "temporal_burst",
   "key": "Sundowner Mesa|tracker_structure|2025-03-16",
   "label": "Sundowner Mesa, tracker_structure: 18 tickets in 8 weeks from 2025-03-16",
@@ -168,7 +245,73 @@
   "_anomaly": 2.14,
   "_labor_hours": 79.1,
   "_lost_mwh": 63.0,
-  "candidate_id": "CAND-004"
+  "candidate_id": "CAND-005"
+ },
+ {
+  "kind": "serial_cohort",
+  "key": "KVP-3600|24Q3",
+  "label": "KVP-3600 manufactured 24Q3 (44 units): component_thermal_damage x5, overtemperature_trip x4, ground_fault x3, cooling_airflow_low x3",
+  "members": [
+   "WO-2025-00158",
+   "WO-2025-00449",
+   "WO-2025-00460",
+   "WO-2025-00524",
+   "WO-2025-00589",
+   "WO-2025-00592",
+   "WO-2025-00612",
+   "WO-2025-00651",
+   "WO-2025-00652",
+   "WO-2025-00665",
+   "WO-2025-00670",
+   "WO-2025-00833",
+   "WO-2025-00862",
+   "WO-2025-00908",
+   "WO-2025-00920",
+   "WO-2026-00410",
+   "WO-2026-00514",
+   "WO-2026-00522",
+   "WO-2026-00575",
+   "WO-2026-00586",
+   "WO-2026-00626",
+   "WO-2026-00690",
+   "WO-2026-00696",
+   "WO-2026-00702"
+  ],
+  "n": 24,
+  "units_in_cohort": 44,
+  "rate_per_unit": 0.545,
+  "peer_median_rate": 0.244,
+  "peer_quarters": 12,
+  "symptom_mix": {
+   "ground_fault": 3,
+   "overtemperature_trip": 4,
+   "undervoltage_trip": 1,
+   "cooling_airflow_low": 3,
+   "failure_to_start": 2,
+   "thermal_derate": 3,
+   "overcurrent_trip": 1,
+   "component_thermal_damage": 5,
+   "wildlife_intrusion": 1,
+   "contactor_welded": 1
+  },
+  "distinct_symptoms": 10,
+  "lift": 2.24,
+  "dims": {
+   "model": "KVP-3600",
+   "mfg_quarter": "24Q3",
+   "symptoms": [
+    "component_thermal_damage",
+    "overtemperature_trip",
+    "ground_fault",
+    "cooling_airflow_low"
+   ]
+  },
+  "_materiality": 239.2,
+  "_volume": 213.6,
+  "_anomaly": 1.12,
+  "_labor_hours": 150.5,
+  "_lost_mwh": 72.8,
+  "candidate_id": "CAND-006"
  },
  {
   "kind": "site_symptom",
@@ -199,7 +342,7 @@
   "_anomaly": 4.77,
   "_labor_hours": 39.7,
   "_lost_mwh": 4.5,
-  "candidate_id": "CAND-005"
+  "candidate_id": "CAND-007"
  },
  {
   "kind": "site_symptom",
@@ -229,7 +372,7 @@
   "_anomaly": 3.98,
   "_labor_hours": 27.6,
   "_lost_mwh": 4.8,
-  "candidate_id": "CAND-006"
+  "candidate_id": "CAND-008"
  },
  {
   "kind": "site_symptom",
@@ -258,7 +401,7 @@
   "_anomaly": 4.63,
   "_labor_hours": 28.9,
   "_lost_mwh": 0,
-  "candidate_id": "CAND-007"
+  "candidate_id": "CAND-009"
  },
  {
   "kind": "model_symptom",
@@ -287,7 +430,7 @@
   "_anomaly": 2.5,
   "_labor_hours": 28.5,
   "_lost_mwh": 20.4,
-  "candidate_id": "CAND-008"
+  "candidate_id": "CAND-010"
  },
  {
   "kind": "model_symptom",
@@ -321,7 +464,7 @@
   "_anomaly": 2.29,
   "_labor_hours": 50.6,
   "_lost_mwh": 3.5,
-  "candidate_id": "CAND-009"
+  "candidate_id": "CAND-011"
  },
  {
   "kind": "model_symptom",
@@ -374,7 +517,47 @@
   "_anomaly": 0.56,
   "_labor_hours": 160.4,
   "_lost_mwh": 50.1,
-  "candidate_id": "CAND-010"
+  "candidate_id": "CAND-012"
+ },
+ {
+  "kind": "serial_cohort",
+  "key": "KVP-2400|16Q1",
+  "label": "KVP-2400 manufactured 16Q1 (22 units): ground_fault x4, grid_ride_through x1, cooling_airflow_low x1",
+  "members": [
+   "WO-2024-00152",
+   "WO-2025-00157",
+   "WO-2025-00646",
+   "WO-2025-00668",
+   "WO-2025-00669",
+   "WO-2026-00044"
+  ],
+  "n": 6,
+  "units_in_cohort": 22,
+  "rate_per_unit": 0.273,
+  "peer_median_rate": 0.107,
+  "peer_quarters": 12,
+  "symptom_mix": {
+   "grid_ride_through": 1,
+   "ground_fault": 4,
+   "cooling_airflow_low": 1
+  },
+  "distinct_symptoms": 3,
+  "lift": 2.56,
+  "dims": {
+   "model": "KVP-2400",
+   "mfg_quarter": "16Q1",
+   "symptoms": [
+    "ground_fault",
+    "grid_ride_through",
+    "cooling_airflow_low"
+   ]
+  },
+  "_materiality": 105.1,
+  "_volume": 82.1,
+  "_anomaly": 1.28,
+  "_labor_hours": 25.2,
+  "_lost_mwh": 50.0,
+  "candidate_id": "CAND-013"
  },
  {
   "kind": "model_symptom",
@@ -413,7 +596,7 @@
   "_anomaly": 1.08,
   "_labor_hours": 82.0,
   "_lost_mwh": 8.0,
-  "candidate_id": "CAND-011"
+  "candidate_id": "CAND-014"
  },
  {
   "kind": "site_symptom",
@@ -441,7 +624,52 @@
   "_anomaly": 3.69,
   "_labor_hours": 10.6,
   "_lost_mwh": 0.1,
-  "candidate_id": "CAND-012"
+  "candidate_id": "CAND-015"
+ },
+ {
+  "kind": "serial_cohort",
+  "key": "MG-3300|17Q4",
+  "label": "MG-3300 manufactured 17Q4 (18 units): failure_to_start x2, ground_fault x2, cooling_airflow_low x2, hard_fault x1",
+  "members": [
+   "WO-2024-00079",
+   "WO-2025-00193",
+   "WO-2025-00671",
+   "WO-2025-00823",
+   "WO-2025-00858",
+   "WO-2025-01009",
+   "WO-2025-01227",
+   "WO-2026-00050"
+  ],
+  "n": 8,
+  "units_in_cohort": 18,
+  "rate_per_unit": 0.444,
+  "peer_median_rate": 0.251,
+  "peer_quarters": 10,
+  "symptom_mix": {
+   "failure_to_start": 2,
+   "hard_fault": 1,
+   "ground_fault": 2,
+   "cooling_airflow_low": 2,
+   "overcurrent_trip": 1
+  },
+  "distinct_symptoms": 5,
+  "lift": 1.77,
+  "dims": {
+   "model": "MG-3300",
+   "mfg_quarter": "17Q4",
+   "symptoms": [
+    "failure_to_start",
+    "ground_fault",
+    "cooling_airflow_low",
+    "hard_fault"
+   ]
+  },
+  "_materiality": 91.8,
+  "_volume": 103.7,
+  "_anomaly": 0.89,
+  "_labor_hours": 46.2,
+  "_lost_mwh": 51.0,
+  "candidate_id": "CAND-016"
  },
  {
   "kind": "model_symptom",
@@ -486,7 +714,7 @@
   "_anomaly": 0.55,
   "_labor_hours": 93.2,
   "_lost_mwh": 46.0,
-  "candidate_id": "CAND-013"
+  "candidate_id": "CAND-017"
  },
  {
   "kind": "model_symptom",
@@ -532,7 +760,7 @@
   "_anomaly": 0.46,
   "_labor_hours": 113.0,
   "_lost_mwh": 55.3,
-  "candidate_id": "CAND-014"
+  "candidate_id": "CAND-018"
  },
  {
   "kind": "site_symptom",
@@ -563,7 +791,7 @@
   "_anomaly": 1.68,
   "_labor_hours": 32.6,
   "_lost_mwh": 4.6,
-  "candidate_id": "CAND-015"
+  "candidate_id": "CAND-019"
  },
  {
   "kind": "site_symptom",
@@ -592,7 +820,7 @@
   "_anomaly": 1.2,
   "_labor_hours": 41.8,
   "_lost_mwh": 21.5,
-  "candidate_id": "CAND-016"
+  "candidate_id": "CAND-020"
  },
  {
   "kind": "model_symptom",
@@ -621,7 +849,7 @@
   "_anomaly": 1.33,
   "_labor_hours": 28.3,
   "_lost_mwh": 17.0,
-  "candidate_id": "CAND-017"
+  "candidate_id": "CAND-021"
  },
  {
   "kind": "site_symptom",
@@ -650,7 +878,7 @@
   "_anomaly": 1.01,
   "_labor_hours": 31.7,
   "_lost_mwh": 24.4,
-  "candidate_id": "CAND-018"
+  "candidate_id": "CAND-022"
  },
  {
   "kind": "model_symptom",
@@ -679,7 +907,7 @@
   "_anomaly": 1.33,
   "_labor_hours": 61.6,
   "_lost_mwh": 4.0,
-  "candidate_id": "CAND-019"
+  "candidate_id": "CAND-023"
  },
  {
   "kind": "site_symptom",
@@ -707,7 +935,7 @@
   "_anomaly": 1.79,
   "_labor_hours": 28.0,
   "_lost_mwh": 0,
-  "candidate_id": "CAND-020"
+  "candidate_id": "CAND-024"
  },
  {
   "kind": "model_symptom",
@@ -736,7 +964,7 @@
   "_anomaly": 0.67,
   "_labor_hours": 68.7,
   "_lost_mwh": 34.6,
-  "candidate_id": "CAND-021"
+  "candidate_id": "CAND-025"
  },
  {
   "kind": "efficacy_decay",
@@ -768,7 +996,7 @@
   "_anomaly": 1.25,
   "_labor_hours": 28.8,
   "_lost_mwh": 18.5,
-  "candidate_id": "CAND-022"
+  "candidate_id": "CAND-026"
  },
  {
   "kind": "model_symptom",
@@ -799,7 +1027,7 @@
   "_anomaly": 0.66,
   "_labor_hours": 34.2,
   "_lost_mwh": 34.0,
-  "candidate_id": "CAND-023"
+  "candidate_id": "CAND-027"
  },
  {
   "kind": "site_symptom",
@@ -829,7 +1057,51 @@
   "_anomaly": 1.64,
   "_labor_hours": 29.9,
   "_lost_mwh": 0.4,
-  "candidate_id": "CAND-024"
+  "candidate_id": "CAND-028"
+ },
+ {
+  "kind": "serial_cohort",
+  "key": "KVP-2400|19Q1",
+  "label": "KVP-2400 manufactured 19Q1 (23 units): undervoltage_trip x3, cooling_airflow_low x2, ground_fault x2, overcurrent_trip x1",
+  "members": [
+   "WO-2024-00006",
+   "WO-2024-00275",
+   "WO-2024-00304",
+   "WO-2025-00468",
+   "WO-2025-00607",
+   "WO-2025-00948",
+   "WO-2026-00657",
+   "WO-2026-00673"
+  ],
+  "n": 8,
+  "units_in_cohort": 23,
+  "rate_per_unit": 0.348,
+  "peer_median_rate": 0.107,
+  "peer_quarters": 12,
+  "symptom_mix": {
+   "cooling_airflow_low": 2,
+   "ground_fault": 2,
+   "undervoltage_trip": 3,
+   "overcurrent_trip": 1
+  },
+  "distinct_symptoms": 4,
+  "lift": 3.26,
+  "dims": {
+   "model": "KVP-2400",
+   "mfg_quarter": "19Q1",
+   "symptoms": [
+    "undervoltage_trip",
+    "cooling_airflow_low",
+    "ground_fault",
+    "overcurrent_trip"
+   ]
+  },
+  "_materiality": 53.6,
+  "_volume": 32.9,
+  "_anomaly": 1.63,
+  "_labor_hours": 29.7,
+  "_lost_mwh": 0,
+  "candidate_id": "CAND-029"
  },
  {
   "kind": "efficacy_decay",
@@ -859,7 +1131,51 @@
   "_anomaly": 2.0,
   "_labor_hours": 28.8,
   "_lost_mwh": 0,
-  "candidate_id": "CAND-025"
+  "candidate_id": "CAND-030"
+ },
+ {
+  "kind": "serial_cohort",
+  "key": "KVP-3600|16Q3",
+  "label": "KVP-3600 manufactured 16Q3 (18 units): ground_fault x3, cooling_airflow_low x3, overcurrent_trip x1, failure_to_start x1",
+  "members": [
+   "WO-2024-00002",
+   "WO-2024-00104",
+   "WO-2024-00278",
+   "WO-2025-00631",
+   "WO-2026-00111",
+   "WO-2026-00319",
+   "WO-2026-00335",
+   "WO-2026-00536"
+  ],
+  "n": 8,
+  "units_in_cohort": 18,
+  "rate_per_unit": 0.444,
+  "peer_median_rate": 0.244,
+  "peer_quarters": 12,
+  "symptom_mix": {
+   "ground_fault": 3,
+   "overcurrent_trip": 1,
+   "cooling_airflow_low": 3,
+   "failure_to_start": 1
+  },
+  "distinct_symptoms": 4,
+  "lift": 1.82,
+  "dims": {
+   "model": "KVP-3600",
+   "mfg_quarter": "16Q3",
+   "symptoms": [
+    "ground_fault",
+    "cooling_airflow_low",
+    "overcurrent_trip",
+    "failure_to_start"
+   ]
+  },
+  "_materiality": 49.4,
+  "_volume": 54.3,
+  "_anomaly": 0.91,
+  "_labor_hours": 38.9,
+  "_lost_mwh": 12.3,
+  "candidate_id": "CAND-031"
  },
  {
   "kind": "model_symptom",
@@ -887,7 +1203,7 @@
   "_anomaly": 1.31,
   "_labor_hours": 49.3,
   "_lost_mwh": 4.7,
-  "candidate_id": "CAND-026"
+  "candidate_id": "CAND-032"
  },
  {
   "kind": "model_symptom",
@@ -916,7 +1232,7 @@
   "_anomaly": 0.6,
   "_labor_hours": 28.6,
   "_lost_mwh": 35.6,
-  "candidate_id": "CAND-027"
+  "candidate_id": "CAND-033"
  },
  {
   "kind": "efficacy_decay",
@@ -947,7 +1263,94 @@
   "_anomaly": 1.49,
   "_labor_hours": 23.9,
   "_lost_mwh": 0,
-  "candidate_id": "CAND-028"
+  "candidate_id": "CAND-034"
+ },
+ {
+  "kind": "serial_cohort",
+  "key": "CE-4000|24Q2",
+  "label": "CE-4000 manufactured 24Q2 (53 units): ground_fault x5, cooling_airflow_low x2, failure_to_start x1, overtemperature_trip x1",
+  "members": [
+   "WO-2025-00645",
+   "WO-2025-00744",
+   "WO-2025-00796",
+   "WO-2025-00963",
+   "WO-2025-01072",
+   "WO-2025-01191",
+   "WO-2026-00405",
+   "WO-2026-00504",
+   "WO-2026-00596",
+   "WO-2026-00635"
+  ],
+  "n": 10,
+  "units_in_cohort": 53,
+  "rate_per_unit": 0.189,
+  "peer_median_rate": 0.2,
+  "peer_quarters": 11,
+  "symptom_mix": {
+   "ground_fault": 5,
+   "failure_to_start": 1,
+   "cooling_airflow_low": 2,
+   "overtemperature_trip": 1,
+   "grid_ride_through": 1
+  },
+  "distinct_symptoms": 5,
+  "lift": 0.94,
+  "dims": {
+   "model": "CE-4000",
+   "mfg_quarter": "24Q2",
+   "symptoms": [
+    "ground_fault",
+    "cooling_airflow_low",
+    "failure_to_start",
+    "overtemperature_trip"
+   ]
+  },
+  "_materiality": 43.4,
+  "_volume": 92.4,
+  "_anomaly": 0.47,
+  "_labor_hours": 51.0,
+  "_lost_mwh": 35.0,
+  "candidate_id": "CAND-035"
+ },
+ {
+  "kind": "serial_cohort",
+  "key": "KVP-3600|18Q4",
+  "label": "KVP-3600 manufactured 18Q4 (10 units): ground_fault x4, undervoltage_trip x1, hard_fault x1",
+  "members": [
+   "WO-2025-00004",
+   "WO-2025-00164",
+   "WO-2025-00336",
+   "WO-2025-00367",
+   "WO-2025-00976",
+   "WO-2025-01276"
+  ],
+  "n": 6,
+  "units_in_cohort": 10,
+  "rate_per_unit": 0.6,
+  "peer_median_rate": 0.244,
+  "peer_quarters": 12,
+  "symptom_mix": {
+   "ground_fault": 4,
+   "undervoltage_trip": 1,
+   "hard_fault": 1
+  },
+  "distinct_symptoms": 3,
+  "lift": 2.46,
+  "dims": {
+   "model": "KVP-3600",
+   "mfg_quarter": "18Q4",
+   "symptoms": [
+    "ground_fault",
+    "undervoltage_trip",
+    "hard_fault"
+   ]
+  },
+  "_materiality": 34.4,
+  "_volume": 28.0,
+  "_anomaly": 1.23,
+  "_labor_hours": 34.3,
+  "_lost_mwh": 1.9,
+  "candidate_id": "CAND-036"
  },
  {
   "kind": "model_symptom",
@@ -987,7 +1390,49 @@
   "_anomaly": 0.29,
   "_labor_hours": 84.4,
   "_lost_mwh": 33.0,
-  "candidate_id": "CAND-029"
+  "candidate_id": "CAND-037"
+ },
+ {
+  "kind": "serial_cohort",
+  "key": "KVP-3600|17Q4",
+  "label": "KVP-3600 manufactured 17Q4 (11 units): ground_fault x3, failure_to_start x1, cooling_airflow_low x1, grid_ride_through x1",
+  "members": [
+   "WO-2024-00009",
+   "WO-2025-00373",
+   "WO-2025-00386",
+   "WO-2025-01105",
+   "WO-2026-00209",
+   "WO-2026-00229"
+  ],
+  "n": 6,
+  "units_in_cohort": 11,
+  "rate_per_unit": 0.545,
+  "peer_median_rate": 0.244,
+  "peer_quarters": 12,
+  "symptom_mix": {
+   "failure_to_start": 1,
+   "ground_fault": 3,
+   "cooling_airflow_low": 1,
+   "grid_ride_through": 1
+  },
+  "distinct_symptoms": 4,
+  "lift": 2.24,
+  "dims": {
+   "model": "KVP-3600",
+   "mfg_quarter": "17Q4",
+   "symptoms": [
+    "ground_fault",
+    "failure_to_start",
+    "cooling_airflow_low",
+    "grid_ride_through"
+   ]
+  },
+  "_materiality": 33.3,
+  "_volume": 29.8,
+  "_anomaly": 1.12,
+  "_labor_hours": 29.4,
+  "_lost_mwh": 0,
+  "candidate_id": "CAND-038"
  },
  {
   "kind": "model_symptom",
@@ -1017,37 +1462,7 @@
   "_anomaly": 0.57,
   "_labor_hours": 26.7,
   "_lost_mwh": 16.0,
-  "candidate_id": "CAND-030"
- },
- {
-  "kind": "serial_cohort",
-  "key": "KVP-3600|24Q2|cooling_airflow_low",
-  "label": "KVP-3600 manufactured 24Q2, symptom 'cooling_airflow_low'",
-  "members": [
-   "WO-2025-00674",
-   "WO-2025-00700",
-   "WO-2025-00782",
-   "WO-2025-00808",
-   "WO-2025-01005",
-   "WO-2026-00107",
-   "WO-2026-00693"
-  ],
-  "n": 7,
-  "units_in_cohort": 53,
-  "rate_per_unit": 0.132,
-  "peer_median_rate": 0.089,
-  "lift": 1.49,
-  "dims": {
-   "model": "KVP-3600",
-   "mfg_quarter": "24Q2",
-   "symptom": "cooling_airflow_low"
-  },
-  "_materiality": 26.7,
-  "_volume": 35.9,
-  "_anomaly": 0.74,
-  "_labor_hours": 33.4,
-  "_lost_mwh": 0,
-  "candidate_id": "CAND-031"
+  "candidate_id": "CAND-039"
  },
  {
   "kind": "efficacy_decay",
@@ -1077,7 +1492,51 @@
   "_anomaly": 1.49,
   "_labor_hours": 17.5,
   "_lost_mwh": 0.2,
-  "candidate_id": "CAND-032"
+  "candidate_id": "CAND-040"
+ },
+ {
+  "kind": "serial_cohort",
+  "key": "CE-4000|18Q3",
+  "label": "CE-4000 manufactured 18Q3 (22 units): overcurrent_trip x2, ground_fault x2, hard_fault x1, failure_to_start x1",
+  "members": [
+   "WO-2025-00041",
+   "WO-2025-00051",
+   "WO-2025-00506",
+   "WO-2025-00784",
+   "WO-2025-01248",
+   "WO-2026-00027",
+   "WO-2026-00666"
+  ],
+  "n": 7,
+  "units_in_cohort": 22,
+  "rate_per_unit": 0.318,
+  "peer_median_rate": 0.2,
+  "peer_quarters": 11,
+  "symptom_mix": {
+   "hard_fault": 1,
+   "overcurrent_trip": 2,
+   "ground_fault": 2,
+   "failure_to_start": 1,
+   "cooling_airflow_low": 1
+  },
+  "distinct_symptoms": 5,
+  "lift": 1.59,
+  "dims": {
+   "model": "CE-4000",
+   "mfg_quarter": "18Q3",
+   "symptoms": [
+    "overcurrent_trip",
+    "ground_fault",
+    "hard_fault",
+    "failure_to_start"
+   ]
+  },
+  "_materiality": 25.8,
+  "_volume": 32.5,
+  "_anomaly": 0.8,
+  "_labor_hours": 32.5,
+  "_lost_mwh": 0,
+  "candidate_id": "CAND-041"
  },
  {
   "kind": "model_symptom",
@@ -1110,7 +1569,7 @@
   "_anomaly": 0.6,
   "_labor_hours": 45.0,
   "_lost_mwh": 0.6,
-  "candidate_id": "CAND-033"
+  "candidate_id": "CAND-042"
  },
  {
   "kind": "site_symptom",
@@ -1138,7 +1597,7 @@
   "_anomaly": 0.89,
   "_labor_hours": 23.8,
   "_lost_mwh": 0,
-  "candidate_id": "CAND-034"
+  "candidate_id": "CAND-043"
  },
  {
   "kind": "efficacy_decay",
@@ -1168,7 +1627,7 @@
   "_anomaly": 1.49,
   "_labor_hours": 16.4,
   "_lost_mwh": 1.0,
-  "candidate_id": "CAND-035"
+  "candidate_id": "CAND-044"
  },
  {
   "kind": "model_symptom",
@@ -1196,7 +1655,7 @@
   "_anomaly": 0.38,
   "_labor_hours": 29.5,
   "_lost_mwh": 24.4,
-  "candidate_id": "CAND-036"
+  "candidate_id": "CAND-045"
  },
  {
   "kind": "model_symptom",
@@ -1224,7 +1683,7 @@
   "_anomaly": 0.66,
   "_labor_hours": 38.3,
   "_lost_mwh": 0,
-  "candidate_id": "CAND-037"
+  "candidate_id": "CAND-046"
  },
  {
   "kind": "model_symptom",
@@ -1252,36 +1711,7 @@
   "_anomaly": 0.68,
   "_labor_hours": 19.8,
   "_lost_mwh": 6.3,
-  "candidate_id": "CAND-038"
- },
- {
-  "kind": "serial_cohort",
-  "key": "KVP-3600|24Q2|overtemperature_trip",
-  "label": "KVP-3600 manufactured 24Q2, symptom 'overtemperature_trip'",
-  "members": [
-   "WO-2025-00248",
-   "WO-2025-00623",
-   "WO-2025-00813",
-   "WO-2025-00847",
-   "WO-2025-01068",
-   "WO-2026-00627"
-  ],
-  "n": 6,
-  "units_in_cohort": 53,
-  "rate_per_unit": 0.113,
-  "peer_median_rate": 0.071,
-  "lift": 1.58,
-  "dims": {
-   "model": "KVP-3600",
-   "mfg_quarter": "24Q2",
-   "symptom": "overtemperature_trip"
-  },
-  "_materiality": 17.5,
-  "_volume": 22.2,
-  "_anomaly": 0.79,
-  "_labor_hours": 17.9,
-  "_lost_mwh": 0,
-  "candidate_id": "CAND-039"
+  "candidate_id": "CAND-047"
  },
  {
   "kind": "model_symptom",
@@ -1311,7 +1741,7 @@
   "_anomaly": 0.44,
   "_labor_hours": 28.6,
   "_lost_mwh": 6.3,
-  "candidate_id": "CAND-040"
+  "candidate_id": "CAND-048"
  },
  {
   "kind": "model_symptom",
@@ -1339,7 +1769,7 @@
   "_anomaly": 0.38,
   "_labor_hours": 44.8,
   "_lost_mwh": 5.0,
-  "candidate_id": "CAND-041"
+  "candidate_id": "CAND-049"
  },
  {
   "kind": "model_symptom",
@@ -1367,7 +1797,7 @@
   "_anomaly": 0.41,
   "_labor_hours": 24.4,
   "_lost_mwh": 0.6,
-  "candidate_id": "CAND-042"
+  "candidate_id": "CAND-050"
  },
  {
   "kind": "model_symptom",
@@ -1395,6 +1825,49 @@
   "_anomaly": 0.28,
   "_labor_hours": 26.6,
   "_lost_mwh": 2.2,
-  "candidate_id": "CAND-043"
+  "candidate_id": "CAND-051"
+ },
+ {
+  "kind": "serial_cohort",
+  "key": "KVP-3600|24Q1",
+  "label": "KVP-3600 manufactured 24Q1 (45 units): overcurrent_trip x3, ground_fault x2, undervoltage_trip x1, overtemperature_trip x1",
+  "members": [
+   "WO-2025-00308",
+   "WO-2025-00638",
+   "WO-2025-00882",
+   "WO-2025-00942",
+   "WO-2026-00029",
+   "WO-2026-00320",
+   "WO-2026-00397"
+  ],
+  "n": 7,
+  "units_in_cohort": 45,
+  "rate_per_unit": 0.156,
+  "peer_median_rate": 0.3,
+  "peer_quarters": 12,
+  "symptom_mix": {
+   "overcurrent_trip": 3,
+   "undervoltage_trip": 1,
+   "ground_fault": 2,
+   "overtemperature_trip": 1
+  },
+  "distinct_symptoms": 4,
+  "lift": 0.52,
+  "dims": {
+   "model": "KVP-3600",
+   "mfg_quarter": "24Q1",
+   "symptoms": [
+    "overcurrent_trip",
+    "ground_fault",
+    "undervoltage_trip",
+    "overtemperature_trip"
+   ]
+  },
+  "_materiality": 7.6,
+  "_volume": 29.4,
+  "_anomaly": 0.26,
+  "_labor_hours": 32.3,
+  "_lost_mwh": 0,
+  "candidate_id": "CAND-052"
  }
 ]
