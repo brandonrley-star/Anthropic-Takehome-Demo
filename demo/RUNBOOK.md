@@ -238,3 +238,19 @@ The pipeline cannot read `eval/`. This is enforced in code, not by
 convention — `pipeline/paths.py` raises `PermissionError` on any path under
 `eval/`. That directory holds the ground truth for this corpus. A detector
 built while looking at the answers is not a detector.
+
+### Ground truth was read only after the code freeze
+
+`eval/ground_truth.json` was opened for the first time **after** the pipeline
+was frozen and committed at **`27e37cf`** ("Live reference run; fix
+serial-cohort grouping, budget, and cache keying"), and was read outside the
+pipeline — `pipeline/paths.py` still refuses it.
+
+Nothing under `pipeline/`, `corpus/`, or `generator/` was modified after that
+read. Both reference runs in `demo/` were produced before it. The three-tier
+scoring in `demo/SCORING.md` is therefore a post-freeze evaluation of a
+detector that never saw the answers, not a detector tuned against them.
+
+Weaknesses that scoring exposed are written up in `demo/SCORING.md` as
+findings. They were deliberately **not** acted on, because fixing them after
+reading the key would destroy exactly the property the freeze protects.
