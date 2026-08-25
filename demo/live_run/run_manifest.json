@@ -106,7 +106,6 @@
     "total_usd": 30.864,
     "total_seconds": 0.1
   },
-  "wall_clock_seconds": 0.4,
   "generated_at_utc": "2026-08-25T00:51:50",
   "provenance": {
     "note": "Cost and time are the REAL figures from the live calls that produced these findings. Re-running from demo/live_run/cache/ replays them for $0.00 \u2014 that is a replay, not a fresh measurement.",
@@ -114,5 +113,33 @@
     "stage3_4_run": "64 live calls, claude-opus-5, $7.54",
     "total_usd_to_produce": 30.86,
     "session_total_usd": 37.1
+  },
+  "runtime": {
+    "note": "Wall clock is recorded per INVOCATION, and this file was last written by a cache replay, so a single top-level number would be misleading. The figures below name what each measures. Analytical outputs are unaffected: no finding, candidate or cost value is derived from any of these.",
+    "analysis_wall_clock_seconds": 1217.2,
+    "analysis_wall_clock_minutes": 20.3,
+    "analysis_definition": "Sum of the measured wall clock of the two invocations that made live model calls. Includes one superseded set of reasoning calls (run 1's stages 3-4) that were discarded and re-run after a Stage 2 fix, so this is the total cost in time of producing these findings, not the minimum achievable.",
+    "producing_runs": [
+      {
+        "run": 1,
+        "wall_clock_seconds": 985.4,
+        "usd": 29.556,
+        "produced": "Stage 1 extractions for all 2,398 work orders (2,388 live calls)",
+        "superseded": "Its stages 3-4 ran against a 57-candidate set and were discarded when the serial-cohort grouping and examine-depth were fixed.",
+        "evidence": "provenance/run1_stage1_extraction.log"
+      },
+      {
+        "run": 2,
+        "wall_clock_seconds": 231.8,
+        "usd": 7.543,
+        "produced": "Stages 3-4 for all 31 examined candidates (64 live calls). Stage 1 replayed from cache at zero cost.",
+        "evidence": "provenance/run2_stages3-4.log"
+      }
+    ],
+    "last_invocation_wall_clock_seconds": 0.4,
+    "last_invocation_kind": "cache replay \u2014 every stage served from demo/live_run/cache/, no model calls, $0.00. Not a measurement of the analysis.",
+    "stage_seconds_are_thread_summed": true,
+    "stage_seconds_note": "accounting.stages[*].seconds is summed across concurrent workers, not elapsed. At 16-way concurrency it over-states elapsed time by roughly 16x and must not be presented as run time.",
+    "reconstruction": "The committed manifest never held the correct value: git shows a single commit (27e37cf) for this file, already carrying the replay's 0.4s. The two run totals are recovered from the runs' own stdout, archived under provenance/. They corroborate against this manifest's per-stage cost and token counts, which match the logs exactly."
   }
 }

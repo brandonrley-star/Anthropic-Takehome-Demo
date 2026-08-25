@@ -21,7 +21,7 @@ hand*, so it demonstrates the machinery, not model judgment.
 responses are committed under `demo/live_run/cache/`, so it replays for free.
 
 Never present `reference_run`'s findings as model output. Never present
-`live_run` as something that runs instantly — it took 20 minutes and $37 to
+`live_run` as something that runs instantly — it took 20.3 minutes and $30.86 to
 produce, and only replays quickly because the responses are committed.
 
 
@@ -84,8 +84,18 @@ less demo/live_run/report.txt
 To re-run it from the committed cache (free, no API key, a few seconds):
 
 ```bash
-cp demo/live_run/cache/*.jsonl .pipeline_cache/
-python3 -m pipeline.run --stage1-backend anthropic --backend anthropic --out demo/live_run
+python3 demo/replay.py
+```
+
+**`demo/live_run/` is immutable.** It holds the model outputs the project is
+evidenced on. Never point `--out` at it: a replay invoked that way once
+overwrote `run_manifest.json`, replacing the real run time with the replay's own
+0.4s, and the correct value was not recoverable from git. `demo/replay.py`
+always writes to a scratch directory and verifies afterwards that
+`demo/live_run/` is byte-identical. To check at any time:
+
+```bash
+python3 demo/verify_immutable.py
 ```
 
 The demo-safe skeleton, if you need a run that touches nothing:

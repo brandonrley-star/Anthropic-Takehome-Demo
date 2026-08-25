@@ -119,13 +119,11 @@ def overview():
     }
 
 
-# Elapsed wall clock of the runs that actually produced these findings.
-# run_manifest["wall_clock_seconds"] is NOT usable for this: the last write to
-# that file came from a cache replay and reads 0.4s. These two figures are the
-# `[done]` totals of the runs that made live calls.
-STAGE1_RUN_SECONDS = 985.4      # live Stage 1 extraction, 2,388 calls
-STAGE34_RUN_SECONDS = 231.8     # live Stages 3-4, 64 calls
-ANALYSIS_SECONDS = STAGE1_RUN_SECONDS + STAGE34_RUN_SECONDS
+# Elapsed wall clock comes from the manifest's explicit runtime block, which
+# names what each figure measures. It is no longer derived from a single
+# ambiguous field, and no longer hardcoded here.
+RUNTIME = MANIFEST.get("runtime", {})
+ANALYSIS_SECONDS = RUNTIME.get("analysis_wall_clock_seconds", 0)
 
 
 def provenance():
@@ -144,7 +142,10 @@ def provenance():
         "stages": stages,
         "findings_cost_usd": p.get("total_usd_to_produce", a.get("total_usd")),
         "analysis_seconds": round(ANALYSIS_SECONDS),
-        "analysis_minutes": round(ANALYSIS_SECONDS / 60),
+        "analysis_minutes": round(RUNTIME.get("analysis_wall_clock_minutes",
+                                              ANALYSIS_SECONDS / 60)),
+        "analysis_definition": RUNTIME.get("analysis_definition", ""),
+        "producing_runs": RUNTIME.get("producing_runs", []),
         "session_cost_usd": p.get("session_total_usd"),
         "extraction_quality": MANIFEST["extraction_quality"],
     }

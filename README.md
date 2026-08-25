@@ -45,8 +45,22 @@ says so. Set `ANTHROPIC_MODEL` to change the model (default `claude-opus-5`).
 Press `Shift+D` for Demo Mode — a step strip along the bottom that walks the
 intended presentation order.
 
-The UI never reads `eval/`, never recomputes a finding, and never asks a model
-for a dollar figure.
+The UI never reads `eval/`, never recomputes a finding, never asks a model for
+a dollar figure, and never writes to disk.
+
+**`demo/live_run/` is immutable.** It holds the committed model outputs the
+project is evidenced on. Replay it with `python3 demo/replay.py`, which writes
+to a scratch directory and verifies the source of truth is untouched. Never
+point `pipeline.run --out` at it. To check at any time:
+
+```bash
+python3 demo/verify_immutable.py
+```
+
+Run time of the analysis is **20.3 minutes** (1,217.2s), the measured total of
+the two invocations that made live model calls. It is recorded in
+`demo/live_run/run_manifest.json` under `runtime`, with the per-run breakdown
+and the archived stdout of both runs under `demo/live_run/provenance/`.
 
 
 ## corpus/

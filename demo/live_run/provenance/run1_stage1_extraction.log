@@ -1,0 +1,18 @@
+[load]    2398 work orders, 34 sites, 1378 registered assets
+[stage1]  extracted 2398 records (anthropic)
+[stage2]  57 candidates, examining top 15
+[stage3]  15 hypothesis sets
+[stage4]  15 verdicts
+
+[done]    985.4s total -> demo/live_run
+stage                     model               calls  cached    in tok  out tok      USD     sec
+-----------------------------------------------------------------------------------------------
+load_corpus               -                       0       0         0        0    0.000     0.0
+stage1_deterministic      -                       0       0         0        0    0.000     0.1
+stage1_extract            claude-opus-5        2388      10   2942702   810834   23.321 12659.6
+stage2_cluster            -                       0       0         0        0    0.000     0.0
+stage3_hypothesize        claude-opus-5          30       0    123696    76597    2.533  1146.7
+stage4_verify             claude-opus-5          30       0    316502    83912    3.701  1136.7
+render                    -                       0       0         0        0    0.000     0.0
+-----------------------------------------------------------------------------------------------
+TOTAL                                                                            29.556 14943.2
